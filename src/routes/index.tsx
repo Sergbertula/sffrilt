@@ -4,6 +4,7 @@ import { Stats } from "@/components/sections/Stats";
 import { Services } from "@/components/sections/Services";
 import { JuliaSection } from "@/components/sections/JuliaSection";
 import { Cases } from "@/components/sections/Cases";
+import { Industries } from "@/components/sections/Industries";
 import { Testimonials } from "@/components/sections/Testimonials";
 import { WhyUs } from "@/components/sections/WhyUs";
 import { Process } from "@/components/sections/Process";
@@ -40,6 +41,7 @@ function Index() {
       <Services />
       <JuliaSection />
       <Cases />
+      <Industries />
       <Testimonials />
       <WhyUs />
       <Process />
