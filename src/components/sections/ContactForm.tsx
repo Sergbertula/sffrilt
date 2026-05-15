@@ -4,11 +4,13 @@ import { SectionHeading } from "@/components/ui/glass-card";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { notifyLead } from "@/lib/telegram.functions";
+import { useServerFn } from "@tanstack/react-start";
 
 export function ContactForm() {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [form, setForm] = useState({ name: "", contact: "", task: "" });
+  const sendLeadNotification = useServerFn(notifyLead);
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -33,8 +35,7 @@ export function ContactForm() {
       }
       console.log("[ContactForm] insert ok, calling notifyLead");
       setSubmitted(true);
-      // Telegram notification — логируем результат для диагностики
-      notifyLead({ data: payload })
+      sendLeadNotification({ data: payload })
         .then((res) => console.log("[ContactForm] notifyLead result", res))
         .catch((err) => console.error("[ContactForm] notifyLead failed", err));
     } catch (err) {
