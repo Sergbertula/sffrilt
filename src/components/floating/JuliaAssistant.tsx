@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { X, Send, Sparkles } from "lucide-react";
 import { useServerFn } from "@tanstack/react-start";
 import { notifyLead } from "@/lib/telegram.functions";
+import juliaAvatar from "@/assets/julia-avatar.jpg";
 
 type Msg = { role: "user" | "julia"; text: string };
 
