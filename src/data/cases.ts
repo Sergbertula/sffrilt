@@ -1,4 +1,10 @@
-import { Workflow, Bot, BrainCircuit, Globe, FileStack, GraduationCap, type LucideIcon } from "lucide-react";
+import { Bot, BrainCircuit, Globe, FileStack, GraduationCap, type LucideIcon } from "lucide-react";
+import samokatCover from "@/assets/cases/samokat-szfo.jpg";
+import domtehCover from "@/assets/cases/domteh.jpg";
+import ayboitCover from "@/assets/cases/ayboit.jpg";
+import ecomarketCover from "@/assets/cases/ecomarket.jpg";
+import promlogistikaCover from "@/assets/cases/promlogistika.jpg";
+import yasnoCover from "@/assets/cases/yasno.jpg";
 
 export type CaseCategory = "AI" | "Telegram" | "Web" | "Автоматизация";
 
@@ -14,6 +20,7 @@ export interface CaseStudy {
   category: CaseCategory;
   tag: string;
   icon: LucideIcon;
+  cover: string;
   title: string;
   short: string;
   duration: string;
