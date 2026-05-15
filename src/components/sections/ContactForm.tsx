@@ -25,11 +25,18 @@ export function ContactForm() {
         task: form.task.trim() ? form.task.trim().slice(0, 4000) : null,
         source,
       };
+      console.log("[ContactForm] inserting lead", payload);
       const { error } = await supabase.from("leads").insert(payload);
-      if (error) throw error;
+      if (error) {
+        console.error("[ContactForm] insert error", error);
+        throw error;
+      }
+      console.log("[ContactForm] insert ok, calling notifyLead");
       setSubmitted(true);
-      // Fire-and-forget Telegram notification — не блокируем UX
-      notifyLead({ data: payload }).catch((err) => console.error("notifyLead failed", err));
+      // Telegram notification — логируем результат для диагностики
+      notifyLead({ data: payload })
+        .then((res) => console.log("[ContactForm] notifyLead result", res))
+        .catch((err) => console.error("[ContactForm] notifyLead failed", err));
     } catch (err) {
       console.error(err);
       toast.error("Не удалось отправить заявку. Напишите нам в Telegram — ответим быстрее.");
