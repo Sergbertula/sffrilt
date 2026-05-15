@@ -1,0 +1,91 @@
+import { Link } from "@tanstack/react-router";
+import { Phone, Mail, Send, Sparkles } from "lucide-react";
+
+export function Footer() {
+  return (
+    <footer className="relative mt-24 border-t border-border/60 bg-card/40">
+      <div className="absolute inset-x-0 -top-px h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
+      <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 lg:grid-cols-4 lg:px-8">
+        <div className="lg:col-span-2">
+          <Link to="/" className="flex items-center gap-2">
+            <span className="flex h-9 w-9 items-center justify-center rounded-lg gradient-primary glow-blue">
+              <Sparkles className="h-5 w-5 text-primary-foreground" />
+            </span>
+            <span className="font-display text-xl font-bold text-gradient">SFFRILT</span>
+          </Link>
+          <p className="mt-4 max-w-md text-sm leading-relaxed text-muted-foreground">
+            Разрабатываем AI-системы, Telegram-ботов и сайты, которые помогают компаниям
+            автоматизировать процессы и увеличивать поток клиентов.
+          </p>
+        </div>
+
+        <div>
+          <h3 className="font-display text-sm font-semibold uppercase tracking-wider text-foreground">
+            Контакты
+          </h3>
+          <ul className="mt-4 space-y-3 text-sm">
+            <li>
+              <a
+                href="tel:+79534428998"
+                className="group flex items-center gap-2 text-muted-foreground hover:text-foreground"
+              >
+                <Phone className="h-4 w-4 text-primary" />
+                +7 (953) 442-89-98
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://t.me/tehprom1"
+                target="_blank"
+                rel="noreferrer"
+                className="group flex items-center gap-2 text-muted-foreground hover:text-foreground"
+              >
+                <Send className="h-4 w-4 text-primary" />
+                @tehprom1
+              </a>
+            </li>
+            <li>
+              <a
+                href="mailto:tehprom-tula@mail.ru"
+                className="group flex items-center gap-2 text-muted-foreground hover:text-foreground"
+              >
+                <Mail className="h-4 w-4 text-primary" />
+                tehprom-tula@mail.ru
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 className="font-display text-sm font-semibold uppercase tracking-wider text-foreground">
+            Документы
+          </h3>
+          <ul className="mt-4 space-y-3 text-sm">
+            <li>
+              <Link to="/privacy" className="text-muted-foreground hover:text-foreground">
+                Политика конфиденциальности
+              </Link>
+            </li>
+            <li>
+              <Link to="/cookies" className="text-muted-foreground hover:text-foreground">
+                Использование cookies
+              </Link>
+            </li>
+            <li>
+              <Link to="/terms" className="text-muted-foreground hover:text-foreground">
+                Пользовательское соглашение
+              </Link>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div className="border-t border-border/60">
+        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-2 px-4 py-6 text-xs text-muted-foreground sm:flex-row sm:px-6 lg:px-8">
+          <p>© {new Date().getFullYear()} SFFRILT. Все права защищены.</p>
+          <p>AI-автоматизация · Telegram-боты · Web-разработка · SEO</p>
+        </div>
+      </div>
+    </footer>
+  );
+}
