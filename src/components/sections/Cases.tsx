@@ -1,7 +1,9 @@
+import { useState } from "react";
 import { ArrowUpRight } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import { GlassCard, SectionHeading } from "@/components/ui/glass-card";
-import { cases } from "@/data/cases";
+import { cases, caseCategories, type CaseCategory } from "@/data/cases";
+import { cn } from "@/lib/utils";
 
 const steps = [
   { n: "01", title: "Анализируем задачи бизнеса", desc: "Глубокое погружение в процессы и цели." },
@@ -11,7 +13,19 @@ const steps = [
   { n: "05", title: "Поддерживаем и развиваем", desc: "SLA, обновления, новые фичи, аналитика." },
 ];
 
-export function Cases() {
+type Filter = "Все" | CaseCategory;
+const filters: Filter[] = ["Все", ...caseCategories];
+
+interface CasesProps {
+  initialCategory?: CaseCategory;
+}
+
+export function Cases({ initialCategory }: CasesProps = {}) {
+  const [active, setActive] = useState<Filter>(initialCategory ?? "Все");
+  const visible = active === "Все" ? cases : cases.filter((c) => c.category === active);
+  const countFor = (f: Filter) =>
+    f === "Все" ? cases.length : cases.filter((c) => c.category === f).length;
+
   return (
     <section className="relative py-20 sm:py-28">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -20,8 +34,40 @@ export function Cases() {
           title="Что мы уже сделали"
           description="Каждый проект — про измеримый бизнес-эффект."
         />
-        <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {cases.map((c) => (
+
+        <div className="mt-10 flex flex-wrap justify-center gap-2">
+          {filters.map((f) => {
+            const isActive = active === f;
+            return (
+              <button
+                key={f}
+                type="button"
+                onClick={() => setActive(f)}
+                className={cn(
+                  "inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium transition-all",
+                  isActive
+                    ? "gradient-primary text-primary-foreground shadow-[0_0_30px_-8px_oklch(0.7_0.2_245/0.6)]"
+                    : "glass text-foreground/80 hover:text-foreground hover:border-primary/40",
+                )}
+              >
+                {f}
+                <span
+                  className={cn(
+                    "rounded-md px-1.5 py-0.5 text-[10px] font-semibold",
+                    isActive
+                      ? "bg-primary-foreground/20 text-primary-foreground"
+                      : "bg-primary/10 text-primary",
+                  )}
+                >
+                  {countFor(f)}
+                </span>
+              </button>
+            );
+          })}
+        </div>
+
+        <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {visible.map((c) => (
             <Link
               key={c.slug}
               to="/cases/$slug"
@@ -40,7 +86,10 @@ export function Cases() {
                   <span className="absolute left-3 top-3 inline-flex h-9 w-9 items-center justify-center rounded-lg bg-background/70 text-primary ring-1 ring-primary/30 backdrop-blur">
                     <c.icon className="h-4 w-4" />
                   </span>
-                  <ArrowUpRight className="absolute right-3 top-3 h-4 w-4 text-foreground/80 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  <span className="absolute right-3 top-3 inline-flex items-center gap-1 rounded-md bg-background/70 px-2 py-1 text-[10px] font-semibold uppercase tracking-wider text-foreground/90 ring-1 ring-border/60 backdrop-blur">
+                    {c.category}
+                    <ArrowUpRight className="h-3 w-3 text-primary transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  </span>
                 </div>
                 <div className="p-6">
                   <p className="text-[10px] font-semibold uppercase tracking-wider text-primary">
@@ -62,6 +111,12 @@ export function Cases() {
             </Link>
           ))}
         </div>
+
+        {visible.length === 0 && (
+          <p className="mt-10 text-center text-sm text-muted-foreground">
+            Скоро добавим кейсы в этой категории.
+          </p>
+        )}
 
         <div className="mt-24">
           <SectionHeading

@@ -6,7 +6,8 @@ import ecomarketCover from "@/assets/cases/ecomarket.jpg";
 import promlogistikaCover from "@/assets/cases/promlogistika.jpg";
 import yasnoCover from "@/assets/cases/yasno.jpg";
 
-export type CaseCategory = "AI" | "Telegram" | "Web" | "Автоматизация";
+export const caseCategories = ["AI", "Telegram", "Web", "Автоматизация"] as const;
+export type CaseCategory = (typeof caseCategories)[number];
 
 export interface CaseMetric {
   value: string;
