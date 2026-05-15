@@ -101,6 +101,26 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         href: "https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap",
       },
     ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          name: "SFFRILT",
+          url: "/",
+          description:
+            "Разработка AI-систем, Telegram-ботов и сайтов для автоматизации бизнеса.",
+          sameAs: ["https://t.me/tehprom1"],
+          contactPoint: {
+            "@type": "ContactPoint",
+            contactType: "sales",
+            availableLanguage: ["ru"],
+            url: "https://t.me/tehprom1",
+          },
+        }),
+      },
+    ],
   }),
   shellComponent: RootShell,
   component: RootComponent,
