@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageHero } from "@/components/layout/PageHero";
 import { ContactForm } from "@/components/sections/ContactForm";
+import { Packages, type PackageTier } from "@/components/sections/Packages";
 import { GlassCard, SectionHeading } from "@/components/ui/glass-card";
 import {
   ShoppingCart,
@@ -16,6 +17,49 @@ const items = [
   { icon: HeadphonesIcon, title: "Боты поддержки", desc: "Тикеты, FAQ, эскалация на оператора." },
   { icon: Building2, title: "Корпоративные боты", desc: "HR, согласования, отчёты внутри компании." },
   { icon: Workflow, title: "Боты автоматизации", desc: "Триггеры, рассылки, сценарии бизнес-процессов." },
+];
+
+const tiers: PackageTier[] = [
+  {
+    name: "Старт",
+    price: "от 80 000 ₽",
+    duration: "10–14 дней",
+    description: "MVP-бот для проверки гипотезы или простой автоматизации.",
+    features: [
+      "До 15 экранов и сценариев",
+      "Webhook-приём заявок в почту/Telegram",
+      "Базовая аналитика и логи",
+      "Хостинг на нашей инфраструктуре",
+      "1 месяц поддержки в подарок",
+    ],
+  },
+  {
+    name: "Стандарт",
+    price: "от 250 000 ₽",
+    duration: "3–4 недели",
+    description: "Боевой бот с интеграциями в CRM и оплатой.",
+    highlight: true,
+    features: [
+      "Каталог, корзина, оплата (ЮKassa / Тинькофф)",
+      "Интеграция с Bitrix24 / amoCRM / 1С",
+      "AI-ответы по базе знаний",
+      "Админ-панель для контента",
+      "SLA-поддержка 3 месяца",
+    ],
+  },
+  {
+    name: "Продакшен",
+    price: "от 600 000 ₽",
+    duration: "6–10 недель",
+    description: "Сложная экосистема ботов с аналитикой и масштабом.",
+    features: [
+      "Несколько ботов в единой админке",
+      "Глубокая интеграция с ERP / WMS / OMS",
+      "Очереди, retry, мониторинг 24/7",
+      "Кастомная LLM-логика и RAG",
+      "Годовое сопровождение и SLA",
+    ],
+  },
 ];
 
 export const Route = createFileRoute("/telegram-bots")({
@@ -70,6 +114,12 @@ function Page() {
           </div>
         </div>
       </section>
+      <Packages
+        eyebrow="Пакеты"
+        title="Сколько стоит и что входит"
+        description="Три формата под разные задачи — от пилота до промышленного запуска."
+        tiers={tiers}
+      />
       <ContactForm />
     </>
   );

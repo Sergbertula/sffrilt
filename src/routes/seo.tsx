@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageHero } from "@/components/layout/PageHero";
 import { ContactForm } from "@/components/sections/ContactForm";
+import { Packages, type PackageTier } from "@/components/sections/Packages";
 import { GlassCard, SectionHeading } from "@/components/ui/glass-card";
 import { Sparkles, Wrench, ListTree, Newspaper } from "lucide-react";
 
@@ -9,6 +10,49 @@ const items = [
   { icon: Wrench, title: "Техническое SEO", desc: "Скорость, индексация, Core Web Vitals, разметка." },
   { icon: ListTree, title: "SEO-структура", desc: "Семантика, кластеры, перелинковка." },
   { icon: Newspaper, title: "Контент-маркетинг", desc: "Экспертные статьи, лонгриды, публикации." },
+];
+
+const tiers: PackageTier[] = [
+  {
+    name: "Аудит",
+    price: "от 60 000 ₽",
+    duration: "7–10 дней",
+    description: "Глубокий технический и контентный аудит сайта.",
+    features: [
+      "Технический чек-лист 120+ пунктов",
+      "Анализ конкурентов и семантики",
+      "Карта роста: что, когда, какой эффект",
+      "Видео-разбор отчёта (60 минут)",
+      "Готовое ТЗ для разработки",
+    ],
+  },
+  {
+    name: "Продвижение",
+    price: "от 90 000 ₽/мес",
+    duration: "от 3 месяцев",
+    description: "Системная работа над органикой с прозрачными KPI.",
+    highlight: true,
+    features: [
+      "Контент-план и публикации (4–8 в мес)",
+      "Техническое SEO и Core Web Vitals",
+      "Перелинковка и кластеры",
+      "Внешние ссылки и упоминания",
+      "Ежемесячный отчёт с метриками",
+    ],
+  },
+  {
+    name: "AI Content Engine",
+    price: "от 200 000 ₽/мес",
+    duration: "от 6 месяцев",
+    description: "Промышленная контент-машина на AI с редактурой экспертов.",
+    features: [
+      "20–60 публикаций в месяц",
+      "AI-генерация + ручная редактура",
+      "Глубокая семантика и тематические кластеры",
+      "Аналитика по каждой статье",
+      "Команда: SEO, редактор, технолог",
+    ],
+  },
 ];
 
 export const Route = createFileRoute("/seo")({
@@ -63,6 +107,12 @@ function Page() {
           </div>
         </div>
       </section>
+      <Packages
+        eyebrow="Пакеты"
+        title="Форматы работы и цены"
+        description="От разового аудита до промышленного контент-конвейера."
+        tiers={tiers}
+      />
       <ContactForm />
     </>
   );
