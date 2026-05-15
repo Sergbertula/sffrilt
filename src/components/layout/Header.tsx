@@ -10,6 +10,7 @@ const navItems = [
   { to: "/web-development", label: "Разработка сайтов" },
   { to: "/seo", label: "SEO" },
   { to: "/cases", label: "Кейсы" },
+  { to: "/pricing", label: "Цены" },
   { to: "/contacts", label: "Контакты" },
 ] as const;
 
