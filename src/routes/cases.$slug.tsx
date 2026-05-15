@@ -72,7 +72,8 @@ export const Route = createFileRoute("/cases/$slug")({
 });
 
 function CasePage() {
-  const { study } = Route.useLoaderData();
+  const { slug } = Route.useParams();
+  const study = getCaseBySlug(slug)!;
   const Icon = study.icon;
   const others = cases.filter((c) => c.slug !== study.slug).slice(0, 3);
 
