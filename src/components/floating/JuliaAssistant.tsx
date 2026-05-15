@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { MessageCircle, X, Send, Sparkles } from "lucide-react";
+import { X, Send, Sparkles } from "lucide-react";
 import { useServerFn } from "@tanstack/react-start";
 import { notifyLead } from "@/lib/telegram.functions";
 
@@ -157,7 +157,7 @@ export function JuliaAssistant() {
               <form
                 onSubmit={(e) => {
                   e.preventDefault();
-                    void send(input);
+                  void send(input);
                 }}
                 className="flex items-center gap-2"
               >
