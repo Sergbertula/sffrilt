@@ -9,8 +9,62 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as WebDevelopmentRouteImport } from './routes/web-development'
+import { Route as TermsRouteImport } from './routes/terms'
+import { Route as TelegramBotsRouteImport } from './routes/telegram-bots'
+import { Route as SeoRouteImport } from './routes/seo'
+import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as CookiesRouteImport } from './routes/cookies'
+import { Route as ContactsRouteImport } from './routes/contacts'
+import { Route as CasesRouteImport } from './routes/cases'
+import { Route as AiSolutionsRouteImport } from './routes/ai-solutions'
 import { Route as IndexRouteImport } from './routes/index'
 
+const WebDevelopmentRoute = WebDevelopmentRouteImport.update({
+  id: '/web-development',
+  path: '/web-development',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TermsRoute = TermsRouteImport.update({
+  id: '/terms',
+  path: '/terms',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TelegramBotsRoute = TelegramBotsRouteImport.update({
+  id: '/telegram-bots',
+  path: '/telegram-bots',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SeoRoute = SeoRouteImport.update({
+  id: '/seo',
+  path: '/seo',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CookiesRoute = CookiesRouteImport.update({
+  id: '/cookies',
+  path: '/cookies',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactsRoute = ContactsRouteImport.update({
+  id: '/contacts',
+  path: '/contacts',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CasesRoute = CasesRouteImport.update({
+  id: '/cases',
+  path: '/cases',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AiSolutionsRoute = AiSolutionsRouteImport.update({
+  id: '/ai-solutions',
+  path: '/ai-solutions',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -19,28 +73,158 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/ai-solutions': typeof AiSolutionsRoute
+  '/cases': typeof CasesRoute
+  '/contacts': typeof ContactsRoute
+  '/cookies': typeof CookiesRoute
+  '/privacy': typeof PrivacyRoute
+  '/seo': typeof SeoRoute
+  '/telegram-bots': typeof TelegramBotsRoute
+  '/terms': typeof TermsRoute
+  '/web-development': typeof WebDevelopmentRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/ai-solutions': typeof AiSolutionsRoute
+  '/cases': typeof CasesRoute
+  '/contacts': typeof ContactsRoute
+  '/cookies': typeof CookiesRoute
+  '/privacy': typeof PrivacyRoute
+  '/seo': typeof SeoRoute
+  '/telegram-bots': typeof TelegramBotsRoute
+  '/terms': typeof TermsRoute
+  '/web-development': typeof WebDevelopmentRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/ai-solutions': typeof AiSolutionsRoute
+  '/cases': typeof CasesRoute
+  '/contacts': typeof ContactsRoute
+  '/cookies': typeof CookiesRoute
+  '/privacy': typeof PrivacyRoute
+  '/seo': typeof SeoRoute
+  '/telegram-bots': typeof TelegramBotsRoute
+  '/terms': typeof TermsRoute
+  '/web-development': typeof WebDevelopmentRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/ai-solutions'
+    | '/cases'
+    | '/contacts'
+    | '/cookies'
+    | '/privacy'
+    | '/seo'
+    | '/telegram-bots'
+    | '/terms'
+    | '/web-development'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/ai-solutions'
+    | '/cases'
+    | '/contacts'
+    | '/cookies'
+    | '/privacy'
+    | '/seo'
+    | '/telegram-bots'
+    | '/terms'
+    | '/web-development'
+  id:
+    | '__root__'
+    | '/'
+    | '/ai-solutions'
+    | '/cases'
+    | '/contacts'
+    | '/cookies'
+    | '/privacy'
+    | '/seo'
+    | '/telegram-bots'
+    | '/terms'
+    | '/web-development'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AiSolutionsRoute: typeof AiSolutionsRoute
+  CasesRoute: typeof CasesRoute
+  ContactsRoute: typeof ContactsRoute
+  CookiesRoute: typeof CookiesRoute
+  PrivacyRoute: typeof PrivacyRoute
+  SeoRoute: typeof SeoRoute
+  TelegramBotsRoute: typeof TelegramBotsRoute
+  TermsRoute: typeof TermsRoute
+  WebDevelopmentRoute: typeof WebDevelopmentRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/web-development': {
+      id: '/web-development'
+      path: '/web-development'
+      fullPath: '/web-development'
+      preLoaderRoute: typeof WebDevelopmentRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/terms': {
+      id: '/terms'
+      path: '/terms'
+      fullPath: '/terms'
+      preLoaderRoute: typeof TermsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/telegram-bots': {
+      id: '/telegram-bots'
+      path: '/telegram-bots'
+      fullPath: '/telegram-bots'
+      preLoaderRoute: typeof TelegramBotsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/seo': {
+      id: '/seo'
+      path: '/seo'
+      fullPath: '/seo'
+      preLoaderRoute: typeof SeoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cookies': {
+      id: '/cookies'
+      path: '/cookies'
+      fullPath: '/cookies'
+      preLoaderRoute: typeof CookiesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contacts': {
+      id: '/contacts'
+      path: '/contacts'
+      fullPath: '/contacts'
+      preLoaderRoute: typeof ContactsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cases': {
+      id: '/cases'
+      path: '/cases'
+      fullPath: '/cases'
+      preLoaderRoute: typeof CasesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ai-solutions': {
+      id: '/ai-solutions'
+      path: '/ai-solutions'
+      fullPath: '/ai-solutions'
+      preLoaderRoute: typeof AiSolutionsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -53,7 +237,26 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AiSolutionsRoute: AiSolutionsRoute,
+  CasesRoute: CasesRoute,
+  ContactsRoute: ContactsRoute,
+  CookiesRoute: CookiesRoute,
+  PrivacyRoute: PrivacyRoute,
+  SeoRoute: SeoRoute,
+  TelegramBotsRoute: TelegramBotsRoute,
+  TermsRoute: TermsRoute,
+  WebDevelopmentRoute: WebDevelopmentRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
