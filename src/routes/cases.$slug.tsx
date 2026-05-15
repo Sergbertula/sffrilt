@@ -29,6 +29,9 @@ export const Route = createFileRoute("/cases/$slug")({
         { property: "og:title", content: title.slice(0, 60) },
         { property: "og:description", content: description.slice(0, 160) },
         { property: "og:type", content: "article" },
+        { property: "og:image", content: study.cover },
+        { name: "twitter:card", content: "summary_large_image" },
+        { name: "twitter:image", content: study.cover },
       ],
     };
   },
