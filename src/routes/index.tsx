@@ -6,6 +6,7 @@ import { JuliaSection } from "@/components/sections/JuliaSection";
 import { Cases } from "@/components/sections/Cases";
 import { Testimonials } from "@/components/sections/Testimonials";
 import { WhyUs } from "@/components/sections/WhyUs";
+import { Integrations } from "@/components/sections/Integrations";
 import { Faq } from "@/components/sections/Faq";
 import { ContactForm } from "@/components/sections/ContactForm";
 
@@ -38,6 +39,7 @@ function Index() {
       <Cases />
       <Testimonials />
       <WhyUs />
+      <Integrations />
       <Faq />
       <ContactForm />
     </>
