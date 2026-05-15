@@ -1,26 +1,37 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Hero } from "@/components/sections/Hero";
+import { Services } from "@/components/sections/Services";
+import { JuliaSection } from "@/components/sections/JuliaSection";
+import { Cases } from "@/components/sections/Cases";
+import { ContactForm } from "@/components/sections/ContactForm";
 
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: "SFFRILT — AI-автоматизация, Telegram-боты и сайты" },
+      {
+        name: "description",
+        content:
+          "Разрабатываем AI-системы, Telegram-ботов и сайты для автоматизации бизнеса и роста заявок.",
+      },
+      { property: "og:title", content: "SFFRILT — AI-автоматизация бизнеса" },
+      {
+        property: "og:description",
+        content: "AI-агенты, Telegram-боты, сайты и SEO для роста бизнеса.",
+      },
+    ],
+  }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. For sites with multiple pages (About, Services, Contact, etc.),
-// create separate route files (about.tsx, services.tsx, contact.tsx) — don't put all pages in this file.
-function PlaceholderIndex() {
-  return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
-  );
-}
-
 function Index() {
-  return <PlaceholderIndex />;
+  return (
+    <>
+      <Hero />
+      <Services />
+      <JuliaSection />
+      <Cases />
+      <ContactForm />
+    </>
+  );
 }
