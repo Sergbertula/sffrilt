@@ -22,6 +22,29 @@ export const Route = createFileRoute("/cases/$slug")({
     }
     const title = `${study.client} — ${study.title} | SFFRILT`;
     const description = study.short;
+    const jsonLd = {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Article",
+          headline: `${study.client} — ${study.title}`,
+          description: study.short,
+          image: [study.cover],
+          author: { "@type": "Organization", name: "SFFRILT" },
+          publisher: { "@type": "Organization", name: "SFFRILT" },
+          about: study.industry,
+          keywords: [study.category, study.tag, study.industry, ...study.stack].join(", "),
+        },
+        {
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            { "@type": "ListItem", position: 1, name: "Главная", item: "/" },
+            { "@type": "ListItem", position: 2, name: "Кейсы", item: "/cases" },
+            { "@type": "ListItem", position: 3, name: study.client, item: `/cases/${study.slug}` },
+          ],
+        },
+      ],
+    };
     return {
       meta: [
         { title: title.slice(0, 60) },
@@ -32,6 +55,12 @@ export const Route = createFileRoute("/cases/$slug")({
         { property: "og:image", content: study.cover },
         { name: "twitter:card", content: "summary_large_image" },
         { name: "twitter:image", content: study.cover },
+      ],
+      scripts: [
+        {
+          type: "application/ld+json",
+          children: JSON.stringify(jsonLd),
+        },
       ],
     };
   },
