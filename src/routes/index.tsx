@@ -37,6 +37,7 @@ function Index() {
       <JuliaSection />
       <Cases />
       <Testimonials />
+      <WhyUs />
       <Faq />
       <ContactForm />
     </>
