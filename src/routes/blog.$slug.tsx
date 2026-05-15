@@ -2,7 +2,7 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { Calendar, Clock, ArrowLeft, ArrowRight } from "lucide-react";
 import { GlassCard } from "@/components/ui/glass-card";
 import { ContactForm } from "@/components/sections/ContactForm";
-import { articles } from "@/data/articles";
+import { articles, type Article } from "@/data/articles";
 
 export const Route = createFileRoute("/blog/$slug")({
   loader: ({ params }) => {
@@ -93,7 +93,7 @@ function Page() {
           </div>
 
           <div className="mt-12 space-y-6 text-base leading-relaxed text-muted-foreground">
-            {article.content.map((block, i) => {
+            {article.content.map((block: Article["content"][number], i: number) => {
               if (block.type === "h2")
                 return (
                   <h2
@@ -115,7 +115,7 @@ function Page() {
               if (block.type === "ul")
                 return (
                   <ul key={i} className="space-y-2 pl-1">
-                    {block.items?.map((it, j) => (
+                    {block.items?.map((it: string, j: number) => (
                       <li key={j} className="flex items-start gap-3">
                         <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
                         <span>{it}</span>
