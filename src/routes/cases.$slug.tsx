@@ -116,6 +116,15 @@ function CasePage() {
           <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
             {study.short}
           </p>
+          <div className="relative mt-10 overflow-hidden rounded-3xl border border-border/60 shadow-[0_30px_80px_-30px_oklch(0.7_0.2_245/0.5)]">
+            <div className="absolute -inset-1 -z-10 rounded-3xl bg-gradient-to-br from-primary/30 via-transparent to-accent/30 blur-2xl opacity-60" />
+            <img
+              src={study.cover}
+              alt={`${study.client} — ${study.title}`}
+              className="aspect-[16/9] w-full object-cover"
+            />
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/40 via-transparent to-transparent" />
+          </div>
         </div>
       </section>
 
