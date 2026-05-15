@@ -3,6 +3,7 @@ import { Hero } from "@/components/sections/Hero";
 import { Services } from "@/components/sections/Services";
 import { JuliaSection } from "@/components/sections/JuliaSection";
 import { Cases } from "@/components/sections/Cases";
+import { Faq } from "@/components/sections/Faq";
 import { ContactForm } from "@/components/sections/ContactForm";
 
 export const Route = createFileRoute("/")({
@@ -31,6 +32,7 @@ function Index() {
       <Services />
       <JuliaSection />
       <Cases />
+      <Faq />
       <ContactForm />
     </>
   );
