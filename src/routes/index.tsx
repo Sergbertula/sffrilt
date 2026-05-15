@@ -9,6 +9,7 @@ import { WhyUs } from "@/components/sections/WhyUs";
 import { Process } from "@/components/sections/Process";
 import { Compare } from "@/components/sections/Compare";
 import { Integrations } from "@/components/sections/Integrations";
+import { Guarantees } from "@/components/sections/Guarantees";
 import { Faq } from "@/components/sections/Faq";
 import { ContactForm } from "@/components/sections/ContactForm";
 
@@ -44,6 +45,7 @@ function Index() {
       <Process />
       <Compare />
       <Integrations />
+      <Guarantees />
       <Faq />
       <ContactForm />
     </>
