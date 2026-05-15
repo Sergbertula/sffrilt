@@ -1,14 +1,16 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Link, useRouterState } from "@tanstack/react-router";
-import { Menu, X, Sparkles } from "lucide-react";
+import { Menu, X, Sparkles, ChevronDown, Bot, Send, Globe, Search } from "lucide-react";
 import { cn } from "@/lib/utils";
 
+const services = [
+  { to: "/ai-solutions", label: "AI-решения", desc: "AI-агенты, RAG, автоматизация", icon: Bot },
+  { to: "/telegram-bots", label: "Telegram-боты", desc: "Боты, Mini Apps, CRM", icon: Send },
+  { to: "/web-development", label: "Разработка сайтов", desc: "Лендинги, SaaS, веб-сервисы", icon: Globe },
+  { to: "/seo", label: "SEO-продвижение", desc: "Аудит, контент, линкбилдинг", icon: Search },
+] as const;
+
 const navItems = [
-  { to: "/", label: "Главная" },
-  { to: "/ai-solutions", label: "AI-решения" },
-  { to: "/telegram-bots", label: "Telegram-боты" },
-  { to: "/web-development", label: "Разработка сайтов" },
-  { to: "/seo", label: "SEO" },
   { to: "/cases", label: "Кейсы" },
   { to: "/blog", label: "Блог" },
   { to: "/pricing", label: "Цены" },
@@ -18,7 +20,25 @@ const navItems = [
 
 export function Header() {
   const [open, setOpen] = useState(false);
+  const [services_open, setServicesOpen] = useState(false);
   const { location } = useRouterState();
+  const dropRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    function onClick(e: MouseEvent) {
+      if (dropRef.current && !dropRef.current.contains(e.target as Node)) {
+        setServicesOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", onClick);
+    return () => document.removeEventListener("mousedown", onClick);
+  }, []);
+
+  useEffect(() => {
+    setServicesOpen(false);
+  }, [location.pathname]);
+
+  const isServiceActive = services.some((s) => s.to === location.pathname);
 
   return (
     <header className="sticky top-0 z-40 w-full border-b border-border/60 glass-strong">
@@ -33,6 +53,60 @@ export function Header() {
         </Link>
 
         <nav className="hidden items-center gap-1 lg:flex">
+          <Link
+            to="/"
+            className={cn(
+              "rounded-md px-3 py-2 text-sm font-medium transition-colors",
+              location.pathname === "/"
+                ? "text-foreground bg-secondary/60"
+                : "text-muted-foreground hover:text-foreground hover:bg-secondary/40",
+            )}
+          >
+            Главная
+          </Link>
+
+          <div className="relative" ref={dropRef}>
+            <button
+              type="button"
+              onClick={() => setServicesOpen((v) => !v)}
+              className={cn(
+                "inline-flex items-center gap-1 rounded-md px-3 py-2 text-sm font-medium transition-colors",
+                isServiceActive || services_open
+                  ? "text-foreground bg-secondary/60"
+                  : "text-muted-foreground hover:text-foreground hover:bg-secondary/40",
+              )}
+            >
+              Услуги
+              <ChevronDown
+                className={cn("h-3.5 w-3.5 transition-transform", services_open && "rotate-180")}
+              />
+            </button>
+
+            {services_open && (
+              <div className="absolute left-0 top-full mt-2 w-[420px] overflow-hidden rounded-2xl glass-strong p-2 shadow-elegant ring-1 ring-border/60">
+                <div className="grid gap-1">
+                  {services.map((s) => (
+                    <Link
+                      key={s.to}
+                      to={s.to}
+                      className="group flex items-start gap-3 rounded-xl p-3 transition-colors hover:bg-primary/10"
+                    >
+                      <span className="mt-0.5 inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-primary/20 to-accent/20 text-primary ring-1 ring-primary/20">
+                        <s.icon className="h-4 w-4" />
+                      </span>
+                      <div className="min-w-0">
+                        <div className="font-display text-sm font-semibold text-foreground">
+                          {s.label}
+                        </div>
+                        <div className="mt-0.5 text-xs text-muted-foreground">{s.desc}</div>
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+
           {navItems.map((item) => {
             const active = location.pathname === item.to;
             return (
@@ -73,6 +147,30 @@ export function Header() {
       {open && (
         <div className="border-t border-border/60 lg:hidden">
           <nav className="mx-auto flex max-w-7xl flex-col gap-1 px-4 py-4">
+            <Link
+              to="/"
+              onClick={() => setOpen(false)}
+              className="rounded-md px-3 py-2.5 text-sm font-medium text-muted-foreground hover:bg-secondary/50 hover:text-foreground"
+            >
+              Главная
+            </Link>
+            <div className="mt-2 px-3 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground/70">
+              Услуги
+            </div>
+            {services.map((s) => (
+              <Link
+                key={s.to}
+                to={s.to}
+                onClick={() => setOpen(false)}
+                className="flex items-center gap-2.5 rounded-md px-3 py-2.5 text-sm font-medium text-muted-foreground hover:bg-secondary/50 hover:text-foreground"
+              >
+                <s.icon className="h-4 w-4 text-primary" />
+                {s.label}
+              </Link>
+            ))}
+            <div className="mt-2 px-3 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground/70">
+              Компания
+            </div>
             {navItems.map((item) => (
               <Link
                 key={item.to}
