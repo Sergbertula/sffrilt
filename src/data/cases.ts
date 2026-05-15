@@ -34,6 +34,7 @@ export interface CaseStudy {
 export const cases: CaseStudy[] = [
   {
     slug: "samokat-szfo-ai-dispatcher",
+    cover: samokatCover,
     client: "Самокат Северо-Запад",
     industry: "Логистика и доставка",
     category: "AI",
@@ -54,6 +55,7 @@ export const cases: CaseStudy[] = [
   },
   {
     slug: "domteh-telegram-bot",
+    cover: domtehCover,
     client: "ДомТех",
     industry: "Стройматериалы, B2C",
     category: "Telegram",
@@ -74,6 +76,7 @@ export const cases: CaseStudy[] = [
   },
   {
     slug: "ayboit-voice-ai-admin",
+    cover: ayboitCover,
     client: "Клиника Айболит",
     industry: "Медицина",
     category: "AI",
@@ -94,6 +97,7 @@ export const cases: CaseStudy[] = [
   },
   {
     slug: "ecomarket-b2b-portal",
+    cover: ecomarketCover,
     client: "ЭкоМаркет",
     industry: "FMCG, B2B-дистрибуция",
     category: "Web",
@@ -114,6 +118,7 @@ export const cases: CaseStudy[] = [
   },
   {
     slug: "promlogistika-rpa-docs",
+    cover: promlogistikaCover,
     client: "ПромЛогистика",
     industry: "Грузоперевозки",
     category: "Автоматизация",
@@ -134,6 +139,7 @@ export const cases: CaseStudy[] = [
   },
   {
     slug: "yasno-ai-tutor",
+    cover: yasnoCover,
     client: "Школа Ясно",
     industry: "EdTech",
     category: "AI",
