@@ -10,6 +10,7 @@ const services = [
 
 const company = [
   { to: "/cases", label: "Кейсы" },
+  { to: "/pricing", label: "Цены" },
   { to: "/contacts", label: "Контакты" },
 ] as const;
 

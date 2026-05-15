@@ -16,6 +16,7 @@ import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as SeoRouteImport } from './routes/seo'
 import { Route as RobotsDottxtRouteImport } from './routes/robots[.]txt'
 import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as CookiesRouteImport } from './routes/cookies'
 import { Route as ContactsRouteImport } from './routes/contacts'
 import { Route as CasesRouteImport } from './routes/cases'
@@ -58,6 +59,11 @@ const PrivacyRoute = PrivacyRouteImport.update({
   path: '/privacy',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PricingRoute = PricingRouteImport.update({
+  id: '/pricing',
+  path: '/pricing',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CookiesRoute = CookiesRouteImport.update({
   id: '/cookies',
   path: '/cookies',
@@ -95,6 +101,7 @@ export interface FileRoutesByFullPath {
   '/cases': typeof CasesRouteWithChildren
   '/contacts': typeof ContactsRoute
   '/cookies': typeof CookiesRoute
+  '/pricing': typeof PricingRoute
   '/privacy': typeof PrivacyRoute
   '/robots.txt': typeof RobotsDottxtRoute
   '/seo': typeof SeoRoute
@@ -110,6 +117,7 @@ export interface FileRoutesByTo {
   '/cases': typeof CasesRouteWithChildren
   '/contacts': typeof ContactsRoute
   '/cookies': typeof CookiesRoute
+  '/pricing': typeof PricingRoute
   '/privacy': typeof PrivacyRoute
   '/robots.txt': typeof RobotsDottxtRoute
   '/seo': typeof SeoRoute
@@ -126,6 +134,7 @@ export interface FileRoutesById {
   '/cases': typeof CasesRouteWithChildren
   '/contacts': typeof ContactsRoute
   '/cookies': typeof CookiesRoute
+  '/pricing': typeof PricingRoute
   '/privacy': typeof PrivacyRoute
   '/robots.txt': typeof RobotsDottxtRoute
   '/seo': typeof SeoRoute
@@ -143,6 +152,7 @@ export interface FileRouteTypes {
     | '/cases'
     | '/contacts'
     | '/cookies'
+    | '/pricing'
     | '/privacy'
     | '/robots.txt'
     | '/seo'
@@ -158,6 +168,7 @@ export interface FileRouteTypes {
     | '/cases'
     | '/contacts'
     | '/cookies'
+    | '/pricing'
     | '/privacy'
     | '/robots.txt'
     | '/seo'
@@ -173,6 +184,7 @@ export interface FileRouteTypes {
     | '/cases'
     | '/contacts'
     | '/cookies'
+    | '/pricing'
     | '/privacy'
     | '/robots.txt'
     | '/seo'
@@ -189,6 +201,7 @@ export interface RootRouteChildren {
   CasesRoute: typeof CasesRouteWithChildren
   ContactsRoute: typeof ContactsRoute
   CookiesRoute: typeof CookiesRoute
+  PricingRoute: typeof PricingRoute
   PrivacyRoute: typeof PrivacyRoute
   RobotsDottxtRoute: typeof RobotsDottxtRoute
   SeoRoute: typeof SeoRoute
@@ -247,6 +260,13 @@ declare module '@tanstack/react-router' {
       path: '/privacy'
       fullPath: '/privacy'
       preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pricing': {
+      id: '/pricing'
+      path: '/pricing'
+      fullPath: '/pricing'
+      preLoaderRoute: typeof PricingRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/cookies': {
@@ -310,6 +330,7 @@ const rootRouteChildren: RootRouteChildren = {
   CasesRoute: CasesRouteWithChildren,
   ContactsRoute: ContactsRoute,
   CookiesRoute: CookiesRoute,
+  PricingRoute: PricingRoute,
   PrivacyRoute: PrivacyRoute,
   RobotsDottxtRoute: RobotsDottxtRoute,
   SeoRoute: SeoRoute,
