@@ -10,7 +10,19 @@ const intro: Msg[] = [
     role: "julia",
     text: "Здравствуйте! Я Юлия — цифровой помощник SFFRILT. Помогу подобрать услугу, оставить заявку или связаться со специалистом.",
   },
+  {
+    role: "julia",
+    text: "Опишите задачу в одном сообщении — затем я попрошу контакт (Telegram, телефон или email), чтобы специалист мог с вами связаться.",
+  },
 ];
+
+// Принимаем: @username, +телефон (мин. 7 цифр), email
+const contactRegex =
+  /(@[a-zA-Z0-9_]{3,})|(\+?\d[\d\s().-]{6,}\d)|([^\s@]+@[^\s@]+\.[^\s@]{2,})/;
+
+function looksLikeContact(text: string) {
+  return contactRegex.test(text.trim());
+}
 
 const quickReplies = [
   "Хочу AI-агента",
