@@ -19,6 +19,7 @@ import { Route as ContactsRouteImport } from './routes/contacts'
 import { Route as CasesRouteImport } from './routes/cases'
 import { Route as AiSolutionsRouteImport } from './routes/ai-solutions'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as CasesSlugRouteImport } from './routes/cases.$slug'
 
 const WebDevelopmentRoute = WebDevelopmentRouteImport.update({
   id: '/web-development',
@@ -70,11 +71,16 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CasesSlugRoute = CasesSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => CasesRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/ai-solutions': typeof AiSolutionsRoute
-  '/cases': typeof CasesRoute
+  '/cases': typeof CasesRouteWithChildren
   '/contacts': typeof ContactsRoute
   '/cookies': typeof CookiesRoute
   '/privacy': typeof PrivacyRoute
@@ -82,11 +88,12 @@ export interface FileRoutesByFullPath {
   '/telegram-bots': typeof TelegramBotsRoute
   '/terms': typeof TermsRoute
   '/web-development': typeof WebDevelopmentRoute
+  '/cases/$slug': typeof CasesSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/ai-solutions': typeof AiSolutionsRoute
-  '/cases': typeof CasesRoute
+  '/cases': typeof CasesRouteWithChildren
   '/contacts': typeof ContactsRoute
   '/cookies': typeof CookiesRoute
   '/privacy': typeof PrivacyRoute
@@ -94,12 +101,13 @@ export interface FileRoutesByTo {
   '/telegram-bots': typeof TelegramBotsRoute
   '/terms': typeof TermsRoute
   '/web-development': typeof WebDevelopmentRoute
+  '/cases/$slug': typeof CasesSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/ai-solutions': typeof AiSolutionsRoute
-  '/cases': typeof CasesRoute
+  '/cases': typeof CasesRouteWithChildren
   '/contacts': typeof ContactsRoute
   '/cookies': typeof CookiesRoute
   '/privacy': typeof PrivacyRoute
@@ -107,6 +115,7 @@ export interface FileRoutesById {
   '/telegram-bots': typeof TelegramBotsRoute
   '/terms': typeof TermsRoute
   '/web-development': typeof WebDevelopmentRoute
+  '/cases/$slug': typeof CasesSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -121,6 +130,7 @@ export interface FileRouteTypes {
     | '/telegram-bots'
     | '/terms'
     | '/web-development'
+    | '/cases/$slug'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -133,6 +143,7 @@ export interface FileRouteTypes {
     | '/telegram-bots'
     | '/terms'
     | '/web-development'
+    | '/cases/$slug'
   id:
     | '__root__'
     | '/'
@@ -145,12 +156,13 @@ export interface FileRouteTypes {
     | '/telegram-bots'
     | '/terms'
     | '/web-development'
+    | '/cases/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AiSolutionsRoute: typeof AiSolutionsRoute
-  CasesRoute: typeof CasesRoute
+  CasesRoute: typeof CasesRouteWithChildren
   ContactsRoute: typeof ContactsRoute
   CookiesRoute: typeof CookiesRoute
   PrivacyRoute: typeof PrivacyRoute
@@ -232,13 +244,30 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/cases/$slug': {
+      id: '/cases/$slug'
+      path: '/$slug'
+      fullPath: '/cases/$slug'
+      preLoaderRoute: typeof CasesSlugRouteImport
+      parentRoute: typeof CasesRoute
+    }
   }
 }
+
+interface CasesRouteChildren {
+  CasesSlugRoute: typeof CasesSlugRoute
+}
+
+const CasesRouteChildren: CasesRouteChildren = {
+  CasesSlugRoute: CasesSlugRoute,
+}
+
+const CasesRouteWithChildren = CasesRoute._addFileChildren(CasesRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AiSolutionsRoute: AiSolutionsRoute,
-  CasesRoute: CasesRoute,
+  CasesRoute: CasesRouteWithChildren,
   ContactsRoute: ContactsRoute,
   CookiesRoute: CookiesRoute,
   PrivacyRoute: PrivacyRoute,
@@ -250,3 +279,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
