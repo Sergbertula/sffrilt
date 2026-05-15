@@ -302,6 +302,7 @@ function Page() {
         </section>
       ))}
 
+      <Calc />
       <Compare />
       <Faq />
       <ContactForm />
