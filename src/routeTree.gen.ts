@@ -12,7 +12,9 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as WebDevelopmentRouteImport } from './routes/web-development'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as TelegramBotsRouteImport } from './routes/telegram-bots'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as SeoRouteImport } from './routes/seo'
+import { Route as RobotsDottxtRouteImport } from './routes/robots[.]txt'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as CookiesRouteImport } from './routes/cookies'
 import { Route as ContactsRouteImport } from './routes/contacts'
@@ -36,9 +38,19 @@ const TelegramBotsRoute = TelegramBotsRouteImport.update({
   path: '/telegram-bots',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SeoRoute = SeoRouteImport.update({
   id: '/seo',
   path: '/seo',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RobotsDottxtRoute = RobotsDottxtRouteImport.update({
+  id: '/robots.txt',
+  path: '/robots.txt',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PrivacyRoute = PrivacyRouteImport.update({
@@ -84,7 +96,9 @@ export interface FileRoutesByFullPath {
   '/contacts': typeof ContactsRoute
   '/cookies': typeof CookiesRoute
   '/privacy': typeof PrivacyRoute
+  '/robots.txt': typeof RobotsDottxtRoute
   '/seo': typeof SeoRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/telegram-bots': typeof TelegramBotsRoute
   '/terms': typeof TermsRoute
   '/web-development': typeof WebDevelopmentRoute
@@ -97,7 +111,9 @@ export interface FileRoutesByTo {
   '/contacts': typeof ContactsRoute
   '/cookies': typeof CookiesRoute
   '/privacy': typeof PrivacyRoute
+  '/robots.txt': typeof RobotsDottxtRoute
   '/seo': typeof SeoRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/telegram-bots': typeof TelegramBotsRoute
   '/terms': typeof TermsRoute
   '/web-development': typeof WebDevelopmentRoute
@@ -111,7 +127,9 @@ export interface FileRoutesById {
   '/contacts': typeof ContactsRoute
   '/cookies': typeof CookiesRoute
   '/privacy': typeof PrivacyRoute
+  '/robots.txt': typeof RobotsDottxtRoute
   '/seo': typeof SeoRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/telegram-bots': typeof TelegramBotsRoute
   '/terms': typeof TermsRoute
   '/web-development': typeof WebDevelopmentRoute
@@ -126,7 +144,9 @@ export interface FileRouteTypes {
     | '/contacts'
     | '/cookies'
     | '/privacy'
+    | '/robots.txt'
     | '/seo'
+    | '/sitemap.xml'
     | '/telegram-bots'
     | '/terms'
     | '/web-development'
@@ -139,7 +159,9 @@ export interface FileRouteTypes {
     | '/contacts'
     | '/cookies'
     | '/privacy'
+    | '/robots.txt'
     | '/seo'
+    | '/sitemap.xml'
     | '/telegram-bots'
     | '/terms'
     | '/web-development'
@@ -152,7 +174,9 @@ export interface FileRouteTypes {
     | '/contacts'
     | '/cookies'
     | '/privacy'
+    | '/robots.txt'
     | '/seo'
+    | '/sitemap.xml'
     | '/telegram-bots'
     | '/terms'
     | '/web-development'
@@ -166,7 +190,9 @@ export interface RootRouteChildren {
   ContactsRoute: typeof ContactsRoute
   CookiesRoute: typeof CookiesRoute
   PrivacyRoute: typeof PrivacyRoute
+  RobotsDottxtRoute: typeof RobotsDottxtRoute
   SeoRoute: typeof SeoRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TelegramBotsRoute: typeof TelegramBotsRoute
   TermsRoute: typeof TermsRoute
   WebDevelopmentRoute: typeof WebDevelopmentRoute
@@ -195,11 +221,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TelegramBotsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/seo': {
       id: '/seo'
       path: '/seo'
       fullPath: '/seo'
       preLoaderRoute: typeof SeoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/robots.txt': {
+      id: '/robots.txt'
+      path: '/robots.txt'
+      fullPath: '/robots.txt'
+      preLoaderRoute: typeof RobotsDottxtRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/privacy': {
@@ -271,7 +311,9 @@ const rootRouteChildren: RootRouteChildren = {
   ContactsRoute: ContactsRoute,
   CookiesRoute: CookiesRoute,
   PrivacyRoute: PrivacyRoute,
+  RobotsDottxtRoute: RobotsDottxtRoute,
   SeoRoute: SeoRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
   TelegramBotsRoute: TelegramBotsRoute,
   TermsRoute: TermsRoute,
   WebDevelopmentRoute: WebDevelopmentRoute,
@@ -279,3 +321,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
