@@ -164,8 +164,15 @@ export function JuliaAssistant() {
           <div className="relative flex h-[100dvh] w-full flex-col glass-strong shadow-elegant sm:h-[600px] sm:max-h-[85vh] sm:w-[400px] sm:rounded-2xl">
             <div className="flex items-center justify-between border-b border-border/60 px-4 py-3">
               <div className="flex items-center gap-3">
-                <div className="relative flex h-10 w-10 items-center justify-center rounded-full gradient-primary glow-blue">
-                  <Sparkles className="h-5 w-5 text-primary-foreground" />
+                <div className="relative h-11 w-11 overflow-hidden rounded-full ring-2 ring-primary/50 glow-blue">
+                  <img
+                    src={juliaAvatar}
+                    alt="Юлия"
+                    width={88}
+                    height={88}
+                    loading="lazy"
+                    className="h-full w-full object-cover"
+                  />
                   <span className="absolute -right-0.5 -bottom-0.5 h-3 w-3 rounded-full bg-emerald-400 ring-2 ring-background" />
                 </div>
                 <div>
