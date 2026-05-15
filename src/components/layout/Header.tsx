@@ -10,6 +10,7 @@ const navItems = [
   { to: "/web-development", label: "Разработка сайтов" },
   { to: "/seo", label: "SEO" },
   { to: "/cases", label: "Кейсы" },
+  { to: "/blog", label: "Блог" },
   { to: "/pricing", label: "Цены" },
   { to: "/about", label: "О нас" },
   { to: "/contacts", label: "Контакты" },

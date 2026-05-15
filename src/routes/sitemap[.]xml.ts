@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { cases } from "@/data/cases";
+import { articles } from "@/data/articles";
 
 const STATIC_PATHS = [
   "/",
@@ -10,6 +11,7 @@ const STATIC_PATHS = [
   "/cases",
   "/pricing",
   "/about",
+  "/blog",
   "/contacts",
   "/privacy",
   "/terms",
@@ -27,6 +29,10 @@ export const Route = createFileRoute("/sitemap.xml")({
           ...cases.map((c) => ({
             loc: `${origin}/cases/${c.slug}`,
             priority: "0.7",
+          })),
+          ...articles.map((a) => ({
+            loc: `${origin}/blog/${a.slug}`,
+            priority: "0.6",
           })),
         ];
         const xml = `<?xml version="1.0" encoding="UTF-8"?>
