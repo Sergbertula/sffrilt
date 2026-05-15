@@ -13,6 +13,29 @@ export const Route = createFileRoute("/blog/$slug")({
   head: ({ loaderData }) => {
     const a = loaderData?.article;
     if (!a) return { meta: [{ title: "Статья не найдена — SFFRILT" }] };
+    const articleJsonLd = {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      headline: a.title,
+      description: a.excerpt,
+      datePublished: a.date,
+      dateModified: a.date,
+      author: { "@type": "Organization", name: a.author },
+      publisher: {
+        "@type": "Organization",
+        name: "SFFRILT",
+      },
+      articleSection: a.category,
+    };
+    const breadcrumbJsonLd = {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Главная", item: "/" },
+        { "@type": "ListItem", position: 2, name: "Блог", item: "/blog" },
+        { "@type": "ListItem", position: 3, name: a.title, item: `/blog/${a.slug}` },
+      ],
+    };
     return {
       meta: [
         { title: `${a.title} — Блог SFFRILT` },
@@ -20,6 +43,12 @@ export const Route = createFileRoute("/blog/$slug")({
         { property: "og:title", content: a.title },
         { property: "og:description", content: a.excerpt },
         { property: "og:type", content: "article" },
+        { property: "article:published_time", content: a.date },
+        { property: "article:section", content: a.category },
+      ],
+      scripts: [
+        { type: "application/ld+json", children: JSON.stringify(articleJsonLd) },
+        { type: "application/ld+json", children: JSON.stringify(breadcrumbJsonLd) },
       ],
     };
   },
