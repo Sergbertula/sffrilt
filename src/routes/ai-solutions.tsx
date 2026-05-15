@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageHero } from "@/components/layout/PageHero";
-import { Services } from "@/components/sections/Services";
+import { AiContent } from "@/components/sections/AiContent";
 import { ContactForm } from "@/components/sections/ContactForm";
 
 export const Route = createFileRoute("/ai-solutions")({
@@ -10,12 +10,12 @@ export const Route = createFileRoute("/ai-solutions")({
       {
         name: "description",
         content:
-          "AI-агенты, AI-консультанты, AI для производства и продаж, интеграции и аналитика.",
+          "AI-агенты, голосовые операторы, RAG-поиск, аналитика и приватные модели. Внедряем AI под задачи бизнеса.",
       },
       { property: "og:title", content: "AI-решения для бизнеса — SFFRILT" },
       {
         property: "og:description",
-        content: "Внедрение AI-систем для автоматизации процессов и роста выручки.",
+        content: "Чат- и голосовые AI-ассистенты, RAG, аналитика, on-premise модели.",
       },
     ],
   }),
@@ -32,10 +32,11 @@ function Page() {
             AI для <span className="text-gradient">реальных бизнес-задач</span>
           </>
         }
-        description="Разрабатываем и внедряем AI-агентов, консультантов и аналитические системы. От пилота до промышленной эксплуатации."
+        description="Разрабатываем и внедряем AI-агентов, голосовых операторов и аналитические системы. От пилота за 2 недели до промышленной эксплуатации."
       />
-      <Services />
+      <AiContent />
       <ContactForm />
     </>
   );
 }
+
