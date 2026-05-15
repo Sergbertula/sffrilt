@@ -11,6 +11,7 @@ import {
 import appCss from "../styles.css?url";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { ScrollToTop } from "@/components/layout/ScrollToTop";
 import { TelegramFloat } from "@/components/floating/TelegramFloat";
 import { JuliaAssistant } from "@/components/floating/JuliaAssistant";
 import { CookieBanner } from "@/components/floating/CookieBanner";
