@@ -3,6 +3,7 @@ import { Check, Sparkles, ArrowRight } from "lucide-react";
 import { PageHero } from "@/components/layout/PageHero";
 import { GlassCard, SectionHeading } from "@/components/ui/glass-card";
 import { Compare } from "@/components/sections/Compare";
+import { Calc } from "@/components/sections/Calc";
 import { Faq } from "@/components/sections/Faq";
 import { ContactForm } from "@/components/sections/ContactForm";
 import { cn } from "@/lib/utils";
@@ -301,6 +302,7 @@ function Page() {
         </section>
       ))}
 
+      <Calc />
       <Compare />
       <Faq />
       <ContactForm />
