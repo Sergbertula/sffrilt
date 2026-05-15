@@ -39,10 +39,6 @@ export function JuliaAssistant() {
   const endRef = useRef<HTMLDivElement>(null);
   const sendLeadNotification = useServerFn(notifyLead);
 
-  useEffect(() => {
-    endRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages, open]);
-
   const [contact, setContact] = useState<string | null>(null);
   const [pendingTask, setPendingTask] = useState<string | null>(null);
 
