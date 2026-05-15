@@ -28,26 +28,35 @@ export function Cases() {
               params={{ slug: c.slug }}
               className="group block focus:outline-none"
             >
-              <GlassCard className="h-full transition-transform group-hover:-translate-y-1">
-                <div className="flex items-center justify-between">
-                  <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-primary/20 to-accent/20 text-primary ring-1 ring-primary/20">
-                    <c.icon className="h-5 w-5" />
+              <GlassCard className="h-full !p-0 transition-transform group-hover:-translate-y-1">
+                <div className="relative aspect-[16/9] overflow-hidden rounded-t-2xl">
+                  <img
+                    src={c.cover}
+                    alt={`${c.client} — ${c.title}`}
+                    loading="lazy"
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent" />
+                  <span className="absolute left-3 top-3 inline-flex h-9 w-9 items-center justify-center rounded-lg bg-background/70 text-primary ring-1 ring-primary/30 backdrop-blur">
+                    <c.icon className="h-4 w-4" />
                   </span>
-                  <ArrowUpRight className="h-4 w-4 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  <ArrowUpRight className="absolute right-3 top-3 h-4 w-4 text-foreground/80 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </div>
-                <p className="mt-4 text-[10px] font-semibold uppercase tracking-wider text-primary">
-                  {c.tag}
-                </p>
-                <h4 className="mt-1 font-display text-lg font-semibold text-foreground">
-                  {c.client}
-                </h4>
-                <p className="mt-1 text-sm font-medium text-foreground/80">{c.title}</p>
-                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{c.short}</p>
-                <div className="mt-4 flex items-center justify-between gap-3">
-                  <span className="inline-flex items-center rounded-md border border-emerald-400/20 bg-emerald-400/10 px-2 py-1 text-xs font-medium text-emerald-400">
-                    {c.headlineMetric}
-                  </span>
-                  <span className="text-xs text-muted-foreground">{c.duration}</span>
+                <div className="p-6">
+                  <p className="text-[10px] font-semibold uppercase tracking-wider text-primary">
+                    {c.tag}
+                  </p>
+                  <h4 className="mt-1 font-display text-lg font-semibold text-foreground">
+                    {c.client}
+                  </h4>
+                  <p className="mt-1 text-sm font-medium text-foreground/80">{c.title}</p>
+                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{c.short}</p>
+                  <div className="mt-4 flex items-center justify-between gap-3">
+                    <span className="inline-flex items-center rounded-md border border-emerald-400/20 bg-emerald-400/10 px-2 py-1 text-xs font-medium text-emerald-400">
+                      {c.headlineMetric}
+                    </span>
+                    <span className="text-xs text-muted-foreground">{c.duration}</span>
+                  </div>
                 </div>
               </GlassCard>
             </Link>

@@ -1,4 +1,10 @@
-import { Workflow, Bot, BrainCircuit, Globe, FileStack, GraduationCap, type LucideIcon } from "lucide-react";
+import { Bot, BrainCircuit, Globe, FileStack, GraduationCap, type LucideIcon } from "lucide-react";
+import samokatCover from "@/assets/cases/samokat-szfo.jpg";
+import domtehCover from "@/assets/cases/domteh.jpg";
+import ayboitCover from "@/assets/cases/ayboit.jpg";
+import ecomarketCover from "@/assets/cases/ecomarket.jpg";
+import promlogistikaCover from "@/assets/cases/promlogistika.jpg";
+import yasnoCover from "@/assets/cases/yasno.jpg";
 
 export type CaseCategory = "AI" | "Telegram" | "Web" | "Автоматизация";
 
@@ -14,6 +20,7 @@ export interface CaseStudy {
   category: CaseCategory;
   tag: string;
   icon: LucideIcon;
+  cover: string;
   title: string;
   short: string;
   duration: string;
@@ -27,6 +34,7 @@ export interface CaseStudy {
 export const cases: CaseStudy[] = [
   {
     slug: "samokat-szfo-ai-dispatcher",
+    cover: samokatCover,
     client: "Самокат Северо-Запад",
     industry: "Логистика и доставка",
     category: "AI",
@@ -47,6 +55,7 @@ export const cases: CaseStudy[] = [
   },
   {
     slug: "domteh-telegram-bot",
+    cover: domtehCover,
     client: "ДомТех",
     industry: "Стройматериалы, B2C",
     category: "Telegram",
@@ -67,6 +76,7 @@ export const cases: CaseStudy[] = [
   },
   {
     slug: "ayboit-voice-ai-admin",
+    cover: ayboitCover,
     client: "Клиника Айболит",
     industry: "Медицина",
     category: "AI",
@@ -87,6 +97,7 @@ export const cases: CaseStudy[] = [
   },
   {
     slug: "ecomarket-b2b-portal",
+    cover: ecomarketCover,
     client: "ЭкоМаркет",
     industry: "FMCG, B2B-дистрибуция",
     category: "Web",
@@ -107,6 +118,7 @@ export const cases: CaseStudy[] = [
   },
   {
     slug: "promlogistika-rpa-docs",
+    cover: promlogistikaCover,
     client: "ПромЛогистика",
     industry: "Грузоперевозки",
     category: "Автоматизация",
@@ -127,6 +139,7 @@ export const cases: CaseStudy[] = [
   },
   {
     slug: "yasno-ai-tutor",
+    cover: yasnoCover,
     client: "Школа Ясно",
     industry: "EdTech",
     category: "AI",

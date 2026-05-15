@@ -29,6 +29,9 @@ export const Route = createFileRoute("/cases/$slug")({
         { property: "og:title", content: title.slice(0, 60) },
         { property: "og:description", content: description.slice(0, 160) },
         { property: "og:type", content: "article" },
+        { property: "og:image", content: study.cover },
+        { name: "twitter:card", content: "summary_large_image" },
+        { name: "twitter:image", content: study.cover },
       ],
     };
   },
@@ -113,6 +116,15 @@ function CasePage() {
           <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
             {study.short}
           </p>
+          <div className="relative mt-10 overflow-hidden rounded-3xl border border-border/60 shadow-[0_30px_80px_-30px_oklch(0.7_0.2_245/0.5)]">
+            <div className="absolute -inset-1 -z-10 rounded-3xl bg-gradient-to-br from-primary/30 via-transparent to-accent/30 blur-2xl opacity-60" />
+            <img
+              src={study.cover}
+              alt={`${study.client} — ${study.title}`}
+              className="aspect-[16/9] w-full object-cover"
+            />
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/40 via-transparent to-transparent" />
+          </div>
         </div>
       </section>
 
@@ -210,18 +222,28 @@ function CasePage() {
                   params={{ slug: c.slug }}
                   className="group block focus:outline-none"
                 >
-                  <GlassCard className="h-full">
-                    <p className="text-[10px] font-semibold uppercase tracking-wider text-primary">
-                      {c.tag}
-                    </p>
-                    <h3 className="mt-2 font-display text-lg font-semibold text-foreground">
-                      {c.client}
-                    </h3>
-                    <p className="mt-1 text-sm font-medium text-foreground/80">{c.title}</p>
-                    <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{c.short}</p>
-                    <p className="mt-4 inline-flex items-center rounded-md border border-emerald-400/20 bg-emerald-400/10 px-2 py-1 text-xs font-medium text-emerald-400">
-                      {c.headlineMetric}
-                    </p>
+                  <GlassCard className="h-full !p-0">
+                    <div className="aspect-[16/9] overflow-hidden rounded-t-2xl">
+                      <img
+                        src={c.cover}
+                        alt={`${c.client} — ${c.title}`}
+                        loading="lazy"
+                        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+                      />
+                    </div>
+                    <div className="p-6">
+                      <p className="text-[10px] font-semibold uppercase tracking-wider text-primary">
+                        {c.tag}
+                      </p>
+                      <h3 className="mt-2 font-display text-lg font-semibold text-foreground">
+                        {c.client}
+                      </h3>
+                      <p className="mt-1 text-sm font-medium text-foreground/80">{c.title}</p>
+                      <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{c.short}</p>
+                      <p className="mt-4 inline-flex items-center rounded-md border border-emerald-400/20 bg-emerald-400/10 px-2 py-1 text-xs font-medium text-emerald-400">
+                        {c.headlineMetric}
+                      </p>
+                    </div>
                   </GlassCard>
                 </Link>
               ))}
