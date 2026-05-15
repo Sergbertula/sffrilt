@@ -3,6 +3,7 @@ import { Phone, Mail, Send, Check, ArrowRight, Loader2 } from "lucide-react";
 import { SectionHeading } from "@/components/ui/glass-card";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
+import { notifyLead } from "@/lib/telegram.functions";
 
 export function ContactForm() {
   const [submitted, setSubmitted] = useState(false);
@@ -18,14 +19,17 @@ export function ContactForm() {
         typeof window !== "undefined"
           ? window.location.pathname + window.location.search
           : null;
-      const { error } = await supabase.from("leads").insert({
+      const payload = {
         name: form.name.trim().slice(0, 200),
         contact: form.contact.trim().slice(0, 200),
         task: form.task.trim() ? form.task.trim().slice(0, 4000) : null,
         source,
-      });
+      };
+      const { error } = await supabase.from("leads").insert(payload);
       if (error) throw error;
       setSubmitted(true);
+      // Fire-and-forget Telegram notification — не блокируем UX
+      notifyLead({ data: payload }).catch((err) => console.error("notifyLead failed", err));
     } catch (err) {
       console.error(err);
       toast.error("Не удалось отправить заявку. Напишите нам в Telegram — ответим быстрее.");
