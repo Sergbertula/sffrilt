@@ -1,11 +1,29 @@
 import { Link } from "@tanstack/react-router";
 import { Phone, Mail, Send, Sparkles } from "lucide-react";
 
+const services = [
+  { to: "/ai-solutions", label: "AI-решения" },
+  { to: "/telegram-bots", label: "Telegram-боты" },
+  { to: "/web-development", label: "Разработка сайтов" },
+  { to: "/seo", label: "SEO-продвижение" },
+] as const;
+
+const company = [
+  { to: "/cases", label: "Кейсы" },
+  { to: "/contacts", label: "Контакты" },
+] as const;
+
+const docs = [
+  { to: "/privacy", label: "Политика конфиденциальности" },
+  { to: "/cookies", label: "Использование cookies" },
+  { to: "/terms", label: "Пользовательское соглашение" },
+] as const;
+
 export function Footer() {
   return (
     <footer className="relative mt-24 border-t border-border/60 bg-card/40">
       <div className="absolute inset-x-0 -top-px h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
-      <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 lg:grid-cols-4 lg:px-8">
+      <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 lg:grid-cols-5 lg:px-8">
         <div className="lg:col-span-2">
           <Link to="/" className="flex items-center gap-2">
             <span className="flex h-9 w-9 items-center justify-center rounded-lg gradient-primary glow-blue">
@@ -17,13 +35,7 @@ export function Footer() {
             Разрабатываем AI-системы, Telegram-ботов и сайты, которые помогают компаниям
             автоматизировать процессы и увеличивать поток клиентов.
           </p>
-        </div>
-
-        <div>
-          <h3 className="font-display text-sm font-semibold uppercase tracking-wider text-foreground">
-            Контакты
-          </h3>
-          <ul className="mt-4 space-y-3 text-sm">
+          <ul className="mt-6 space-y-3 text-sm">
             <li>
               <a
                 href="tel:+79534428998"
@@ -58,24 +70,46 @@ export function Footer() {
 
         <div>
           <h3 className="font-display text-sm font-semibold uppercase tracking-wider text-foreground">
+            Услуги
+          </h3>
+          <ul className="mt-4 space-y-3 text-sm">
+            {services.map((s) => (
+              <li key={s.to}>
+                <Link to={s.to} className="text-muted-foreground hover:text-foreground">
+                  {s.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div>
+          <h3 className="font-display text-sm font-semibold uppercase tracking-wider text-foreground">
+            Компания
+          </h3>
+          <ul className="mt-4 space-y-3 text-sm">
+            {company.map((c) => (
+              <li key={c.to}>
+                <Link to={c.to} className="text-muted-foreground hover:text-foreground">
+                  {c.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div>
+          <h3 className="font-display text-sm font-semibold uppercase tracking-wider text-foreground">
             Документы
           </h3>
           <ul className="mt-4 space-y-3 text-sm">
-            <li>
-              <Link to="/privacy" className="text-muted-foreground hover:text-foreground">
-                Политика конфиденциальности
-              </Link>
-            </li>
-            <li>
-              <Link to="/cookies" className="text-muted-foreground hover:text-foreground">
-                Использование cookies
-              </Link>
-            </li>
-            <li>
-              <Link to="/terms" className="text-muted-foreground hover:text-foreground">
-                Пользовательское соглашение
-              </Link>
-            </li>
+            {docs.map((d) => (
+              <li key={d.to}>
+                <Link to={d.to} className="text-muted-foreground hover:text-foreground">
+                  {d.label}
+                </Link>
+              </li>
+            ))}
           </ul>
         </div>
       </div>
