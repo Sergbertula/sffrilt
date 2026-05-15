@@ -222,18 +222,28 @@ function CasePage() {
                   params={{ slug: c.slug }}
                   className="group block focus:outline-none"
                 >
-                  <GlassCard className="h-full">
-                    <p className="text-[10px] font-semibold uppercase tracking-wider text-primary">
-                      {c.tag}
-                    </p>
-                    <h3 className="mt-2 font-display text-lg font-semibold text-foreground">
-                      {c.client}
-                    </h3>
-                    <p className="mt-1 text-sm font-medium text-foreground/80">{c.title}</p>
-                    <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{c.short}</p>
-                    <p className="mt-4 inline-flex items-center rounded-md border border-emerald-400/20 bg-emerald-400/10 px-2 py-1 text-xs font-medium text-emerald-400">
-                      {c.headlineMetric}
-                    </p>
+                  <GlassCard className="h-full !p-0">
+                    <div className="aspect-[16/9] overflow-hidden rounded-t-2xl">
+                      <img
+                        src={c.cover}
+                        alt={`${c.client} — ${c.title}`}
+                        loading="lazy"
+                        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+                      />
+                    </div>
+                    <div className="p-6">
+                      <p className="text-[10px] font-semibold uppercase tracking-wider text-primary">
+                        {c.tag}
+                      </p>
+                      <h3 className="mt-2 font-display text-lg font-semibold text-foreground">
+                        {c.client}
+                      </h3>
+                      <p className="mt-1 text-sm font-medium text-foreground/80">{c.title}</p>
+                      <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{c.short}</p>
+                      <p className="mt-4 inline-flex items-center rounded-md border border-emerald-400/20 bg-emerald-400/10 px-2 py-1 text-xs font-medium text-emerald-400">
+                        {c.headlineMetric}
+                      </p>
+                    </div>
                   </GlassCard>
                 </Link>
               ))}
