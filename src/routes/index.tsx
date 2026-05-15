@@ -12,6 +12,7 @@ import { Compare } from "@/components/sections/Compare";
 import { Integrations } from "@/components/sections/Integrations";
 import { Guarantees } from "@/components/sections/Guarantees";
 import { Faq } from "@/components/sections/Faq";
+import { CtaBanner } from "@/components/sections/CtaBanner";
 import { ContactForm } from "@/components/sections/ContactForm";
 
 export const Route = createFileRoute("/")({
@@ -49,6 +50,7 @@ function Index() {
       <Integrations />
       <Guarantees />
       <Faq />
+      <CtaBanner />
       <ContactForm />
     </>
   );
