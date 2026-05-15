@@ -1,5 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { MessageCircle, X, Send, Sparkles } from "lucide-react";
+import { useServerFn } from "@tanstack/react-start";
+import { notifyLead } from "@/lib/telegram.functions";
 
 type Msg = { role: "user" | "julia"; text: string };
 
@@ -21,26 +23,61 @@ export function JuliaAssistant() {
   const [open, setOpen] = useState(false);
   const [messages, setMessages] = useState<Msg[]>(intro);
   const [input, setInput] = useState("");
+  const [sending, setSending] = useState(false);
   const endRef = useRef<HTMLDivElement>(null);
+  const sendLeadNotification = useServerFn(notifyLead);
 
   useEffect(() => {
     endRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, open]);
 
-  function send(text: string) {
+  async function send(text: string) {
     const v = text.trim();
-    if (!v) return;
+    if (!v || sending) return;
+
     setMessages((m) => [...m, { role: "user", text: v }]);
     setInput("");
-    setTimeout(() => {
+
+    try {
+      setSending(true);
+      const source =
+        typeof window !== "undefined"
+          ? `${window.location.pathname}${window.location.search}#julia-assistant`
+          : "/#julia-assistant";
+
+      const result = await sendLeadNotification({
+        data: {
+          name: "Юлия — чат",
+          contact: "Контакт не указан",
+          task: v,
+          source,
+        },
+      });
+
+      console.log("[JuliaAssistant] notifyLead result", result);
+
       setMessages((m) => [
         ...m,
         {
           role: "julia",
-          text: "Спасибо! Передам ваш запрос специалисту. Для быстрого ответа напишите нам в Telegram @tehprom1 или оставьте заявку через форму на сайте.",
+          text:
+            result?.ok
+              ? "Спасибо! Передала ваш запрос специалисту. Для быстрого ответа можете сразу написать нам в Telegram @tehprom1."
+              : "Сообщение принято, но уведомление могло не дойти. Лучше сразу напишите нам в Telegram @tehprom1.",
         },
       ]);
-    }, 600);
+    } catch (error) {
+      console.error("[JuliaAssistant] notifyLead failed", error);
+      setMessages((m) => [
+        ...m,
+        {
+          role: "julia",
+          text: "Не удалось передать запрос автоматически. Напишите нам в Telegram @tehprom1 — ответим быстрее.",
+        },
+      ]);
+    } finally {
+      setSending(false);
+    }
   }
 
   return (
@@ -108,7 +145,9 @@ export function JuliaAssistant() {
                 {quickReplies.map((q) => (
                   <button
                     key={q}
-                    onClick={() => send(q)}
+                    onClick={() => {
+                      void send(q);
+                    }}
                     className="rounded-full border border-border bg-card/40 px-2.5 py-1 text-xs text-muted-foreground hover:border-primary/40 hover:text-foreground"
                   >
                     {q}
@@ -118,7 +157,7 @@ export function JuliaAssistant() {
               <form
                 onSubmit={(e) => {
                   e.preventDefault();
-                  send(input);
+                    void send(input);
                 }}
                 className="flex items-center gap-2"
               >
@@ -126,10 +165,12 @@ export function JuliaAssistant() {
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   placeholder="Напишите сообщение…"
+                  disabled={sending}
                   className="flex-1 rounded-lg border border-border bg-card/60 px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/40"
                 />
                 <button
                   type="submit"
+                  disabled={sending}
                   className="flex h-9 w-9 items-center justify-center rounded-lg gradient-primary text-primary-foreground hover:scale-105"
                   aria-label="Отправить"
                 >
