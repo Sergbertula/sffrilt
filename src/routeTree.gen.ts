@@ -20,10 +20,12 @@ import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as CookiesRouteImport } from './routes/cookies'
 import { Route as ContactsRouteImport } from './routes/contacts'
 import { Route as CasesRouteImport } from './routes/cases'
+import { Route as BlogRouteImport } from './routes/blog'
 import { Route as AiSolutionsRouteImport } from './routes/ai-solutions'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as CasesSlugRouteImport } from './routes/cases.$slug'
+import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 
 const WebDevelopmentRoute = WebDevelopmentRouteImport.update({
   id: '/web-development',
@@ -80,6 +82,11 @@ const CasesRoute = CasesRouteImport.update({
   path: '/cases',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BlogRoute = BlogRouteImport.update({
+  id: '/blog',
+  path: '/blog',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AiSolutionsRoute = AiSolutionsRouteImport.update({
   id: '/ai-solutions',
   path: '/ai-solutions',
@@ -100,11 +107,17 @@ const CasesSlugRoute = CasesSlugRouteImport.update({
   path: '/$slug',
   getParentRoute: () => CasesRoute,
 } as any)
+const BlogSlugRoute = BlogSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => BlogRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/ai-solutions': typeof AiSolutionsRoute
+  '/blog': typeof BlogRouteWithChildren
   '/cases': typeof CasesRouteWithChildren
   '/contacts': typeof ContactsRoute
   '/cookies': typeof CookiesRoute
@@ -116,12 +129,14 @@ export interface FileRoutesByFullPath {
   '/telegram-bots': typeof TelegramBotsRoute
   '/terms': typeof TermsRoute
   '/web-development': typeof WebDevelopmentRoute
+  '/blog/$slug': typeof BlogSlugRoute
   '/cases/$slug': typeof CasesSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/ai-solutions': typeof AiSolutionsRoute
+  '/blog': typeof BlogRouteWithChildren
   '/cases': typeof CasesRouteWithChildren
   '/contacts': typeof ContactsRoute
   '/cookies': typeof CookiesRoute
@@ -133,6 +148,7 @@ export interface FileRoutesByTo {
   '/telegram-bots': typeof TelegramBotsRoute
   '/terms': typeof TermsRoute
   '/web-development': typeof WebDevelopmentRoute
+  '/blog/$slug': typeof BlogSlugRoute
   '/cases/$slug': typeof CasesSlugRoute
 }
 export interface FileRoutesById {
@@ -140,6 +156,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/ai-solutions': typeof AiSolutionsRoute
+  '/blog': typeof BlogRouteWithChildren
   '/cases': typeof CasesRouteWithChildren
   '/contacts': typeof ContactsRoute
   '/cookies': typeof CookiesRoute
@@ -151,6 +168,7 @@ export interface FileRoutesById {
   '/telegram-bots': typeof TelegramBotsRoute
   '/terms': typeof TermsRoute
   '/web-development': typeof WebDevelopmentRoute
+  '/blog/$slug': typeof BlogSlugRoute
   '/cases/$slug': typeof CasesSlugRoute
 }
 export interface FileRouteTypes {
@@ -159,6 +177,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/ai-solutions'
+    | '/blog'
     | '/cases'
     | '/contacts'
     | '/cookies'
@@ -170,12 +189,14 @@ export interface FileRouteTypes {
     | '/telegram-bots'
     | '/terms'
     | '/web-development'
+    | '/blog/$slug'
     | '/cases/$slug'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/about'
     | '/ai-solutions'
+    | '/blog'
     | '/cases'
     | '/contacts'
     | '/cookies'
@@ -187,12 +208,14 @@ export interface FileRouteTypes {
     | '/telegram-bots'
     | '/terms'
     | '/web-development'
+    | '/blog/$slug'
     | '/cases/$slug'
   id:
     | '__root__'
     | '/'
     | '/about'
     | '/ai-solutions'
+    | '/blog'
     | '/cases'
     | '/contacts'
     | '/cookies'
@@ -204,6 +227,7 @@ export interface FileRouteTypes {
     | '/telegram-bots'
     | '/terms'
     | '/web-development'
+    | '/blog/$slug'
     | '/cases/$slug'
   fileRoutesById: FileRoutesById
 }
@@ -211,6 +235,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   AiSolutionsRoute: typeof AiSolutionsRoute
+  BlogRoute: typeof BlogRouteWithChildren
   CasesRoute: typeof CasesRouteWithChildren
   ContactsRoute: typeof ContactsRoute
   CookiesRoute: typeof CookiesRoute
@@ -303,6 +328,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CasesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blog': {
+      id: '/blog'
+      path: '/blog'
+      fullPath: '/blog'
+      preLoaderRoute: typeof BlogRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/ai-solutions': {
       id: '/ai-solutions'
       path: '/ai-solutions'
@@ -331,8 +363,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CasesSlugRouteImport
       parentRoute: typeof CasesRoute
     }
+    '/blog/$slug': {
+      id: '/blog/$slug'
+      path: '/$slug'
+      fullPath: '/blog/$slug'
+      preLoaderRoute: typeof BlogSlugRouteImport
+      parentRoute: typeof BlogRoute
+    }
   }
 }
+
+interface BlogRouteChildren {
+  BlogSlugRoute: typeof BlogSlugRoute
+}
+
+const BlogRouteChildren: BlogRouteChildren = {
+  BlogSlugRoute: BlogSlugRoute,
+}
+
+const BlogRouteWithChildren = BlogRoute._addFileChildren(BlogRouteChildren)
 
 interface CasesRouteChildren {
   CasesSlugRoute: typeof CasesSlugRoute
@@ -348,6 +397,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   AiSolutionsRoute: AiSolutionsRoute,
+  BlogRoute: BlogRouteWithChildren,
   CasesRoute: CasesRouteWithChildren,
   ContactsRoute: ContactsRoute,
   CookiesRoute: CookiesRoute,
@@ -363,3 +413,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
