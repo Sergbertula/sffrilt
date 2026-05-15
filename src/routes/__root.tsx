@@ -15,6 +15,7 @@ import { ScrollToTop } from "@/components/layout/ScrollToTop";
 import { TelegramFloat } from "@/components/floating/TelegramFloat";
 import { JuliaAssistant } from "@/components/floating/JuliaAssistant";
 import { CookieBanner } from "@/components/floating/CookieBanner";
+import { Toaster } from "sonner";
 
 function NotFoundComponent() {
   return (
@@ -158,6 +159,7 @@ function RootComponent() {
         <TelegramFloat />
         <JuliaAssistant />
         <CookieBanner />
+        <Toaster position="top-center" theme="dark" richColors />
       </div>
     </QueryClientProvider>
   );

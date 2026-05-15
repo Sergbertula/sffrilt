@@ -1,15 +1,37 @@
 import { useState } from "react";
-import { Phone, Mail, Send, Check, ArrowRight } from "lucide-react";
+import { Phone, Mail, Send, Check, ArrowRight, Loader2 } from "lucide-react";
 import { SectionHeading } from "@/components/ui/glass-card";
+import { supabase } from "@/integrations/supabase/client";
+import { toast } from "sonner";
 
 export function ContactForm() {
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [form, setForm] = useState({ name: "", contact: "", task: "" });
 
-  function onSubmit(e: React.FormEvent) {
+  async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!form.name.trim() || !form.contact.trim()) return;
-    setSubmitted(true);
+    setLoading(true);
+    try {
+      const source =
+        typeof window !== "undefined"
+          ? window.location.pathname + window.location.search
+          : null;
+      const { error } = await supabase.from("leads").insert({
+        name: form.name.trim().slice(0, 200),
+        contact: form.contact.trim().slice(0, 200),
+        task: form.task.trim() ? form.task.trim().slice(0, 4000) : null,
+        source,
+      });
+      if (error) throw error;
+      setSubmitted(true);
+    } catch (err) {
+      console.error(err);
+      toast.error("Не удалось отправить заявку. Напишите нам в Telegram — ответим быстрее.");
+    } finally {
+      setLoading(false);
+    }
   }
 
   return (
@@ -67,10 +89,20 @@ export function ContactForm() {
                   </div>
                   <button
                     type="submit"
-                    className="group inline-flex w-full items-center justify-center gap-2 rounded-xl gradient-primary px-6 py-3.5 text-sm font-semibold text-primary-foreground shadow-[0_0_40px_-8px_oklch(0.7_0.2_245/0.6)] hover:scale-[1.02] transition-transform sm:w-auto"
+                    disabled={loading}
+                    className="group inline-flex w-full items-center justify-center gap-2 rounded-xl gradient-primary px-6 py-3.5 text-sm font-semibold text-primary-foreground shadow-[0_0_40px_-8px_oklch(0.7_0.2_245/0.6)] hover:scale-[1.02] transition-transform disabled:opacity-60 disabled:hover:scale-100 sm:w-auto"
                   >
-                    Отправить заявку
-                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                    {loading ? (
+                      <>
+                        <Loader2 className="h-4 w-4 animate-spin" />
+                        Отправляем…
+                      </>
+                    ) : (
+                      <>
+                        Отправить заявку
+                        <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                      </>
+                    )}
                   </button>
                   <p className="text-xs text-muted-foreground">
                     Нажимая кнопку, вы соглашаетесь с{" "}
