@@ -138,8 +138,15 @@ export function JuliaAssistant() {
         aria-label="Открыть чат с Юлией"
         className="group fixed bottom-24 right-6 z-40 flex items-center gap-2 rounded-full glass-strong px-4 py-3 shadow-[0_0_30px_-8px_oklch(0.65_0.24_295/0.6)] transition-transform hover:scale-105"
       >
-        <span className="relative flex h-8 w-8 items-center justify-center rounded-full gradient-primary">
-          <Sparkles className="h-4 w-4 text-primary-foreground" />
+        <span className="relative flex h-9 w-9 overflow-hidden rounded-full ring-2 ring-primary/40">
+          <img
+            src={juliaAvatar}
+            alt="Юлия — AI-помощник"
+            width={72}
+            height={72}
+            loading="lazy"
+            className="h-full w-full object-cover"
+          />
           <span className="absolute -right-0.5 -top-0.5 h-2.5 w-2.5 rounded-full bg-emerald-400 ring-2 ring-background" />
         </span>
         <span className="hidden text-sm font-medium text-foreground sm:inline">
