@@ -10,7 +10,19 @@ const intro: Msg[] = [
     role: "julia",
     text: "Здравствуйте! Я Юлия — цифровой помощник SFFRILT. Помогу подобрать услугу, оставить заявку или связаться со специалистом.",
   },
+  {
+    role: "julia",
+    text: "Опишите задачу в одном сообщении — затем я попрошу контакт (Telegram, телефон или email), чтобы специалист мог с вами связаться.",
+  },
 ];
+
+// Принимаем: @username, +телефон (мин. 7 цифр), email
+const contactRegex =
+  /(@[a-zA-Z0-9_]{3,})|(\+?\d[\d\s().-]{6,}\d)|([^\s@]+@[^\s@]+\.[^\s@]{2,})/;
+
+function looksLikeContact(text: string) {
+  return contactRegex.test(text.trim());
+}
 
 const quickReplies = [
   "Хочу AI-агента",
@@ -27,29 +39,26 @@ export function JuliaAssistant() {
   const endRef = useRef<HTMLDivElement>(null);
   const sendLeadNotification = useServerFn(notifyLead);
 
+  const [contact, setContact] = useState<string | null>(null);
+  const [pendingTask, setPendingTask] = useState<string | null>(null);
+
   useEffect(() => {
     endRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, open]);
 
-  async function send(text: string) {
-    const v = text.trim();
-    if (!v || sending) return;
-
-    setMessages((m) => [...m, { role: "user", text: v }]);
-    setInput("");
+  async function submitLead(taskText: string, contactValue: string) {
+    const source =
+      typeof window !== "undefined"
+        ? `${window.location.pathname}${window.location.search}#julia-assistant`
+        : "/#julia-assistant";
 
     try {
       setSending(true);
-      const source =
-        typeof window !== "undefined"
-          ? `${window.location.pathname}${window.location.search}#julia-assistant`
-          : "/#julia-assistant";
-
       const result = await sendLeadNotification({
         data: {
           name: "Юлия — чат",
-          contact: "Контакт не указан",
-          task: v,
+          contact: contactValue,
+          task: taskText,
           source,
         },
       });
@@ -60,10 +69,9 @@ export function JuliaAssistant() {
         ...m,
         {
           role: "julia",
-          text:
-            result?.ok
-              ? "Спасибо! Передала ваш запрос специалисту. Для быстрого ответа можете сразу написать нам в Telegram @tehprom1."
-              : "Сообщение принято, но уведомление могло не дойти. Лучше сразу напишите нам в Telegram @tehprom1.",
+          text: result?.ok
+            ? "Спасибо! Передала заявку специалисту — мы свяжемся с вами в ближайшее время. Если срочно — пишите в Telegram @tehprom1."
+            : "Сообщение принято, но уведомление могло не дойти. Лучше сразу напишите нам в Telegram @tehprom1.",
         },
       ]);
     } catch (error) {
@@ -78,6 +86,48 @@ export function JuliaAssistant() {
     } finally {
       setSending(false);
     }
+  }
+
+  async function send(text: string) {
+    const v = text.trim();
+    if (!v || sending) return;
+
+    setMessages((m) => [...m, { role: "user", text: v }]);
+    setInput("");
+
+    // Шаг 1: нет задачи — сохраняем как задачу и просим контакт
+    if (!pendingTask && !contact) {
+      setPendingTask(v);
+      setMessages((m) => [
+        ...m,
+        {
+          role: "julia",
+          text: "Спасибо! Оставьте, пожалуйста, контакт для связи: Telegram (@username), телефон или email.",
+        },
+      ]);
+      return;
+    }
+
+    // Шаг 2: ждём контакт
+    if (!contact) {
+      if (!looksLikeContact(v)) {
+        setMessages((m) => [
+          ...m,
+          {
+            role: "julia",
+            text: "Кажется, это не похоже на контакт. Укажите, пожалуйста, Telegram (@username), телефон (+7...) или email.",
+          },
+        ]);
+        return;
+      }
+      setContact(v);
+      await submitLead(pendingTask ?? "(без описания)", v);
+      setPendingTask(null);
+      return;
+    }
+
+    // Контакт уже есть — отправляем как новый запрос
+    await submitLead(v, contact);
   }
 
   return (
