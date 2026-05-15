@@ -21,6 +21,7 @@ import { Route as CookiesRouteImport } from './routes/cookies'
 import { Route as ContactsRouteImport } from './routes/contacts'
 import { Route as CasesRouteImport } from './routes/cases'
 import { Route as AiSolutionsRouteImport } from './routes/ai-solutions'
+import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as CasesSlugRouteImport } from './routes/cases.$slug'
 
@@ -84,6 +85,11 @@ const AiSolutionsRoute = AiSolutionsRouteImport.update({
   path: '/ai-solutions',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -97,6 +103,7 @@ const CasesSlugRoute = CasesSlugRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/ai-solutions': typeof AiSolutionsRoute
   '/cases': typeof CasesRouteWithChildren
   '/contacts': typeof ContactsRoute
@@ -113,6 +120,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/ai-solutions': typeof AiSolutionsRoute
   '/cases': typeof CasesRouteWithChildren
   '/contacts': typeof ContactsRoute
@@ -130,6 +138,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/ai-solutions': typeof AiSolutionsRoute
   '/cases': typeof CasesRouteWithChildren
   '/contacts': typeof ContactsRoute
@@ -148,6 +157,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/about'
     | '/ai-solutions'
     | '/cases'
     | '/contacts'
@@ -164,6 +174,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/about'
     | '/ai-solutions'
     | '/cases'
     | '/contacts'
@@ -180,6 +191,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/about'
     | '/ai-solutions'
     | '/cases'
     | '/contacts'
@@ -197,6 +209,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
   AiSolutionsRoute: typeof AiSolutionsRoute
   CasesRoute: typeof CasesRouteWithChildren
   ContactsRoute: typeof ContactsRoute
@@ -297,6 +310,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AiSolutionsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -326,6 +346,7 @@ const CasesRouteWithChildren = CasesRoute._addFileChildren(CasesRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
   AiSolutionsRoute: AiSolutionsRoute,
   CasesRoute: CasesRouteWithChildren,
   ContactsRoute: ContactsRoute,

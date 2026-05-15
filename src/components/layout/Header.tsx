@@ -11,6 +11,7 @@ const navItems = [
   { to: "/seo", label: "SEO" },
   { to: "/cases", label: "Кейсы" },
   { to: "/pricing", label: "Цены" },
+  { to: "/about", label: "О нас" },
   { to: "/contacts", label: "Контакты" },
 ] as const;
 
