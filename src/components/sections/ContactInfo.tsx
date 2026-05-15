@@ -13,15 +13,15 @@ const channels = [
   {
     icon: Mail,
     title: "Email",
-    value: "hello@sffrilt.ru",
-    href: "mailto:hello@sffrilt.ru",
+    value: "tehprom-tula@mail.ru",
+    href: "mailto:tehprom-tula@mail.ru",
     note: "Для брифов и коммерческих предложений",
   },
   {
     icon: Phone,
     title: "Телефон",
-    value: "+7 (812) 000-00-00",
-    href: "tel:+78120000000",
+    value: "+7 (953) 442-89-98",
+    href: "tel:+79534428998",
     note: "Звонки по будням, 10:00–19:00 МСК",
   },
 ];
@@ -29,7 +29,7 @@ const channels = [
 const facts = [
   { icon: Clock, title: "Часы работы", value: "Пн–Пт, 10:00–19:00 МСК" },
   { icon: Zap, title: "Среднее время ответа", value: "до 1 часа в рабочее время" },
-  { icon: MapPin, title: "Офис", value: "Санкт-Петербург (визиты по записи)" },
+  { icon: MapPin, title: "Где работаем", value: "Удалённо по всей России и СНГ" },
 ];
 
 export function ContactInfo() {
