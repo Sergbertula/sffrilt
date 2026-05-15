@@ -22,6 +22,29 @@ export const Route = createFileRoute("/cases/$slug")({
     }
     const title = `${study.client} — ${study.title} | SFFRILT`;
     const description = study.short;
+    const jsonLd = {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Article",
+          headline: `${study.client} — ${study.title}`,
+          description: study.short,
+          image: [study.cover],
+          author: { "@type": "Organization", name: "SFFRILT" },
+          publisher: { "@type": "Organization", name: "SFFRILT" },
+          about: study.industry,
+          keywords: [study.category, study.tag, study.industry, ...study.stack].join(", "),
+        },
+        {
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            { "@type": "ListItem", position: 1, name: "Главная", item: "/" },
+            { "@type": "ListItem", position: 2, name: "Кейсы", item: "/cases" },
+            { "@type": "ListItem", position: 3, name: study.client, item: `/cases/${study.slug}` },
+          ],
+        },
+      ],
+    };
     return {
       meta: [
         { title: title.slice(0, 60) },
@@ -32,6 +55,12 @@ export const Route = createFileRoute("/cases/$slug")({
         { property: "og:image", content: study.cover },
         { name: "twitter:card", content: "summary_large_image" },
         { name: "twitter:image", content: study.cover },
+      ],
+      scripts: [
+        {
+          type: "application/ld+json",
+          children: JSON.stringify(jsonLd),
+        },
       ],
     };
   },
@@ -86,13 +115,16 @@ function CasePage() {
         <div className="absolute inset-0 grid-bg [mask-image:radial-gradient(ellipse_at_center,black_30%,transparent_75%)]" />
         <div className="absolute left-1/2 top-0 -z-10 h-[400px] w-[700px] -translate-x-1/2 rounded-full bg-[var(--gradient-glow)] blur-3xl" />
         <div className="mx-auto max-w-5xl px-4 py-20 sm:px-6 sm:py-28 lg:px-8">
-          <Link
-            to="/cases"
-            className="inline-flex items-center gap-2 text-xs font-medium uppercase tracking-wider text-muted-foreground transition-colors hover:text-primary"
-          >
-            <ArrowLeft className="h-3.5 w-3.5" />
-            Все кейсы
-          </Link>
+          <nav aria-label="Хлебные крошки" className="flex items-center gap-2 text-xs font-medium uppercase tracking-wider text-muted-foreground">
+            <Link to="/" className="transition-colors hover:text-primary">Главная</Link>
+            <span aria-hidden="true">/</span>
+            <Link to="/cases" className="inline-flex items-center gap-1.5 transition-colors hover:text-primary">
+              <ArrowLeft className="h-3 w-3" />
+              Кейсы
+            </Link>
+            <span aria-hidden="true">/</span>
+            <span className="truncate text-foreground/70">{study.client}</span>
+          </nav>
           <div className="mt-6 flex flex-wrap items-center gap-3">
             <span className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-xs font-medium uppercase tracking-wider text-primary">
               <span className="h-1.5 w-1.5 rounded-full bg-primary animate-glow-pulse" />
