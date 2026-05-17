@@ -1,7 +1,8 @@
 import { useState, useRef, useEffect } from "react";
 import { Link, useRouterState } from "@tanstack/react-router";
-import { Menu, X, Sparkles, ChevronDown, Bot, Send, Globe, Search } from "lucide-react";
+import { Menu, X, ChevronDown, Bot, Send, Globe, Search } from "lucide-react";
 import { cn } from "@/lib/utils";
+import logo3d from "@/assets/logo-3d.png";
 
 const services = [
   { to: "/ai-solutions", label: "AI-решения", desc: "AI-агенты, RAG, автоматизация", icon: Bot },
@@ -44,9 +45,13 @@ export function Header() {
     <header className="sticky top-0 z-40 w-full border-b border-border/60 glass-strong">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <Link to="/" className="group flex items-center gap-2" onClick={() => setOpen(false)}>
-          <span className="relative flex h-9 w-9 items-center justify-center rounded-lg gradient-primary glow-blue">
-            <Sparkles className="h-5 w-5 text-primary-foreground" />
-          </span>
+          <img
+            src={logo3d}
+            alt="SFFRILT"
+            width={36}
+            height={36}
+            className="h-9 w-9 object-contain drop-shadow-[0_0_12px_oklch(0.7_0.2_245/0.55)] transition-transform group-hover:scale-105"
+          />
           <span className="font-display text-xl font-bold tracking-tight text-gradient">
             SFFRILT
           </span>
