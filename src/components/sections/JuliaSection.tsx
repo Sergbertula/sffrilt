@@ -1,4 +1,5 @@
-import { Sparkles, Send, ArrowRight, Check } from "lucide-react";
+import { Send, ArrowRight, Check } from "lucide-react";
+import juliaAvatar from "@/assets/julia-avatar.jpg";
 
 export function JuliaSection() {
   return (
