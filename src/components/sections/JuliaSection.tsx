@@ -66,8 +66,15 @@ export function JuliaSection() {
               <div className="mx-auto flex max-w-md flex-col items-center">
                 <div className="relative">
                   <div className="absolute inset-0 -m-8 rounded-full bg-[var(--gradient-glow)] blur-2xl animate-glow-pulse" />
-                  <div className="relative flex h-32 w-32 items-center justify-center rounded-full gradient-primary glow-blue ring-4 ring-background">
-                    <Sparkles className="h-14 w-14 text-primary-foreground" />
+                  <div className="relative flex h-32 w-32 items-center justify-center rounded-full gradient-primary glow-blue ring-4 ring-background overflow-hidden">
+                    <img
+                      src={juliaAvatar}
+                      alt="Юлия — AI-помощник"
+                      width={128}
+                      height={128}
+                      loading="lazy"
+                      className="h-full w-full object-cover"
+                    />
                   </div>
                   <span className="absolute -right-1 bottom-2 flex h-6 w-6 items-center justify-center rounded-full bg-emerald-400 ring-4 ring-background">
                     <span className="h-2 w-2 rounded-full bg-white" />
