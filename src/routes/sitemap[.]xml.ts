@@ -21,8 +21,8 @@ const STATIC_PATHS = [
 export const Route = createFileRoute("/sitemap.xml")({
   server: {
     handlers: {
-      GET: ({ request }) => {
-        const origin = new URL(request.url).origin;
+      GET: () => {
+        const origin = "https://sunny-start-forge.lovable.app";
         const today = new Date().toISOString().slice(0, 10);
         const urls = [
           ...STATIC_PATHS.map((p) => ({ loc: `${origin}${p}`, priority: p === "/" ? "1.0" : "0.8" })),

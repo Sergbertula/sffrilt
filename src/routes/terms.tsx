@@ -5,7 +5,13 @@ export const Route = createFileRoute("/terms")({
   head: () => ({
     meta: [
       { title: "Пользовательское соглашение — SFFRILT" },
-      { name: "description", content: "Условия использования сайта SFFRILT." },
+      { name: "description", content: "Пользовательское соглашение SFFRILT: условия использования сайта, права и обязанности пользователей, интеллектуальная собственность и контакты." },
+      { property: "og:title", content: "Пользовательское соглашение — SFFRILT" },
+      { property: "og:description", content: "Условия использования сайта SFFRILT, права и обязанности сторон, интеллектуальная собственность." },
+      { property: "og:url", content: "https://sunny-start-forge.lovable.app/terms" },
+    ],
+    links: [
+      { rel: "canonical", href: "https://sunny-start-forge.lovable.app/terms" },
     ],
   }),
   component: () => (
