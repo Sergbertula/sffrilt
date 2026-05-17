@@ -5,7 +5,13 @@ export const Route = createFileRoute("/privacy")({
   head: () => ({
     meta: [
       { title: "Политика конфиденциальности — SFFRILT" },
-      { name: "description", content: "Политика обработки персональных данных SFFRILT." },
+      { name: "description", content: "Политика конфиденциальности SFFRILT: какие персональные данные мы собираем, цели обработки, сроки хранения и права пользователей." },
+      { property: "og:title", content: "Политика конфиденциальности — SFFRILT" },
+      { property: "og:description", content: "Какие персональные данные мы собираем, цели и сроки обработки, как защищаем и какие у вас права." },
+      { property: "og:url", content: "https://sunny-start-forge.lovable.app/privacy" },
+    ],
+    links: [
+      { rel: "canonical", href: "https://sunny-start-forge.lovable.app/privacy" },
     ],
   }),
   component: () => (

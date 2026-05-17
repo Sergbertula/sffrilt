@@ -5,7 +5,13 @@ export const Route = createFileRoute("/cookies")({
   head: () => ({
     meta: [
       { title: "Использование cookies — SFFRILT" },
-      { name: "description", content: "Как сайт SFFRILT использует cookies." },
+      { name: "description", content: "Как сайт SFFRILT использует cookies: типы файлов, цели обработки, аналитика и управление настройками в браузере пользователя." },
+      { property: "og:title", content: "Использование cookies — SFFRILT" },
+      { property: "og:description", content: "Как сайт SFFRILT использует cookies: типы файлов, цели обработки и управление настройками в браузере." },
+      { property: "og:url", content: "https://sunny-start-forge.lovable.app/cookies" },
+    ],
+    links: [
+      { rel: "canonical", href: "https://sunny-start-forge.lovable.app/cookies" },
     ],
   }),
   component: () => (
