@@ -1,6 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { createClient } from '@supabase/supabase-js'
-import { notifyLead } from '@/lib/telegram.functions'
 
 export const Route = createFileRoute('/api/public/contact')({
   server: {
@@ -45,14 +44,7 @@ export const Route = createFileRoute('/api/public/contact')({
           return Response.json({ error: 'Failed to save lead' }, { status: 500 })
         }
 
-        // 2. Send Telegram notification (best-effort)
-        try {
-          await notifyLead({ data: { name, contact, task, source } })
-        } catch (err) {
-          console.error('[Contact API] telegram error', err)
-        }
-
-        // 3. Enqueue email notification
+        // 2. Enqueue email notification
         const messageId = crypto.randomUUID()
         const payload = {
           message_id: messageId,
