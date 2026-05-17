@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { Send, ArrowRight, Bot, Globe, BarChart3, Plug } from "lucide-react";
+import hero3dBadge from "@/assets/hero-3d-badge.png";
 
 export function Hero() {
   return (
@@ -10,17 +11,23 @@ export function Hero() {
 
       <div className="mx-auto max-w-7xl px-4 pb-20 pt-20 sm:px-6 sm:pt-28 lg:px-8 lg:pb-32 lg:pt-36">
         <div className="mx-auto max-w-4xl text-center">
-          <div className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-xs font-medium text-primary backdrop-blur">
-            <span className="h-1.5 w-1.5 rounded-full bg-primary animate-glow-pulse" />
-            AI automation company · 2026
+          <div className="inline-flex items-center gap-2.5 rounded-full border border-primary/30 bg-primary/10 py-1 pl-1 pr-4 text-xs font-medium text-primary backdrop-blur">
+            <img
+              src={hero3dBadge}
+              alt=""
+              width={28}
+              height={28}
+              className="h-7 w-7 object-contain drop-shadow-[0_0_8px_oklch(0.7_0.2_245/0.6)]"
+            />
+            AI-автоматизация бизнеса · 2026
           </div>
 
-          <h1 className="mt-6 font-display text-4xl font-bold leading-[1.05] tracking-tight text-foreground sm:text-5xl lg:text-6xl xl:text-7xl">
+          <h1 className="mt-6 font-display text-3xl font-bold leading-[1.1] tracking-tight text-foreground sm:text-4xl lg:text-5xl xl:text-6xl">
             Автоматизируем бизнес с помощью{" "}
             <span className="text-gradient">AI, Telegram-ботов</span> и современных web-решений
           </h1>
 
-          <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
+          <p className="mx-auto mt-5 max-w-2xl text-sm leading-relaxed text-muted-foreground sm:text-base">
             Разрабатываем AI-системы, Telegram-ботов и сайты, которые помогают компаниям
             автоматизировать процессы, обрабатывать заявки и увеличивать поток клиентов.
           </p>

@@ -9,12 +9,13 @@ import { useServerFn } from "@tanstack/react-start";
 export function ContactForm() {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [consent, setConsent] = useState(false);
   const [form, setForm] = useState({ name: "", contact: "", task: "" });
   const sendLeadNotification = useServerFn(notifyLead);
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (!form.name.trim() || !form.contact.trim()) return;
+    if (!form.name.trim() || !form.contact.trim() || !consent) return;
     setLoading(true);
     try {
       const source =
@@ -101,8 +102,8 @@ export function ContactForm() {
                   </div>
                   <button
                     type="submit"
-                    disabled={loading}
-                    className="group inline-flex w-full items-center justify-center gap-2 rounded-xl gradient-primary px-6 py-3.5 text-sm font-semibold text-primary-foreground shadow-[0_0_40px_-8px_oklch(0.7_0.2_245/0.6)] hover:scale-[1.02] transition-transform disabled:opacity-60 disabled:hover:scale-100 sm:w-auto"
+                    disabled={loading || !consent}
+                    className="group inline-flex w-full items-center justify-center gap-2 rounded-xl gradient-primary px-6 py-3.5 text-sm font-semibold text-primary-foreground shadow-[0_0_40px_-8px_oklch(0.7_0.2_245/0.6)] hover:scale-[1.02] transition-transform disabled:opacity-50 disabled:hover:scale-100 disabled:cursor-not-allowed sm:w-auto"
                   >
                     {loading ? (
                       <>
@@ -116,13 +117,22 @@ export function ContactForm() {
                       </>
                     )}
                   </button>
-                  <p className="text-xs text-muted-foreground">
-                    Нажимая кнопку, вы соглашаетесь с{" "}
-                    <a href="/privacy" className="text-primary hover:underline">
-                      политикой конфиденциальности
-                    </a>
-                    .
-                  </p>
+                  <label className="flex items-start gap-2.5 cursor-pointer select-none">
+                    <input
+                      type="checkbox"
+                      checked={consent}
+                      onChange={(e) => setConsent(e.target.checked)}
+                      required
+                      className="mt-0.5 h-4 w-4 shrink-0 cursor-pointer accent-primary"
+                    />
+                    <span className="text-xs leading-relaxed text-muted-foreground">
+                      Я согласен с{" "}
+                      <a href="/privacy" className="text-primary hover:underline">
+                        политикой конфиденциальности
+                      </a>{" "}
+                      и принимаю её условия.
+                    </span>
+                  </label>
                 </form>
               )}
             </div>
