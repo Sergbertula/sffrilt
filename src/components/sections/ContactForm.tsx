@@ -27,13 +27,18 @@ export function ContactForm() {
         task: form.task.trim() ? form.task.trim().slice(0, 4000) : null,
         source,
       };
-      console.log("[ContactForm] inserting lead", payload);
-      const { error } = await supabase.from("leads").insert(payload);
-      if (error) {
-        console.error("[ContactForm] insert error", error);
-        throw error;
+      console.log("[ContactForm] submitting lead", payload);
+      const res = await fetch("/api/public/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      if (!res.ok) {
+        const err = await res.json().catch(() => ({}));
+        console.error("[ContactForm] API error", res.status, err);
+        throw new Error(err.error || "Ошибка отправки");
       }
-      console.log("[ContactForm] insert ok, calling notifyLead");
+      console.log("[ContactForm] submit ok, calling notifyLead");
       setSubmitted(true);
       sendLeadNotification({ data: payload })
         .then((res) => console.log("[ContactForm] notifyLead result", res))
