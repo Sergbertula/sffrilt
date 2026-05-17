@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Phone, Mail, Send, Check, ArrowRight, Loader2 } from "lucide-react";
 import { SectionHeading } from "@/components/ui/glass-card";
-import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { notifyLead } from "@/lib/telegram.functions";
 import { useServerFn } from "@tanstack/react-start";
