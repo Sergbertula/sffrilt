@@ -131,7 +131,18 @@ export function Header() {
           })}
         </nav>
 
-        <div className="hidden lg:block">
+        <div className="hidden items-center gap-4 lg:flex">
+          <div className="flex flex-col items-end leading-tight">
+            <a
+              href="tel:+79534428998"
+              className="text-sm font-semibold text-foreground transition-colors hover:text-primary"
+            >
+              +7 (953) 442-89-98
+            </a>
+            <span className="hidden text-[11px] text-muted-foreground xl:block">
+              300048, г. Тула, Красноармейский пр-т, д. 7
+            </span>
+          </div>
           <Link
             to="/contacts"
             className="inline-flex items-center justify-center rounded-lg gradient-primary px-4 py-2 text-sm font-semibold text-primary-foreground shadow-[0_0_24px_-6px_oklch(0.7_0.2_245/0.6)] transition-transform hover:scale-105"
