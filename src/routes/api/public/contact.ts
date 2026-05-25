@@ -23,7 +23,7 @@ export const Route = createFileRoute('/api/public/contact')({
         const name = String(body.name || '').trim().slice(0, 200)
         const contact = String(body.contact || '').trim().slice(0, 200)
         const task = body.task ? String(body.task).trim().slice(0, 4000) : null
-        const source = body.source ? String(body.source).slice(0, 500) : null
+        const source = body.source ? String(body.source).slice(0, 200) : null
 
         if (!name || !contact) {
           return Response.json({ error: 'Name and contact are required' }, { status: 400 })
