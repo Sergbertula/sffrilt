@@ -146,8 +146,8 @@ export function ContactForm() {
             <ContactItem
               icon={Phone}
               label="Телефон"
-              value="+7 (953) 442-89-98"
-              href="tel:+79534428998"
+              value="+7 (953) 421-02-56"
+              href="tel:+79534210256"
             />
             <ContactItem
               icon={Send}
