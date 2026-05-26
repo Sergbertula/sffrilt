@@ -32,6 +32,7 @@ export const Route = createFileRoute("/")({
         content: "AI-агенты, Telegram-боты, сайты и SEO для роста бизнеса.",
       },
     ],
+    scripts: [ldScript(ORGANIZATION_SCHEMA)],
   }),
   component: Index,
 });
