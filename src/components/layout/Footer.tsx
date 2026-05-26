@@ -61,6 +61,28 @@ export function Footer() {
             </li>
             <li>
               <a
+                href="https://max.ru/tehprom"
+                target="_blank"
+                rel="noreferrer"
+                className="group flex items-center gap-2 text-muted-foreground hover:text-foreground"
+              >
+                <MessageCircle className="h-4 w-4 text-primary" />
+                MAX: @tehprom
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://instagram.com/tehpromtula"
+                target="_blank"
+                rel="noreferrer"
+                className="group flex items-center gap-2 text-muted-foreground hover:text-foreground"
+              >
+                <Instagram className="h-4 w-4 text-primary" />
+                @tehpromtula
+              </a>
+            </li>
+            <li>
+              <a
                 href="mailto:tehprom-tula@mail.ru"
                 className="group flex items-center gap-2 text-muted-foreground hover:text-foreground"
               >
