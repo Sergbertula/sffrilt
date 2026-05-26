@@ -19,6 +19,16 @@ export const Route = createFileRoute("/ai-solutions")({
         content: "Чат- и голосовые AI-ассистенты, RAG, аналитика, on-premise модели.",
       },
     ],
+    scripts: [
+      ldScript(
+        serviceSchema({
+          name: "AI-решения для бизнеса",
+          description:
+            "AI-агенты, голосовые операторы, RAG-поиск, аналитика и приватные модели для автоматизации бизнес-процессов.",
+          url: "https://sffrilt.ru/ai-solutions",
+        }),
+      ),
+    ],
   }),
   component: Page,
 });
