@@ -134,10 +134,10 @@ export function Header() {
         <div className="hidden items-center gap-4 lg:flex">
           <div className="flex flex-col items-end leading-tight">
             <a
-              href="tel:+79534428998"
+              href="tel:+79534210256"
               className="text-sm font-semibold text-foreground transition-colors hover:text-primary"
             >
-              +7 (953) 442-89-98
+              +7 (953) 421-02-56
             </a>
             <span className="hidden text-[11px] text-muted-foreground xl:block">
               300048, г. Тула, Красноармейский пр-т, д. 7

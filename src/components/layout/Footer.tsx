@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Phone, Mail, Send, Sparkles } from "lucide-react";
+import { Phone, Mail, Send, Sparkles, Instagram, MessageCircle } from "lucide-react";
 
 const services = [
   { to: "/ai-solutions", label: "AI-решения" },
@@ -41,11 +41,11 @@ export function Footer() {
           <ul className="mt-6 space-y-3 text-sm">
             <li>
               <a
-                href="tel:+79534428998"
+                href="tel:+79534210256"
                 className="group flex items-center gap-2 text-muted-foreground hover:text-foreground"
               >
                 <Phone className="h-4 w-4 text-primary" />
-                +7 (953) 442-89-98
+                +7 (953) 421-02-56
               </a>
             </li>
             <li>
@@ -57,6 +57,28 @@ export function Footer() {
               >
                 <Send className="h-4 w-4 text-primary" />
                 @tehprom1
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://max.ru/tehprom"
+                target="_blank"
+                rel="noreferrer"
+                className="group flex items-center gap-2 text-muted-foreground hover:text-foreground"
+              >
+                <MessageCircle className="h-4 w-4 text-primary" />
+                MAX: @tehprom
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://instagram.com/tehpromtula"
+                target="_blank"
+                rel="noreferrer"
+                className="group flex items-center gap-2 text-muted-foreground hover:text-foreground"
+              >
+                <Instagram className="h-4 w-4 text-primary" />
+                @tehpromtula
               </a>
             </li>
             <li>
@@ -121,6 +143,15 @@ export function Footer() {
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-2 px-4 py-6 text-xs text-muted-foreground sm:flex-row sm:px-6 lg:px-8">
           <p>© {new Date().getFullYear()} SFFRILT. Все права защищены.</p>
           <p>AI-автоматизация · Telegram-боты · Web-разработка · SEO</p>
+        </div>
+      </div>
+
+      <div className="border-t border-border/60 bg-card/60">
+        <div className="mx-auto max-w-7xl px-4 py-5 text-center text-[11px] leading-relaxed text-muted-foreground sm:px-6 lg:px-8">
+          <p className="font-medium text-foreground/80">ООО «Техпром»</p>
+          <p className="mt-1">
+            ОГРН 1057100770231 · ИНН 7106063765 · КПП 710601001
+          </p>
         </div>
       </div>
     </footer>

@@ -61,7 +61,7 @@ export const template = {
   displayName: 'Уведомление о новой заявке',
   previewData: {
     name: 'ООО «Пример»',
-    contact: '+7 (953) 442-89-98',
+    contact: '+7 (953) 421-02-56',
     task: 'Нужна автоматизация складского учёта',
     source: '/contacts',
   },

@@ -146,8 +146,8 @@ export function ContactForm() {
             <ContactItem
               icon={Phone}
               label="Телефон"
-              value="+7 (953) 442-89-98"
-              href="tel:+79534428998"
+              value="+7 (953) 421-02-56"
+              href="tel:+79534210256"
             />
             <ContactItem
               icon={Send}
@@ -161,14 +161,18 @@ export function ContactForm() {
               value="tehprom-tula@mail.ru"
               href="mailto:tehprom-tula@mail.ru"
             />
-            <div className="rounded-2xl glass p-4">
-              <p className="text-xs uppercase tracking-wider text-muted-foreground">MAX</p>
-              <p className="mt-1 text-sm font-medium text-foreground">Скоро подключим</p>
-            </div>
-            <div className="rounded-2xl glass p-4">
-              <p className="text-xs uppercase tracking-wider text-muted-foreground">Instagram</p>
-              <p className="mt-1 text-sm font-medium text-foreground">Скоро запускаем</p>
-            </div>
+            <ContactItem
+              icon={Send}
+              label="MAX"
+              value="@tehprom"
+              href="https://max.ru/tehprom"
+            />
+            <ContactItem
+              icon={Send}
+              label="Instagram"
+              value="@tehpromtula"
+              href="https://instagram.com/tehpromtula"
+            />
           </aside>
         </div>
       </div>

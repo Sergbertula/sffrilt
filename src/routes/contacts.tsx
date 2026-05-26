@@ -14,7 +14,7 @@ const jsonLd = {
       {
         "@type": "ContactPoint",
         contactType: "sales",
-        telephone: "+7-953-442-89-98",
+        telephone: "+7-953-421-02-56",
         email: "tehprom-tula@mail.ru",
         availableLanguage: ["ru"],
         url: "https://t.me/tehprom1",
