@@ -70,6 +70,16 @@ export const Route = createFileRoute("/seo")({
         content: "Комплексное SEO с использованием современных AI-инструментов.",
       },
     ],
+    scripts: [
+      ldScript(
+        serviceSchema({
+          name: "SEO-продвижение",
+          description:
+            "AI SEO, техническое SEO, проработка структуры и контент-маркетинг для роста органического трафика.",
+          url: "https://sffrilt.ru/seo",
+        }),
+      ),
+    ],
   }),
   component: Page,
 });
