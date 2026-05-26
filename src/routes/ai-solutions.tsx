@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { serviceSchema, ldScript } from "@/lib/schema";
 import { PageHero } from "@/components/layout/PageHero";
 import { AiContent } from "@/components/sections/AiContent";
 import { ContactForm } from "@/components/sections/ContactForm";
