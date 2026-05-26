@@ -2,15 +2,12 @@ import { useState } from "react";
 import { Phone, Mail, Send, Check, ArrowRight, Loader2 } from "lucide-react";
 import { SectionHeading } from "@/components/ui/glass-card";
 import { toast } from "sonner";
-import { notifyLead } from "@/lib/telegram.functions";
-import { useServerFn } from "@tanstack/react-start";
 
 export function ContactForm() {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [consent, setConsent] = useState(false);
   const [form, setForm] = useState({ name: "", contact: "", task: "" });
-  const sendLeadNotification = useServerFn(notifyLead);
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
