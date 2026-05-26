@@ -35,11 +35,8 @@ export function ContactForm() {
         console.error("[ContactForm] API error", res.status, err);
         throw new Error(err.error || "Ошибка отправки");
       }
-      console.log("[ContactForm] submit ok, calling notifyLead");
+      console.log("[ContactForm] submit ok");
       setSubmitted(true);
-      sendLeadNotification({ data: payload })
-        .then((res) => console.log("[ContactForm] notifyLead result", res))
-        .catch((err) => console.error("[ContactForm] notifyLead failed", err));
     } catch (err) {
       console.error(err);
       toast.error("Не удалось отправить заявку. Напишите нам в Telegram — ответим быстрее.");
