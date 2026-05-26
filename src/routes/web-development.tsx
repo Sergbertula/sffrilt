@@ -71,6 +71,16 @@ export const Route = createFileRoute("/web-development")({
         content: "Современные сайты, которые приносят заявки и продажи.",
       },
     ],
+    scripts: [
+      ldScript(
+        serviceSchema({
+          name: "Разработка сайтов",
+          description:
+            "Лендинги, корпоративные сайты, B2B-порталы и интернет-магазины с премиальным дизайном и быстрой загрузкой.",
+          url: "https://sffrilt.ru/web-development",
+        }),
+      ),
+    ],
   }),
   component: Page,
 });
