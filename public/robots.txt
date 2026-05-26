@@ -1,11 +1,8 @@
 User-agent: *
 Allow: /
 
-Disallow: /admin
-Disallow: /login
-Disallow: /api/
-Disallow: /lovable/
-Disallow: /email/unsubscribe
-Disallow: /unsubscribe
+Disallow: /privacy
+Disallow: /cookies
+Disallow: /terms
 
-Sitemap: https://sunny-start-forge.lovable.app/sitemap.xml
+Sitemap: https://sffrilt.ru/sitemap.xml
