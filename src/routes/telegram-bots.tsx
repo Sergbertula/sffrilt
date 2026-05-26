@@ -77,6 +77,16 @@ export const Route = createFileRoute("/telegram-bots")({
         content: "AI-боты, боты продаж и поддержки с интеграцией в CRM.",
       },
     ],
+    scripts: [
+      ldScript(
+        serviceSchema({
+          name: "Разработка Telegram-ботов",
+          description:
+            "Разработка Telegram-ботов: продажи, поддержка, AI-ассистенты, автоматизация и интеграция с CRM.",
+          url: "https://sffrilt.ru/telegram-bots",
+        }),
+      ),
+    ],
   }),
   component: Page,
 });
