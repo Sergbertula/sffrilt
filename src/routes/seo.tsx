@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { serviceSchema, ldScript } from "@/lib/schema";
 import { PageHero } from "@/components/layout/PageHero";
 import { ContactForm } from "@/components/sections/ContactForm";
 import { Packages, type PackageTier } from "@/components/sections/Packages";
@@ -68,6 +69,16 @@ export const Route = createFileRoute("/seo")({
         property: "og:description",
         content: "Комплексное SEO с использованием современных AI-инструментов.",
       },
+    ],
+    scripts: [
+      ldScript(
+        serviceSchema({
+          name: "SEO-продвижение",
+          description:
+            "AI SEO, техническое SEO, проработка структуры и контент-маркетинг для роста органического трафика.",
+          url: "https://sffrilt.ru/seo",
+        }),
+      ),
     ],
   }),
   component: Page,

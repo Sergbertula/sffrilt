@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { ORGANIZATION_SCHEMA, ldScript } from "@/lib/schema";
 import { Hero } from "@/components/sections/Hero";
 import { Stats } from "@/components/sections/Stats";
 import { Clients } from "@/components/sections/Clients";
@@ -31,6 +32,7 @@ export const Route = createFileRoute("/")({
         content: "AI-агенты, Telegram-боты, сайты и SEO для роста бизнеса.",
       },
     ],
+    scripts: [ldScript(ORGANIZATION_SCHEMA)],
   }),
   component: Index,
 });

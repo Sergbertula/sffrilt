@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { serviceSchema, ldScript } from "@/lib/schema";
 import { PageHero } from "@/components/layout/PageHero";
 import { ContactForm } from "@/components/sections/ContactForm";
 import { Packages, type PackageTier } from "@/components/sections/Packages";
@@ -69,6 +70,16 @@ export const Route = createFileRoute("/web-development")({
         property: "og:description",
         content: "Современные сайты, которые приносят заявки и продажи.",
       },
+    ],
+    scripts: [
+      ldScript(
+        serviceSchema({
+          name: "Разработка сайтов",
+          description:
+            "Лендинги, корпоративные сайты, B2B-порталы и интернет-магазины с премиальным дизайном и быстрой загрузкой.",
+          url: "https://sffrilt.ru/web-development",
+        }),
+      ),
     ],
   }),
   component: Page,

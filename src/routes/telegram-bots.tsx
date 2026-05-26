@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { serviceSchema, ldScript } from "@/lib/schema";
 import { PageHero } from "@/components/layout/PageHero";
 import { ContactForm } from "@/components/sections/ContactForm";
 import { Packages, type PackageTier } from "@/components/sections/Packages";
@@ -75,6 +76,16 @@ export const Route = createFileRoute("/telegram-bots")({
         property: "og:description",
         content: "AI-боты, боты продаж и поддержки с интеграцией в CRM.",
       },
+    ],
+    scripts: [
+      ldScript(
+        serviceSchema({
+          name: "Разработка Telegram-ботов",
+          description:
+            "Разработка Telegram-ботов: продажи, поддержка, AI-ассистенты, автоматизация и интеграция с CRM.",
+          url: "https://sffrilt.ru/telegram-bots",
+        }),
+      ),
     ],
   }),
   component: Page,
