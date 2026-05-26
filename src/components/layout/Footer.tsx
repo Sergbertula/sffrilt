@@ -145,6 +145,15 @@ export function Footer() {
           <p>AI-автоматизация · Telegram-боты · Web-разработка · SEO</p>
         </div>
       </div>
+
+      <div className="border-t border-border/60 bg-card/60">
+        <div className="mx-auto max-w-7xl px-4 py-5 text-center text-[11px] leading-relaxed text-muted-foreground sm:px-6 lg:px-8">
+          <p className="font-medium text-foreground/80">ООО «Техпром»</p>
+          <p className="mt-1">
+            ОГРН 1057100770231 · ИНН 7106063765 · КПП 710601001
+          </p>
+        </div>
+      </div>
     </footer>
   );
 }
