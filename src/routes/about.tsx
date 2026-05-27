@@ -9,6 +9,7 @@ import {
   Palette,
   Server,
   ArrowRight,
+  MapPin,
 } from "lucide-react";
 import { PageHero } from "@/components/layout/PageHero";
 import { GlassCard, SectionHeading } from "@/components/ui/glass-card";
@@ -33,6 +34,44 @@ export const Route = createFileRoute("/about")({
   }),
   component: Page,
 });
+
+const teamMembers = [
+  {
+    initials: "ИС",
+    name: "Илья Сорокин",
+    role: "Lead AI Engineer",
+    skills: ["GPT-4o", "RAG", "Python"],
+  },
+  {
+    initials: "АВ",
+    name: "Анна Волкова",
+    role: "UX/UI Designer",
+    skills: ["Figma", "веб-дизайн", "мобайл"],
+  },
+  {
+    initials: "МГ",
+    name: "Михаил Грачёв",
+    role: "Full-Stack Developer",
+    skills: ["React", "Node.js", "Supabase"],
+  },
+  {
+    initials: "ДЛ",
+    name: "Дарья Лисова",
+    role: "Project Manager",
+    skills: ["Agile", "Notion", "клиентский сервис"],
+  },
+];
+
+const locations = [
+  "Москва",
+  "Санкт-Петербург",
+  "Тула",
+  "Екатеринбург",
+  "Новосибирск",
+  "Казань",
+  "Минск",
+  "Алматы",
+];
 
 const values = [
   {
@@ -166,15 +205,51 @@ function Page() {
             description="Без подрядчиков и аутсорса. Все компетенции внутри команды — отвечаем за результат целиком."
           />
           <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {team.map((t) => (
-              <GlassCard key={t.role} className="h-full text-center">
-                <span className="mx-auto inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-primary/20 to-accent/20 text-primary ring-1 ring-primary/20">
-                  <t.icon className="h-6 w-6" />
-                </span>
-                <div className="mt-5 font-display text-2xl font-bold text-gradient">{t.count}</div>
-                <h3 className="mt-1 font-display text-base font-semibold text-foreground">{t.role}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{t.desc}</p>
+            {teamMembers.map((m) => (
+              <GlassCard key={m.name} className="h-full text-center">
+                <div className="relative mx-auto h-24 w-24 overflow-hidden rounded-full bg-gradient-to-br from-primary/20 to-accent/20 ring-1 ring-primary/20">
+                  <span className="flex h-full w-full items-center justify-center font-display text-2xl font-bold text-gradient">
+                    {m.initials}
+                  </span>
+                </div>
+                <h3 className="mt-4 font-display text-base font-semibold text-foreground">{m.name}</h3>
+                <p className="mt-0.5 text-sm text-muted-foreground">{m.role}</p>
+                <div className="mt-3 flex flex-wrap justify-center gap-1.5">
+                  {m.skills.map((skill) => (
+                    <span
+                      key={skill}
+                      className="inline-flex rounded-md bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary ring-1 ring-primary/20"
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+                <p className="mt-3 text-[11px] uppercase tracking-wide text-muted-foreground/60">
+                  [фото будет добавлено]
+                </p>
               </GlassCard>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Locations */}
+      <section className="relative py-20 sm:py-28">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <SectionHeading
+            eyebrow="География"
+            title="Работаем по всей России и СНГ"
+            description="Удалённо и на месте — внедряем AI и автоматизацию для бизнеса в любом городе."
+          />
+          <div className="mt-10 flex flex-wrap justify-center gap-3">
+            {locations.map((city) => (
+              <span
+                key={city}
+                className="inline-flex items-center gap-2 rounded-xl border border-primary/20 bg-primary/5 px-4 py-2.5 text-sm font-medium text-primary backdrop-blur-sm"
+              >
+                <MapPin className="h-3.5 w-3.5" />
+                {city}
+              </span>
             ))}
           </div>
         </div>
