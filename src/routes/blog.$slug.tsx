@@ -83,8 +83,8 @@ function formatDate(d: string) {
 }
 
 // Парсит inline-ссылки в формате [текст](url). Внутренние пути (/...) рендерим как <Link>, внешние — как <a>.
-function renderInline(text: string): React.ReactNode[] {
-  const parts: React.ReactNode[] = [];
+function renderInline(text: string): ReactNode[] {
+  const parts: ReactNode[] = [];
   const re = /\[([^\]]+)\]\(([^)]+)\)/g;
   let lastIndex = 0;
   let match: RegExpExecArray | null;
