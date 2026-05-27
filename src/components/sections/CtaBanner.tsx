@@ -40,7 +40,7 @@ export function CtaBanner() {
             <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
               <Link
                 to="/contacts"
-                className="group inline-flex items-center justify-center gap-2 rounded-xl gradient-primary px-7 py-3.5 font-medium text-primary-foreground glow-blue transition-all hover:scale-[1.02]"
+                className="group inline-flex w-full items-center justify-center gap-2 rounded-xl gradient-primary px-7 py-3.5 font-medium text-primary-foreground glow-blue transition-all hover:scale-[1.02] sm:w-auto"
               >
                 Получить аудит
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -49,7 +49,7 @@ export function CtaBanner() {
                 href="https://t.me/tehprom1"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 rounded-xl border border-border bg-background/40 px-7 py-3.5 font-medium text-foreground backdrop-blur-sm transition-all hover:border-primary/40 hover:bg-primary/5"
+                className="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-border bg-background/40 px-7 py-3.5 font-medium text-foreground backdrop-blur-sm transition-all hover:border-primary/40 hover:bg-primary/5 sm:w-auto"
               >
                 <Send className="h-4 w-4" />
                 Написать в Telegram

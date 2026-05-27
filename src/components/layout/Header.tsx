@@ -45,7 +45,7 @@ export function Header() {
     <header className="sticky top-0 z-40 w-full border-b border-border/60 glass-strong">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <Link to="/" className="group flex items-center gap-2" onClick={() => setOpen(false)}>
-          <img
+          <img loading="lazy"
             src={logo3d}
             alt="SFFRILT — AI-автоматизация бизнеса"
             width={36}
