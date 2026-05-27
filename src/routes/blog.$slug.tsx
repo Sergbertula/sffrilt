@@ -4,6 +4,7 @@ import { Calendar, Clock, ArrowLeft, ArrowRight, MessageCircle, Send } from "luc
 import { GlassCard } from "@/components/ui/glass-card";
 import { ContactForm } from "@/components/sections/ContactForm";
 import { articles, type Article } from "@/data/articles";
+import { ymReachGoal, handleYMClick } from "@/lib/metrika";
 
 export const Route = createFileRoute("/blog/$slug")({
   loader: ({ params }) => {
@@ -252,6 +253,7 @@ function Page() {
             <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
               <Link
                 to="/contacts"
+                onClick={() => ymReachGoal('discuss_project')}
                 className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-background px-6 py-3 text-sm font-semibold text-foreground hover:opacity-90 transition-opacity sm:w-auto"
               >
                 <MessageCircle className="h-4 w-4" />
@@ -261,6 +263,7 @@ function Page() {
                 href="https://t.me/tehprom1"
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={handleYMClick('telegram_click', 'https://t.me/tehprom1', '_blank')}
                 className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-background/10 ring-1 ring-primary-foreground/40 px-6 py-3 text-sm font-semibold text-primary-foreground hover:bg-background/20 transition-colors sm:w-auto"
               >
                 <Send className="h-4 w-4" />

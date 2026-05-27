@@ -3,6 +3,7 @@ import { ArrowRight, ArrowLeft, Send, CheckCircle2 } from "lucide-react";
 import { GlassCard } from "@/components/ui/glass-card";
 import { ContactForm } from "@/components/sections/ContactForm";
 import { cases, getCaseBySlug } from "@/data/cases";
+import { ymReachGoal, handleYMClick } from "@/lib/metrika";
 
 export const Route = createFileRoute("/cases/$slug")({
   loader: ({ params }) => {
@@ -263,6 +264,7 @@ function CasePage() {
             <div className="mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row">
               <Link
                 to="/contacts"
+                onClick={() => ymReachGoal('discuss_project')}
                 className="group inline-flex items-center justify-center gap-2 rounded-xl gradient-primary px-6 py-3 text-sm font-semibold text-primary-foreground shadow-[0_0_40px_-8px_oklch(0.7_0.2_245/0.6)] hover:scale-105 transition-transform"
               >
                 Обсудить проект
@@ -272,6 +274,7 @@ function CasePage() {
                 href="https://t.me/tehprom1"
                 target="_blank"
                 rel="noreferrer"
+                onClick={handleYMClick('telegram_click', 'https://t.me/tehprom1', '_blank')}
                 className="inline-flex items-center justify-center gap-2 rounded-xl glass px-6 py-3 text-sm font-semibold text-foreground hover:border-primary/40"
               >
                 <Send className="h-4 w-4 text-primary" />
@@ -284,6 +287,7 @@ function CasePage() {
           <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <Link
               to="/contacts"
+              onClick={() => ymReachGoal('discuss_project')}
               className="group inline-flex items-center justify-center gap-2 rounded-xl gradient-primary px-6 py-3 text-sm font-semibold text-primary-foreground shadow-[0_0_40px_-8px_oklch(0.7_0.2_245/0.6)] hover:scale-105 transition-transform"
             >
               Обсудить похожий проект
@@ -293,6 +297,7 @@ function CasePage() {
               href="https://t.me/tehprom1"
               target="_blank"
               rel="noreferrer"
+              onClick={handleYMClick('telegram_click', 'https://t.me/tehprom1', '_blank')}
               className="inline-flex items-center justify-center gap-2 rounded-xl glass px-6 py-3 text-sm font-semibold text-foreground hover:border-primary/40"
             >
               <Send className="h-4 w-4 text-primary" />

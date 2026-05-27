@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { Send, ArrowRight, Bot, Globe, BarChart3, Plug } from "lucide-react";
 import hero3dBadge from "@/assets/hero-3d-badge.png";
+import { ymReachGoal, handleYMClick } from "@/lib/metrika";
 
 export function Hero() {
   return (
@@ -35,6 +36,7 @@ export function Hero() {
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <Link
               to="/contacts"
+              onClick={() => ymReachGoal('discuss_project')}
               className="group inline-flex w-full items-center justify-center gap-2 rounded-xl gradient-primary px-6 py-3.5 text-sm font-semibold text-primary-foreground shadow-[0_0_40px_-8px_oklch(0.7_0.2_245/0.6)] transition-transform hover:scale-105 sm:w-auto"
             >
               Обсудить проект
@@ -44,6 +46,7 @@ export function Hero() {
               href="https://t.me/tehprom1"
               target="_blank"
               rel="noreferrer"
+              onClick={handleYMClick('telegram_click', 'https://t.me/tehprom1', '_blank')}
               className="group inline-flex w-full items-center justify-center gap-2 rounded-xl glass px-6 py-3.5 text-sm font-semibold text-foreground transition-colors hover:border-primary/40 sm:w-auto"
             >
               <Send className="h-4 w-4 text-primary" />
