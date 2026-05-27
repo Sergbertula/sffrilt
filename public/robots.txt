@@ -1,8 +1,11 @@
 User-agent: *
+
 Allow: /
 
 Disallow: /privacy
+
 Disallow: /cookies
+
 Disallow: /terms
 
 Sitemap: https://sffrilt.ru/sitemap.xml
