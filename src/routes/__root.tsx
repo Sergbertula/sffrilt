@@ -151,7 +151,7 @@ function RootShell({ children }: { children: React.ReactNode }) {
         <noscript>
           <div>
             <img
-              src="https://mc.yandex.ru/watch/0"
+              src="https://mc.yandex.ru/watch/109454148"
               style={{ position: "absolute", left: "-9999px" }}
               alt=""
             />
