@@ -15,6 +15,10 @@ import { PageHero } from "@/components/layout/PageHero";
 import { GlassCard, SectionHeading } from "@/components/ui/glass-card";
 import { Stats } from "@/components/sections/Stats";
 import { ContactForm } from "@/components/sections/ContactForm";
+import ilyaPhoto from "@/assets/team/ilya.png";
+import annaPhoto from "@/assets/team/anna.png";
+import mikhailPhoto from "@/assets/team/mikhail.png";
+import daryaPhoto from "@/assets/team/darya.png";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
