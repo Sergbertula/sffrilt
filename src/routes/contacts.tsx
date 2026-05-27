@@ -67,6 +67,71 @@ function Page() {
       />
       <ContactInfo />
       <ContactForm />
+      <B2BDetails />
     </>
+  );
+}
+
+const requisites = [
+  { label: "Название", value: "ООО «Техпром»" },
+  { label: "ОГРН", value: "1057100770231" },
+  { label: "ИНН", value: "7106063765" },
+  { label: "КПП", value: "710601001" },
+  { label: "Юридический адрес", value: "300048, г. Тула, Красноармейский пр-т, д. 7" },
+];
+
+function B2BDetails() {
+  const [open, setOpen] = useState(false);
+
+  async function copy(text: string) {
+    try {
+      await navigator.clipboard.writeText(text);
+      toast.success("Скопировано в буфер обмена");
+    } catch {
+      toast.error("Не удалось скопировать");
+    }
+  }
+
+  return (
+    <section className="relative py-12 sm:py-16">
+      <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+        <div className="overflow-hidden rounded-2xl glass-strong">
+          <button
+            onClick={() => setOpen(!open)}
+            className="flex w-full items-center justify-between px-6 py-5 text-left transition-colors hover:bg-primary/5"
+          >
+            <span className="font-display text-lg font-semibold text-foreground">
+              Реквизиты для B2B
+            </span>
+            <ChevronDown
+              className={`h-5 w-5 text-muted-foreground transition-transform duration-300 ${open ? "rotate-180" : ""}`}
+            />
+          </button>
+
+          {open && (
+            <div className="border-t border-border px-6 py-5 space-y-3">
+              {requisites.map((item) => (
+                <button
+                  key={item.label}
+                  onClick={() => copy(item.value)}
+                  className="group flex w-full items-center justify-between rounded-xl border border-border bg-background/40 px-4 py-3 text-left transition-colors hover:border-primary/30 hover:bg-primary/5"
+                  title="Нажмите, чтобы скопировать"
+                >
+                  <div>
+                    <p className="text-xs uppercase tracking-wider text-muted-foreground">
+                      {item.label}
+                    </p>
+                    <p className="mt-0.5 text-sm font-medium text-foreground">
+                      {item.value}
+                    </p>
+                  </div>
+                  <Copy className="h-4 w-4 shrink-0 text-muted-foreground opacity-0 transition-opacity group-hover:opacity-100" />
+                </button>
+              ))}
+            </div>
+          )}
+        </div>
+      </div>
+    </section>
   );
 }
