@@ -186,7 +186,7 @@ function Page() {
                     {block.items?.map((it: string, j: number) => (
                       <li key={j} className="flex items-start gap-3">
                         <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
-                        <span>{it}</span>
+                        <span>{renderInline(it)}</span>
                       </li>
                     ))}
                   </ul>
@@ -197,12 +197,12 @@ function Page() {
                     key={i}
                     className="border-l-2 border-primary pl-5 italic text-foreground"
                   >
-                    {block.text}
+                    {renderInline(block.text ?? "")}
                   </blockquote>
                 );
               return (
                 <p key={i} className="text-foreground/90">
-                  {block.text}
+                  {renderInline(block.text ?? "")}
                 </p>
               );
             })}
