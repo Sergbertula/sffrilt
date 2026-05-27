@@ -1,5 +1,5 @@
 // Placeholder — замените 0 на реальный ID счётчика Яндекс.Метрики
-const COUNTER_ID = 0;
+const COUNTER_ID = 109454148;
 
 export function ymReachGoal(goal: string) {
   if (typeof window !== "undefined" && "ym" in window) {
