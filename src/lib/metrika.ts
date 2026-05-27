@@ -10,9 +10,10 @@ export function ymReachGoal(goal: string) {
 
 export function handleYMClick(goal: string, href?: string, target?: string) {
   return (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
     ymReachGoal(goal);
     if (href) {
-      if (target === "_blank" || (!target && e.currentTarget.target === "_blank")) {
+      if (target === "_blank") {
         window.open(href, "_blank", "noopener,noreferrer");
       } else {
         window.location.href = href;
