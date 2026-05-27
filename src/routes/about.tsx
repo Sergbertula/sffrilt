@@ -35,6 +35,44 @@ export const Route = createFileRoute("/about")({
   component: Page,
 });
 
+const teamMembers = [
+  {
+    initials: "ИС",
+    name: "Илья Сорокин",
+    role: "Lead AI Engineer",
+    skills: ["GPT-4o", "RAG", "Python"],
+  },
+  {
+    initials: "АВ",
+    name: "Анна Волкова",
+    role: "UX/UI Designer",
+    skills: ["Figma", "веб-дизайн", "мобайл"],
+  },
+  {
+    initials: "МГ",
+    name: "Михаил Грачёв",
+    role: "Full-Stack Developer",
+    skills: ["React", "Node.js", "Supabase"],
+  },
+  {
+    initials: "ДЛ",
+    name: "Дарья Лисова",
+    role: "Project Manager",
+    skills: ["Agile", "Notion", "клиентский сервис"],
+  },
+];
+
+const locations = [
+  "Москва",
+  "Санкт-Петербург",
+  "Тула",
+  "Екатеринбург",
+  "Новосибирск",
+  "Казань",
+  "Минск",
+  "Алматы",
+];
+
 const values = [
   {
     icon: Target,
