@@ -9,6 +9,7 @@ import {
   Palette,
   Server,
   ArrowRight,
+  MapPin,
 } from "lucide-react";
 import { PageHero } from "@/components/layout/PageHero";
 import { GlassCard, SectionHeading } from "@/components/ui/glass-card";
