@@ -216,9 +216,12 @@ function Page() {
             {teamMembers.map((m) => (
               <GlassCard key={m.name} className="h-full text-center">
                 <div className="relative mx-auto h-24 w-24 overflow-hidden rounded-full bg-gradient-to-br from-primary/20 to-accent/20 ring-1 ring-primary/20">
-                  <span className="flex h-full w-full items-center justify-center font-display text-2xl font-bold text-gradient">
-                    {m.initials}
-                  </span>
+                  <img
+                    src={m.photo}
+                    alt={m.name}
+                    loading="lazy"
+                    className="h-full w-full object-cover"
+                  />
                 </div>
                 <h3 className="mt-4 font-display text-base font-semibold text-foreground">{m.name}</h3>
                 <p className="mt-0.5 text-sm text-muted-foreground">{m.role}</p>
@@ -232,9 +235,6 @@ function Page() {
                     </span>
                   ))}
                 </div>
-                <p className="mt-3 text-[11px] uppercase tracking-wide text-muted-foreground/60">
-                  [фото будет добавлено]
-                </p>
               </GlassCard>
             ))}
           </div>
