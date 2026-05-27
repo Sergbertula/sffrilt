@@ -239,6 +239,37 @@ function Page() {
         </section>
       )}
 
+      <section className="relative pb-20 sm:pb-28">
+        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+          <div className="relative overflow-hidden rounded-3xl gradient-primary p-8 sm:p-12 text-center">
+            <h2 className="font-display text-3xl font-bold text-primary-foreground sm:text-4xl">
+              Готовы автоматизировать свой бизнес?
+            </h2>
+            <p className="mt-4 text-base sm:text-lg text-primary-foreground/85">
+              Обсудим вашу задачу на бесплатном 30-минутном аудите
+            </p>
+            <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
+              <Link
+                to="/contacts"
+                className="inline-flex items-center justify-center gap-2 rounded-lg bg-background px-6 py-3 text-sm font-semibold text-foreground hover:opacity-90 transition-opacity"
+              >
+                <MessageCircle className="h-4 w-4" />
+                Обсудить проект
+              </Link>
+              <a
+                href="https://t.me/tehprom1"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 rounded-lg bg-background/10 ring-1 ring-primary-foreground/40 px-6 py-3 text-sm font-semibold text-primary-foreground hover:bg-background/20 transition-colors"
+              >
+                <Send className="h-4 w-4" />
+                Написать в Telegram
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <ContactForm />
     </>
   );
