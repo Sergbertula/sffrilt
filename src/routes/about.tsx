@@ -24,10 +24,10 @@ export const Route = createFileRoute("/about")({
         content:
           "SFFRILT — команда инженеров и AI-разработчиков. Делаем автоматизацию, ботов и сайты под ключ с 2021 года.",
       },
-      { property: "og:title", content: "О компании SFFRILT" },
+      { property: "og:title", content: "О команде SFFRILT — AI-разработчики из Тулы" },
       {
         property: "og:description",
-        content: "Команда, ценности и подход SFFRILT к разработке AI-продуктов.",
+        content: "13 специалистов, 5 лет на рынке, 60+ проектов в области AI и автоматизации.",
       },
     ],
   }),

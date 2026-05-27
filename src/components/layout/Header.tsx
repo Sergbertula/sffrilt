@@ -47,7 +47,7 @@ export function Header() {
         <Link to="/" className="group flex items-center gap-2" onClick={() => setOpen(false)}>
           <img
             src={logo3d}
-            alt="SFFRILT"
+            alt="SFFRILT — AI-автоматизация бизнеса"
             width={36}
             height={36}
             className="h-9 w-9 object-contain drop-shadow-[0_0_12px_oklch(0.7_0.2_245/0.55)] transition-transform group-hover:scale-105"

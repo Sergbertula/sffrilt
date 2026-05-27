@@ -14,7 +14,7 @@ export function Hero() {
           <div className="inline-flex items-center gap-2.5 rounded-full border border-primary/30 bg-primary/10 py-1 pl-1 pr-4 text-xs font-medium text-primary backdrop-blur">
             <img
               src={hero3dBadge}
-              alt=""
+              alt="AI-автоматизация бизнеса — SFFRILT, Тула"
               width={28}
               height={28}
               className="h-7 w-7 object-contain drop-shadow-[0_0_8px_oklch(0.7_0.2_245/0.6)]"

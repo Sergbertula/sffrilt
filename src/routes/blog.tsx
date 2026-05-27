@@ -14,10 +14,10 @@ export const Route = createFileRoute("/blog")({
         content:
           "Статьи об AI, Telegram-ботах, разработке сайтов и SEO. Опыт SFFRILT в реальных проектах.",
       },
-      { property: "og:title", content: "Блог SFFRILT" },
+      { property: "og:title", content: "Блог SFFRILT — об AI, Telegram-ботах и автоматизации бизнеса" },
       {
         property: "og:description",
-        content: "Статьи об AI, ботах, сайтах и SEO от практиков.",
+        content: "Практические статьи без хайпа: как выбрать AI-агента, сколько стоит бот, SEO для B2B.",
       },
     ],
   }),
