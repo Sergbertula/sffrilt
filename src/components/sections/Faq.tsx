@@ -6,7 +6,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
-const faqs = [
+export const faqs = [
   {
     q: "Сколько стоит разработка AI-агента или Telegram-бота?",
     a: "Стартовые проекты — от 150 000 ₽, средние внедрения с интеграциями в CRM/1С — 400–900 тыс. ₽, крупные системы под ключ — индивидуально. Точную смету присылаем после 30-минутного созвона.",
@@ -34,16 +34,6 @@ const faqs = [
 ];
 
 export function Faq() {
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: faqs.map((f) => ({
-      "@type": "Question",
-      name: f.q,
-      acceptedAnswer: { "@type": "Answer", text: f.a },
-    })),
-  };
-
   return (
     <section className="relative py-20 sm:py-28">
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
@@ -69,11 +59,6 @@ export function Faq() {
           ))}
         </Accordion>
       </div>
-      <script
-        type="application/ld+json"
-        // eslint-disable-next-line react/no-danger
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
     </section>
   );
 }
