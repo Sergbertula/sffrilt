@@ -81,6 +81,45 @@ function formatDate(d: string) {
   });
 }
 
+// Парсит inline-ссылки в формате [текст](url). Внутренние пути (/...) рендерим как <Link>, внешние — как <a>.
+function renderInline(text: string): React.ReactNode[] {
+  const parts: React.ReactNode[] = [];
+  const re = /\[([^\]]+)\]\(([^)]+)\)/g;
+  let lastIndex = 0;
+  let match: RegExpExecArray | null;
+  let key = 0;
+  while ((match = re.exec(text)) !== null) {
+    if (match.index > lastIndex) parts.push(text.slice(lastIndex, match.index));
+    const [, label, url] = match;
+    if (url.startsWith("/")) {
+      parts.push(
+        <Link
+          key={`l${key++}`}
+          to={url}
+          className="text-primary underline-offset-4 hover:underline font-medium"
+        >
+          {label}
+        </Link>,
+      );
+    } else {
+      parts.push(
+        <a
+          key={`a${key++}`}
+          href={url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-primary underline-offset-4 hover:underline font-medium"
+        >
+          {label}
+        </a>,
+      );
+    }
+    lastIndex = re.lastIndex;
+  }
+  if (lastIndex < text.length) parts.push(text.slice(lastIndex));
+  return parts;
+}
+
 function Page() {
   const { article } = Route.useLoaderData();
   const related = articles
