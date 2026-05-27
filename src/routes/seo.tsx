@@ -69,6 +69,12 @@ export const Route = createFileRoute("/seo")({
         property: "og:description",
         content: "Комплексное SEO с использованием современных AI-инструментов.",
       },
+      { property: "og:url", content: "https://sffrilt.ru/seo" },
+      { name: "twitter:title", content: "SEO-продвижение — SFFRILT" },
+      { name: "twitter:description", content: "Комплексное SEO с использованием современных AI-инструментов." },
+    ],
+    links: [
+      { rel: "canonical", href: "https://sffrilt.ru/seo" },
     ],
     scripts: [
       ldScript(

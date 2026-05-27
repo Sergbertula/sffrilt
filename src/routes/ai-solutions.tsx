@@ -18,6 +18,12 @@ export const Route = createFileRoute("/ai-solutions")({
         property: "og:description",
         content: "Чат- и голосовые AI-ассистенты, RAG, аналитика, on-premise модели.",
       },
+      { property: "og:url", content: "https://sffrilt.ru/ai-solutions" },
+      { name: "twitter:title", content: "AI-решения для бизнеса — SFFRILT" },
+      { name: "twitter:description", content: "Чат- и голосовые AI-ассистенты, RAG, аналитика, on-premise модели." },
+    ],
+    links: [
+      { rel: "canonical", href: "https://sffrilt.ru/ai-solutions" },
     ],
     scripts: [
       ldScript(

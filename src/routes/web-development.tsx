@@ -70,6 +70,12 @@ export const Route = createFileRoute("/web-development")({
         property: "og:description",
         content: "Современные сайты, которые приносят заявки и продажи.",
       },
+      { property: "og:url", content: "https://sffrilt.ru/web-development" },
+      { name: "twitter:title", content: "Разработка сайтов — SFFRILT" },
+      { name: "twitter:description", content: "Современные сайты, которые приносят заявки и продажи." },
+    ],
+    links: [
+      { rel: "canonical", href: "https://sffrilt.ru/web-development" },
     ],
     scripts: [
       ldScript(
