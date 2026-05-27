@@ -274,17 +274,20 @@ function ContactItem({
   label,
   value,
   href,
+  onClick,
 }: {
   icon: typeof Phone;
   label: string;
   value: string;
   href: string;
+  onClick?: React.MouseEventHandler<HTMLAnchorElement>;
 }) {
   return (
     <a
       href={href}
       target={href.startsWith("http") ? "_blank" : undefined}
       rel="noreferrer"
+      onClick={onClick}
       className="group flex items-center gap-4 rounded-2xl glass p-4 transition-colors hover:border-primary/40"
     >
       <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-primary/20 to-accent/20 text-primary ring-1 ring-primary/20">
