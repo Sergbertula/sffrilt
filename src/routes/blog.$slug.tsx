@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { Calendar, Clock, ArrowLeft, ArrowRight, MessageCircle, Send } from "lucide-react";
 import { GlassCard } from "@/components/ui/glass-card";
