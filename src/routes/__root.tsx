@@ -164,6 +164,7 @@ function RootComponent() {
         <TelegramFloat />
         <JuliaAssistant />
         <CookieBanner />
+        <BackToTop />
         <Toaster position="top-center" theme="dark" richColors />
       </div>
     </QueryClientProvider>
