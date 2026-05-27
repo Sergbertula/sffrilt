@@ -219,6 +219,68 @@ function CasePage() {
             </GlassCard>
           </div>
 
+          <div className="mt-6">
+            <GlassCard hover={false}>
+              <p className="text-[10px] font-semibold uppercase tracking-wider text-primary">
+                Инструменты проекта
+              </p>
+              <div className="mt-4 flex flex-wrap gap-2 overflow-x-auto">
+                {study.tools.map((t) => (
+                  <span
+                    key={t}
+                    className="inline-flex shrink-0 items-center rounded-full border border-primary/30 bg-primary/10 px-3 py-1.5 text-xs font-medium text-primary"
+                  >
+                    {t}
+                  </span>
+                ))}
+              </div>
+            </GlassCard>
+          </div>
+
+          <div className="mt-10">
+            <h2 className="font-display text-2xl font-semibold text-foreground">Скриншоты</h2>
+            <div className="mt-6 flex snap-x snap-mandatory gap-4 overflow-x-auto pb-4">
+              {[1, 2].map((i) => (
+                <div
+                  key={i}
+                  className="relative flex aspect-[8/5] w-[800px] max-w-full shrink-0 snap-center items-center justify-center rounded-2xl border border-border/60 bg-muted/40"
+                >
+                  <span className="text-sm font-medium text-muted-foreground">
+                    Скриншот интерфейса
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-12 rounded-3xl border border-primary/20 bg-gradient-to-br from-primary/10 via-background/40 to-accent/10 p-8 text-center sm:p-12">
+            <h2 className="font-display text-2xl font-bold text-foreground sm:text-3xl">
+              Хотите похожий результат?
+            </h2>
+            <p className="mt-3 text-sm text-muted-foreground sm:text-base">
+              Обсудим вашу задачу и покажем, как это работает
+            </p>
+            <div className="mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row">
+              <Link
+                to="/contacts"
+                className="group inline-flex items-center justify-center gap-2 rounded-xl gradient-primary px-6 py-3 text-sm font-semibold text-primary-foreground shadow-[0_0_40px_-8px_oklch(0.7_0.2_245/0.6)] hover:scale-105 transition-transform"
+              >
+                Обсудить проект
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </Link>
+              <a
+                href="https://t.me/tehprom1"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center justify-center gap-2 rounded-xl glass px-6 py-3 text-sm font-semibold text-foreground hover:border-primary/40"
+              >
+                <Send className="h-4 w-4 text-primary" />
+                Написать в Telegram
+              </a>
+            </div>
+          </div>
+
+
           <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <Link
               to="/contacts"
