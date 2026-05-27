@@ -30,6 +30,7 @@ export interface CaseStudy {
   task: string;
   solution: string;
   stack: string[];
+  tools: string[];
 }
 
 export const cases: CaseStudy[] = [
