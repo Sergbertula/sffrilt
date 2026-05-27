@@ -12,7 +12,7 @@ export function Hero() {
       <div className="mx-auto max-w-7xl px-4 pb-20 pt-20 sm:px-6 sm:pt-28 lg:px-8 lg:pb-32 lg:pt-36">
         <div className="mx-auto max-w-4xl text-center">
           <div className="inline-flex items-center gap-2.5 rounded-full border border-primary/30 bg-primary/10 py-1 pl-1 pr-4 text-xs font-medium text-primary backdrop-blur">
-            <img
+            <img loading="lazy"
               src={hero3dBadge}
               alt="AI-автоматизация бизнеса — SFFRILT, Тула"
               width={28}

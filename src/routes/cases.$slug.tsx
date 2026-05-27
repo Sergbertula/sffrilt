@@ -150,7 +150,7 @@ function CasePage() {
           </p>
           <div className="relative mt-10 overflow-hidden rounded-3xl border border-border/60 shadow-[0_30px_80px_-30px_oklch(0.7_0.2_245/0.5)]">
             <div className="absolute -inset-1 -z-10 rounded-3xl bg-gradient-to-br from-primary/30 via-transparent to-accent/30 blur-2xl opacity-60" />
-            <img
+            <img loading="lazy"
               src={study.cover}
               alt={`${study.client} — ${study.title}`}
               className="aspect-[16/9] w-full object-cover"
