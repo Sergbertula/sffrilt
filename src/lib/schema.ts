@@ -3,10 +3,16 @@ export const ORGANIZATION_SCHEMA = {
   "@type": "Organization",
   "@id": "https://sffrilt.ru/#organization",
   name: "SFFRILT",
+  alternateName: "ООО Техпром",
   url: "https://sffrilt.ru",
-  logo: "https://sffrilt.ru/assets/logo.png",
-  telephone: "+79534428998",
+  logo: "https://sffrilt.ru/assets/logo-3d-Dl58St4t.png",
+  telephone: "+79534210256",
   email: "tehprom-tula@mail.ru",
+  sameAs: [
+    "https://t.me/tehprom1",
+    "https://instagram.com/tehpromtula",
+    "https://max.ru/tehprom",
+  ],
   address: {
     "@type": "PostalAddress",
     streetAddress: "Красноармейский пр-т, д. 7",
