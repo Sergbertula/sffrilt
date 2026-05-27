@@ -1,17 +1,45 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { Phone, Mail, Send, Check, ArrowRight, Loader2 } from "lucide-react";
 import { SectionHeading } from "@/components/ui/glass-card";
 import { toast } from "sonner";
+
+const phoneRe = /^\+?[0-9\s\-()]{10,20}$/;
+const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+type Errors = Partial<Record<"name" | "contact" | "task", string>>;
+
+function validate(form: { name: string; contact: string; task: string }): Errors {
+  const e: Errors = {};
+  if (form.name.trim().length < 2) e.name = "Минимум 2 символа";
+  const c = form.contact.trim();
+  if (!c) e.contact = "Укажите телефон или email";
+  else if (!phoneRe.test(c) && !emailRe.test(c))
+    e.contact = "Введите телефон (+7…) или email";
+  if (form.task.trim().length < 10) e.task = "Минимум 10 символов";
+  return e;
+}
 
 export function ContactForm() {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [consent, setConsent] = useState(false);
   const [form, setForm] = useState({ name: "", contact: "", task: "" });
+  const [touched, setTouched] = useState<Record<string, boolean>>({});
+
+  const errors = useMemo(() => validate(form), [form]);
+  const isValid = Object.keys(errors).length === 0 && consent;
+
+  function reset() {
+    setForm({ name: "", contact: "", task: "" });
+    setConsent(false);
+    setTouched({});
+    setSubmitted(false);
+  }
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (!form.name.trim() || !form.contact.trim() || !consent) return;
+    setTouched({ name: true, contact: true, task: true });
+    if (!isValid) return;
     setLoading(true);
     try {
       const source =
@@ -21,10 +49,9 @@ export function ContactForm() {
       const payload = {
         name: form.name.trim().slice(0, 200),
         contact: form.contact.trim().slice(0, 200),
-        task: form.task.trim() ? form.task.trim().slice(0, 4000) : null,
+        task: form.task.trim().slice(0, 4000),
         source,
       };
-      console.log("[ContactForm] submitting lead", payload);
       const res = await fetch("/api/public/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -32,10 +59,8 @@ export function ContactForm() {
       });
       if (!res.ok) {
         const err = await res.json().catch(() => ({}));
-        console.error("[ContactForm] API error", res.status, err);
         throw new Error(err.error || "Ошибка отправки");
       }
-      console.log("[ContactForm] submit ok");
       setSubmitted(true);
     } catch (err) {
       console.error(err);
@@ -60,31 +85,54 @@ export function ContactForm() {
               <div className="absolute -right-20 -top-20 h-60 w-60 rounded-full bg-[var(--gradient-glow)] blur-3xl" />
               {submitted ? (
                 <div className="relative flex flex-col items-center py-10 text-center">
-                  <div className="flex h-16 w-16 items-center justify-center rounded-full gradient-primary glow-blue">
-                    <Check className="h-8 w-8 text-primary-foreground" />
+                  <div
+                    className="flex h-12 w-12 items-center justify-center rounded-full"
+                    style={{ background: "oklch(0.7 0.18 145)" }}
+                  >
+                    <Check className="h-7 w-7 text-white" strokeWidth={3} />
                   </div>
                   <h3 className="mt-5 font-display text-2xl font-bold text-foreground">
-                    Спасибо!
+                    Заявка принята!
                   </h3>
                   <p className="mt-2 max-w-md text-sm text-muted-foreground">
-                    Мы свяжемся с вами в ближайшее время.
+                    Свяжемся с вами в течение 2 часов в рабочее время. Обычно отвечаем быстрее.
                   </p>
+                  <div className="mt-6 flex flex-col sm:flex-row gap-3">
+                    <a
+                      href="https://t.me/tehprom1"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center gap-2 rounded-xl gradient-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground hover:scale-[1.02] transition-transform"
+                    >
+                      <Send className="h-4 w-4" />
+                      Написать в Telegram
+                    </a>
+                    <button
+                      type="button"
+                      onClick={reset}
+                      className="inline-flex items-center justify-center gap-2 rounded-xl border border-border bg-background/50 px-5 py-2.5 text-sm font-semibold text-foreground hover:bg-background transition-colors"
+                    >
+                      Отправить ещё одну заявку
+                    </button>
+                  </div>
                 </div>
               ) : (
-                <form onSubmit={onSubmit} className="relative space-y-4">
+                <form onSubmit={onSubmit} className="relative space-y-4" noValidate>
                   <Field
                     label="Имя или организация"
                     value={form.name}
                     onChange={(v) => setForm({ ...form, name: v })}
+                    onBlur={() => setTouched((t) => ({ ...t, name: true }))}
                     placeholder="ООО «Пример» / Иван"
-                    required
+                    error={touched.name ? errors.name : undefined}
                   />
                   <Field
                     label="Телефон или E-mail"
                     value={form.contact}
                     onChange={(v) => setForm({ ...form, contact: v })}
+                    onBlur={() => setTouched((t) => ({ ...t, contact: true }))}
                     placeholder="+7 (___) ___-__-__ или name@email.com"
-                    required
+                    error={touched.contact ? errors.contact : undefined}
                   />
                   <div>
                     <label className="mb-1.5 block text-xs font-medium uppercase tracking-wider text-muted-foreground">
@@ -93,15 +141,23 @@ export function ContactForm() {
                     <textarea
                       value={form.task}
                       onChange={(e) => setForm({ ...form, task: e.target.value })}
+                      onBlur={() => setTouched((t) => ({ ...t, task: true }))}
                       rows={4}
                       placeholder="Что нужно автоматизировать, какие интеграции, сроки…"
-                      className="w-full rounded-xl border border-border bg-background/50 px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary/50 focus:outline-none focus:ring-2 focus:ring-primary/30"
+                      className={`w-full rounded-xl border bg-background/50 px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 ${
+                        touched.task && errors.task
+                          ? "border-destructive/70 focus:ring-destructive/30"
+                          : "border-border focus:border-primary/50 focus:ring-primary/30"
+                      }`}
                     />
+                    {touched.task && errors.task && (
+                      <p className="mt-1.5 text-xs text-destructive">{errors.task}</p>
+                    )}
                   </div>
                   <button
                     type="submit"
-                    disabled={loading || !consent}
-                    className="group inline-flex w-full items-center justify-center gap-2 rounded-xl gradient-primary px-6 py-3.5 text-sm font-semibold text-primary-foreground shadow-[0_0_40px_-8px_oklch(0.7_0.2_245/0.6)] hover:scale-[1.02] transition-transform disabled:opacity-50 disabled:hover:scale-100 disabled:cursor-not-allowed sm:w-auto"
+                    disabled={loading || !isValid}
+                    className="group inline-flex w-full items-center justify-center gap-2 rounded-xl gradient-primary px-6 py-3.5 text-sm font-semibold text-primary-foreground shadow-[0_0_40px_-8px_oklch(0.7_0.2_245/0.6)] hover:scale-[1.02] transition-transform disabled:opacity-40 disabled:hover:scale-100 disabled:cursor-not-allowed disabled:bg-none disabled:bg-muted disabled:text-muted-foreground disabled:shadow-none sm:w-auto"
                   >
                     {loading ? (
                       <>
@@ -120,7 +176,6 @@ export function ContactForm() {
                       type="checkbox"
                       checked={consent}
                       onChange={(e) => setConsent(e.target.checked)}
-                      required
                       className="mt-0.5 h-4 w-4 shrink-0 cursor-pointer accent-primary"
                     />
                     <span className="text-xs leading-relaxed text-muted-foreground">
@@ -178,14 +233,16 @@ function Field({
   label,
   value,
   onChange,
+  onBlur,
   placeholder,
-  required,
+  error,
 }: {
   label: string;
   value: string;
   onChange: (v: string) => void;
+  onBlur?: () => void;
   placeholder?: string;
-  required?: boolean;
+  error?: string;
 }) {
   return (
     <div>
@@ -195,10 +252,15 @@ function Field({
       <input
         value={value}
         onChange={(e) => onChange(e.target.value)}
+        onBlur={onBlur}
         placeholder={placeholder}
-        required={required}
-        className="w-full rounded-xl border border-border bg-background/50 px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary/50 focus:outline-none focus:ring-2 focus:ring-primary/30"
+        className={`w-full rounded-xl border bg-background/50 px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 ${
+          error
+            ? "border-destructive/70 focus:ring-destructive/30"
+            : "border-border focus:border-primary/50 focus:ring-primary/30"
+        }`}
       />
+      {error && <p className="mt-1.5 text-xs text-destructive">{error}</p>}
     </div>
   );
 }
