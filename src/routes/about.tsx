@@ -42,24 +42,28 @@ export const Route = createFileRoute("/about")({
 const teamMembers = [
   {
     initials: "ИС",
+    photo: ilyaPhoto,
     name: "Илья Сорокин",
     role: "Lead AI Engineer",
     skills: ["GPT-4o", "RAG", "Python"],
   },
   {
     initials: "АВ",
+    photo: annaPhoto,
     name: "Анна Волкова",
     role: "UX/UI Designer",
     skills: ["Figma", "веб-дизайн", "мобайл"],
   },
   {
     initials: "МГ",
+    photo: mikhailPhoto,
     name: "Михаил Грачёв",
     role: "Full-Stack Developer",
     skills: ["React", "Node.js", "Supabase"],
   },
   {
     initials: "ДЛ",
+    photo: daryaPhoto,
     name: "Дарья Лисова",
     role: "Project Manager",
     skills: ["Agile", "Notion", "клиентский сервис"],
