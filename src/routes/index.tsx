@@ -33,7 +33,18 @@ export const Route = createFileRoute("/")({
         content: "AI-агенты, Telegram-боты, сайты и SEO для роста бизнеса.",
       },
     ],
-    scripts: [ldScript(ORGANIZATION_SCHEMA)],
+    scripts: [
+      ldScript(ORGANIZATION_SCHEMA),
+      ldScript({
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: faqs.map((f) => ({
+          "@type": "Question",
+          name: f.q,
+          acceptedAnswer: { "@type": "Answer", text: f.a },
+        })),
+      }),
+    ],
   }),
   component: Index,
 });
