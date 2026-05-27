@@ -69,7 +69,7 @@ export function JuliaSection() {
                   <div className="relative flex h-32 w-32 items-center justify-center rounded-full gradient-primary glow-blue ring-4 ring-background overflow-hidden">
                     <img
                       src={juliaAvatar}
-                      alt="Юлия — AI-помощник"
+                      alt="Юлия — AI-ассистент SFFRILT, работает 24/7"
                       width={128}
                       height={128}
                       loading="lazy"

@@ -17,10 +17,10 @@ export const Route = createFileRoute("/pricing")({
         content:
           "Стоимость AI-решений, Telegram-ботов, сайтов и SEO от SFFRILT. Прозрачные пакеты, фикс-цена, фикс-сроки.",
       },
-      { property: "og:title", content: "Цены и тарифы SFFRILT" },
+      { property: "og:title", content: "Цены на AI-автоматизацию и Telegram-боты — SFFRILT" },
       {
         property: "og:description",
-        content: "Прозрачные пакеты под AI, ботов, сайты и SEO — фикс-цена и фикс-сроки.",
+        content: "Калькулятор стоимости, сравнение с фрилансером и агентством. Фикс-цена, фикс-сроки.",
       },
     ],
   }),

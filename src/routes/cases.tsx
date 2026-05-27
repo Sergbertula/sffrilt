@@ -25,10 +25,10 @@ export const Route = createFileRoute("/cases")({
         name: "description",
         content: "Реальные проекты SFFRILT: AI, Telegram-боты, сайты и автоматизация бизнеса.",
       },
-      { property: "og:title", content: "Кейсы SFFRILT" },
+      { property: "og:title", content: "Кейсы SFFRILT — реальные результаты AI-автоматизации" },
       {
         property: "og:description",
-        content: "Измеримые результаты внедрения AI и автоматизации.",
+        content: "−68% времени обработки, ×2.4 заявок, −82% пропущенных звонков. Смотрите реальные кейсы.",
       },
     ],
   }),
