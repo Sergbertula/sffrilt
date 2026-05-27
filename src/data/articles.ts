@@ -111,7 +111,7 @@ export const articles: Article[] = [
   {
     slug: "site-speed-seo",
     title: "Скорость сайта и SEO: что реально влияет на позиции в 2026",
-    expert: undefined,
+    
     excerpt:
       "Lighthouse 100 не нужен. Разбираем, какие метрики действительно учитывает Google и Яндекс — и как их улучшить без переделки сайта.",
     category: "SEO",
