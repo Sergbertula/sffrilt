@@ -1,5 +1,5 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { Calendar, Clock, ArrowLeft, ArrowRight } from "lucide-react";
+import { Calendar, Clock, ArrowLeft, ArrowRight, MessageCircle, Send } from "lucide-react";
 import { GlassCard } from "@/components/ui/glass-card";
 import { ContactForm } from "@/components/sections/ContactForm";
 import { articles, type Article } from "@/data/articles";
