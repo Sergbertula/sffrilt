@@ -43,6 +43,7 @@ export function Footer() {
             <li>
               <a
                 href="tel:+79534210256"
+                onClick={handleYMClick('phone_click', 'tel:+79534210256')}
                 className="group flex items-center gap-2 text-muted-foreground hover:text-foreground"
               >
                 <Phone className="h-4 w-4 text-primary" />
@@ -54,6 +55,7 @@ export function Footer() {
                 href="https://t.me/tehprom1"
                 target="_blank"
                 rel="noreferrer"
+                onClick={handleYMClick('telegram_click', 'https://t.me/tehprom1', '_blank')}
                 className="group flex items-center gap-2 text-muted-foreground hover:text-foreground"
               >
                 <Send className="h-4 w-4 text-primary" />

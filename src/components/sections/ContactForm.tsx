@@ -63,6 +63,7 @@ export function ContactForm() {
         throw new Error(err.error || "Ошибка отправки");
       }
       setSubmitted(true);
+      ymReachGoal('form_submit');
     } catch (err) {
       console.error(err);
       toast.error("Не удалось отправить заявку. Напишите нам в Telegram — ответим быстрее.");
@@ -103,6 +104,7 @@ export function ContactForm() {
                       href="https://t.me/tehprom1"
                       target="_blank"
                       rel="noopener noreferrer"
+                      onClick={handleYMClick('telegram_click', 'https://t.me/tehprom1', '_blank')}
                       className="inline-flex items-center justify-center gap-2 rounded-xl gradient-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground hover:scale-[1.02] transition-transform"
                     >
                       <Send className="h-4 w-4" />
@@ -198,6 +200,7 @@ export function ContactForm() {
               label="Телефон"
               value="+7 (953) 421-02-56"
               href="tel:+79534210256"
+              onClick={handleYMClick('phone_click', 'tel:+79534210256')}
             />
             <ContactItem
               icon={Send}
