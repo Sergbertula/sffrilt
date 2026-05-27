@@ -1,5 +1,6 @@
+import type { ReactNode } from "react";
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { Calendar, Clock, ArrowLeft, ArrowRight } from "lucide-react";
+import { Calendar, Clock, ArrowLeft, ArrowRight, MessageCircle, Send } from "lucide-react";
 import { GlassCard } from "@/components/ui/glass-card";
 import { ContactForm } from "@/components/sections/ContactForm";
 import { articles, type Article } from "@/data/articles";
@@ -81,6 +82,45 @@ function formatDate(d: string) {
   });
 }
 
+// Парсит inline-ссылки в формате [текст](url). Внутренние пути (/...) рендерим как <Link>, внешние — как <a>.
+function renderInline(text: string): ReactNode[] {
+  const parts: ReactNode[] = [];
+  const re = /\[([^\]]+)\]\(([^)]+)\)/g;
+  let lastIndex = 0;
+  let match: RegExpExecArray | null;
+  let key = 0;
+  while ((match = re.exec(text)) !== null) {
+    if (match.index > lastIndex) parts.push(text.slice(lastIndex, match.index));
+    const [, label, url] = match;
+    if (url.startsWith("/")) {
+      parts.push(
+        <Link
+          key={`l${key++}`}
+          to={url}
+          className="text-primary underline-offset-4 hover:underline font-medium"
+        >
+          {label}
+        </Link>,
+      );
+    } else {
+      parts.push(
+        <a
+          key={`a${key++}`}
+          href={url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-primary underline-offset-4 hover:underline font-medium"
+        >
+          {label}
+        </a>,
+      );
+    }
+    lastIndex = re.lastIndex;
+  }
+  if (lastIndex < text.length) parts.push(text.slice(lastIndex));
+  return parts;
+}
+
 function Page() {
   const { article } = Route.useLoaderData();
   const related = articles
@@ -147,7 +187,7 @@ function Page() {
                     {block.items?.map((it: string, j: number) => (
                       <li key={j} className="flex items-start gap-3">
                         <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
-                        <span>{it}</span>
+                        <span>{renderInline(it)}</span>
                       </li>
                     ))}
                   </ul>
@@ -158,12 +198,12 @@ function Page() {
                     key={i}
                     className="border-l-2 border-primary pl-5 italic text-foreground"
                   >
-                    {block.text}
+                    {renderInline(block.text ?? "")}
                   </blockquote>
                 );
               return (
                 <p key={i} className="text-foreground/90">
-                  {block.text}
+                  {renderInline(block.text ?? "")}
                 </p>
               );
             })}
@@ -199,6 +239,37 @@ function Page() {
           </div>
         </section>
       )}
+
+      <section className="relative pb-20 sm:pb-28">
+        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+          <div className="relative overflow-hidden rounded-3xl gradient-primary p-8 sm:p-12 text-center">
+            <h2 className="font-display text-3xl font-bold text-primary-foreground sm:text-4xl">
+              Готовы автоматизировать свой бизнес?
+            </h2>
+            <p className="mt-4 text-base sm:text-lg text-primary-foreground/85">
+              Обсудим вашу задачу на бесплатном 30-минутном аудите
+            </p>
+            <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
+              <Link
+                to="/contacts"
+                className="inline-flex items-center justify-center gap-2 rounded-lg bg-background px-6 py-3 text-sm font-semibold text-foreground hover:opacity-90 transition-opacity"
+              >
+                <MessageCircle className="h-4 w-4" />
+                Обсудить проект
+              </Link>
+              <a
+                href="https://t.me/tehprom1"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 rounded-lg bg-background/10 ring-1 ring-primary-foreground/40 px-6 py-3 text-sm font-semibold text-primary-foreground hover:bg-background/20 transition-colors"
+              >
+                <Send className="h-4 w-4" />
+                Написать в Telegram
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <ContactForm />
     </>
