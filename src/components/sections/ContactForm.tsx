@@ -2,6 +2,7 @@ import { useMemo, useState } from "react";
 import { Phone, Mail, Send, Check, ArrowRight, Loader2 } from "lucide-react";
 import { SectionHeading } from "@/components/ui/glass-card";
 import { toast } from "sonner";
+import { ymReachGoal, handleYMClick } from "@/lib/metrika";
 
 const phoneRe = /^\+?[0-9\s\-()]{10,20}$/;
 const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;

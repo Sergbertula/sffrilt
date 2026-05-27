@@ -1,5 +1,6 @@
 import { ArrowRight, Send, Sparkles } from "lucide-react";
 import { Link } from "@tanstack/react-router";
+import { ymReachGoal, handleYMClick } from "@/lib/metrika";
 
 export function CtaBanner() {
   return (

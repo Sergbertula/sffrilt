@@ -1,4 +1,5 @@
 import { Send } from "lucide-react";
+import { handleYMClick } from "@/lib/metrika";
 
 export function TelegramFloat() {
   return (

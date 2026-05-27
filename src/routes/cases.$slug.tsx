@@ -3,6 +3,7 @@ import { ArrowRight, ArrowLeft, Send, CheckCircle2 } from "lucide-react";
 import { GlassCard } from "@/components/ui/glass-card";
 import { ContactForm } from "@/components/sections/ContactForm";
 import { cases, getCaseBySlug } from "@/data/cases";
+import { ymReachGoal, handleYMClick } from "@/lib/metrika";
 
 export const Route = createFileRoute("/cases/$slug")({
   loader: ({ params }) => {

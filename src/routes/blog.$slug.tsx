@@ -4,6 +4,7 @@ import { Calendar, Clock, ArrowLeft, ArrowRight, MessageCircle, Send } from "luc
 import { GlassCard } from "@/components/ui/glass-card";
 import { ContactForm } from "@/components/sections/ContactForm";
 import { articles, type Article } from "@/data/articles";
+import { ymReachGoal, handleYMClick } from "@/lib/metrika";
 
 export const Route = createFileRoute("/blog/$slug")({
   loader: ({ params }) => {

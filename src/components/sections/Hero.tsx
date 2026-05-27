@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { Send, ArrowRight, Bot, Globe, BarChart3, Plug } from "lucide-react";
 import hero3dBadge from "@/assets/hero-3d-badge.png";
+import { ymReachGoal, handleYMClick } from "@/lib/metrika";
 
 export function Hero() {
   return (
