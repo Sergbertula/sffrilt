@@ -101,7 +101,7 @@ export function Footer() {
                     document.body.removeChild(ta);
                     toast.success("Email скопирован!");
                   }
-                  window.location.href = "mailto:tehprom-tula@mail.ru";
+                  // mailto: срабатывает сам по <a href>
                 }}
                 className="group flex items-center gap-2 text-muted-foreground hover:text-foreground"
               >
