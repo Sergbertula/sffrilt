@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
-import { Phone, Mail, Send, Sparkles, Instagram, MessageCircle } from "lucide-react";
+import { Phone, Mail, Send, Sparkles, Instagram, MessageCircle, Copy } from "lucide-react";
+import { toast } from "sonner";
 import { handleYMClick } from "@/lib/metrika";
 
 const services = [
@@ -87,10 +88,15 @@ export function Footer() {
             <li>
               <a
                 href="mailto:tehprom-tula@mail.ru"
+                onClick={() => {
+                  navigator.clipboard.writeText("tehprom-tula@mail.ru");
+                  toast.success("Email скопирован!");
+                }}
                 className="group flex items-center gap-2 text-muted-foreground hover:text-foreground"
               >
                 <Mail className="h-4 w-4 text-primary" />
-                tehprom-tula@mail.ru
+                <span>tehprom-tula@mail.ru</span>
+                <Copy className="h-3 w-3 opacity-0 transition-opacity group-hover:opacity-100" />
               </a>
             </li>
           </ul>

@@ -1,4 +1,5 @@
-import { Send, Mail, Phone, Clock, MapPin, Zap } from "lucide-react";
+import { Send, Mail, Phone, Clock, MapPin, Zap, Copy } from "lucide-react";
+import { toast } from "sonner";
 import { GlassCard, SectionHeading } from "@/components/ui/glass-card";
 
 const channels = [
@@ -48,7 +49,13 @@ export function ContactInfo() {
               href={c.href}
               target={c.href.startsWith("http") ? "_blank" : undefined}
               rel={c.href.startsWith("http") ? "noreferrer" : undefined}
-              className="block"
+              className="group block"
+              onClick={() => {
+                if (c.title === "Email") {
+                  navigator.clipboard.writeText(c.value);
+                  toast.success("Email скопирован!");
+                }
+              }}
             >
               <GlassCard
                 className={
@@ -63,7 +70,12 @@ export function ContactInfo() {
                 <h3 className="mt-5 font-display text-lg font-semibold text-foreground">
                   {c.title}
                 </h3>
-                <p className="mt-2 font-display text-xl font-bold text-gradient">{c.value}</p>
+                <p className="mt-2 font-display text-xl font-bold text-gradient flex items-center gap-2">
+                  {c.value}
+                  {c.title === "Email" && (
+                    <Copy className="h-4 w-4 text-muted-foreground opacity-0 transition-opacity group-hover:opacity-100" />
+                  )}
+                </p>
                 <p className="mt-3 text-xs leading-relaxed text-muted-foreground">{c.note}</p>
               </GlassCard>
             </a>
