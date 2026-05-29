@@ -49,7 +49,13 @@ export function ContactInfo() {
               href={c.href}
               target={c.href.startsWith("http") ? "_blank" : undefined}
               rel={c.href.startsWith("http") ? "noreferrer" : undefined}
-              className="block"
+              className="group block"
+              onClick={() => {
+                if (c.title === "Email") {
+                  navigator.clipboard.writeText(c.value);
+                  toast.success("Email скопирован!");
+                }
+              }}
             >
               <GlassCard
                 className={
