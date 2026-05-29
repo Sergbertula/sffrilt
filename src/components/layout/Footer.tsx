@@ -88,15 +88,27 @@ export function Footer() {
             <li>
               <a
                 href="mailto:tehprom-tula@mail.ru"
-                onClick={() => {
-                  navigator.clipboard.writeText("tehprom-tula@mail.ru");
-                  toast.success("Email скопирован!");
+                onClick={async (e) => {
+                  e.preventDefault();
+                  try {
+                    await navigator.clipboard.writeText("tehprom-tula@mail.ru");
+                    toast.success("Email скопирован!");
+                  } catch {
+                    const ta = document.createElement("textarea");
+                    ta.value = "tehprom-tula@mail.ru";
+                    document.body.appendChild(ta);
+                    ta.select();
+                    document.execCommand("copy");
+                    document.body.removeChild(ta);
+                    toast.success("Email скопирован!");
+                  }
+                  window.location.href = "mailto:tehprom-tula@mail.ru";
                 }}
                 className="group flex items-center gap-2 text-muted-foreground hover:text-foreground"
               >
                 <Mail className="h-4 w-4 text-primary" />
                 <span>tehprom-tula@mail.ru</span>
-                <Copy className="h-3 w-3 opacity-0 transition-opacity group-hover:opacity-100" />
+                <Copy className="h-3 w-3 text-muted-foreground/60 transition-colors group-hover:text-primary" />
               </a>
             </li>
           </ul>
