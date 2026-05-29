@@ -70,7 +70,12 @@ export function ContactInfo() {
                 <h3 className="mt-5 font-display text-lg font-semibold text-foreground">
                   {c.title}
                 </h3>
-                <p className="mt-2 font-display text-xl font-bold text-gradient">{c.value}</p>
+                <p className="mt-2 font-display text-xl font-bold text-gradient flex items-center gap-2">
+                  {c.value}
+                  {c.title === "Email" && (
+                    <Copy className="h-4 w-4 text-muted-foreground opacity-0 transition-opacity group-hover:opacity-100" />
+                  )}
+                </p>
                 <p className="mt-3 text-xs leading-relaxed text-muted-foreground">{c.note}</p>
               </GlassCard>
             </a>
