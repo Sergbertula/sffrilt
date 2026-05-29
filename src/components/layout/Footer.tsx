@@ -88,8 +88,7 @@ export function Footer() {
             <li>
               <a
                 href="mailto:tehprom-tula@mail.ru"
-                onClick={async (e) => {
-                  e.preventDefault();
+                onClick={async () => {
                   try {
                     await navigator.clipboard.writeText("tehprom-tula@mail.ru");
                     toast.success("Email скопирован!");
