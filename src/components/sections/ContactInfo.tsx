@@ -1,4 +1,5 @@
-import { Send, Mail, Phone, Clock, MapPin, Zap } from "lucide-react";
+import { Send, Mail, Phone, Clock, MapPin, Zap, Copy } from "lucide-react";
+import { toast } from "sonner";
 import { GlassCard, SectionHeading } from "@/components/ui/glass-card";
 
 const channels = [
