@@ -88,20 +88,9 @@ export function Footer() {
             <li>
               <a
                 href="mailto:tehprom-tula@mail.ru"
-                onClick={async () => {
-                  try {
-                    await navigator.clipboard.writeText("tehprom-tula@mail.ru");
-                    toast.success("Email скопирован!");
-                  } catch {
-                    const ta = document.createElement("textarea");
-                    ta.value = "tehprom-tula@mail.ru";
-                    document.body.appendChild(ta);
-                    ta.select();
-                    document.execCommand("copy");
-                    document.body.removeChild(ta);
-                    toast.success("Email скопирован!");
-                  }
-                  // mailto: срабатывает сам по <a href>
+                onClick={() => {
+                  navigator.clipboard.writeText("tehprom-tula@mail.ru");
+                  toast.success("Email скопирован!");
                 }}
                 className="group flex items-center gap-2 text-muted-foreground hover:text-foreground"
               >
