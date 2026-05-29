@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
-import { Phone, Mail, Send, Sparkles, Instagram, MessageCircle } from "lucide-react";
+import { Phone, Mail, Send, Sparkles, Instagram, MessageCircle, Copy } from "lucide-react";
+import { toast } from "sonner";
 import { handleYMClick } from "@/lib/metrika";
 
 const services = [
