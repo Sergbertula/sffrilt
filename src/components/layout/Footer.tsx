@@ -65,7 +65,7 @@ export function Footer() {
             </li>
             <li>
               <a
-                href="https://max.ru/tehprom"
+                href="https://i.max.ru/tehprom"
                 target="_blank"
                 rel="noreferrer"
                 className="group flex items-center gap-2 text-muted-foreground hover:text-foreground"
