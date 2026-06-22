@@ -86,19 +86,21 @@ export function Footer() {
               </a>
             </li>
             <li>
-              <a
-                href="mailto:tehprom-tula@mail.ru"
+              <button
+                type="button"
                 onClick={(e) => {
                   e.preventDefault();
-                  navigator.clipboard.writeText("tehprom-tula@mail.ru");
-                  toast.success("Email скопирован!");
+                  e.stopPropagation();
+                  navigator.clipboard.writeText("tehprom-tula@mail.ru").then(() => {
+                    toast.success("Email скопирован!");
+                  });
                 }}
-                className="group flex items-center gap-2 text-muted-foreground hover:text-foreground"
+                className="group flex cursor-pointer items-center gap-2 text-muted-foreground hover:text-foreground"
               >
                 <Mail className="h-4 w-4 text-primary" />
                 <span>tehprom-tula@mail.ru</span>
                 <Copy className="h-3 w-3 text-muted-foreground/60 transition-colors group-hover:text-primary" />
-              </a>
+              </button>
             </li>
           </ul>
         </div>
