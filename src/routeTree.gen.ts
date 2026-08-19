@@ -119,9 +119,9 @@ const CasesSlugRoute = CasesSlugRouteImport.update({
   getParentRoute: () => CasesRoute,
 } as any)
 const BlogSlugRoute = BlogSlugRouteImport.update({
-  id: '/$slug',
-  path: '/$slug',
-  getParentRoute: () => BlogRoute,
+  id: '/blog/$slug',
+  path: '/blog/$slug',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const LovableEmailSuppressionRoute = LovableEmailSuppressionRouteImport.update({
   id: '/lovable/email/suppression',
@@ -321,6 +321,7 @@ export interface RootRouteChildren {
   TelegramBotsRoute: typeof TelegramBotsRoute
   TermsRoute: typeof TermsRoute
   WebDevelopmentRoute: typeof WebDevelopmentRoute
+  BlogSlugRoute: typeof BlogSlugRoute
   EmailUnsubscribeRoute: typeof EmailUnsubscribeRoute
   BlogIndexRoute: typeof BlogIndexRoute
   ApiPublicContactRoute: typeof ApiPublicContactRoute
@@ -453,10 +454,10 @@ declare module '@tanstack/react-router' {
     }
     '/blog/$slug': {
       id: '/blog/$slug'
-      path: '/$slug'
+      path: '/blog/$slug'
       fullPath: '/blog/$slug'
       preLoaderRoute: typeof BlogSlugRouteImport
-      parentRoute: typeof BlogRoute
+      parentRoute: typeof rootRouteImport
     }
     '/lovable/email/suppression': {
       id: '/lovable/email/suppression'
@@ -521,6 +522,7 @@ const rootRouteChildren: RootRouteChildren = {
   TelegramBotsRoute: TelegramBotsRoute,
   TermsRoute: TermsRoute,
   WebDevelopmentRoute: WebDevelopmentRoute,
+  BlogSlugRoute: BlogSlugRoute,
   EmailUnsubscribeRoute: EmailUnsubscribeRoute,
   BlogIndexRoute: BlogIndexRoute,
   ApiPublicContactRoute: ApiPublicContactRoute,
