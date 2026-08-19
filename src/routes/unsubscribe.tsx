@@ -3,7 +3,7 @@ import { useSearch } from "@tanstack/react-router";
 import { Check, X, Loader2 } from "lucide-react";
 
 export default function UnsubscribePage() {
-  const search = useSearch({ from: "/unsubscribe" });
+  const search = useSearch({ strict: false });
   const token = (search as any).token as string | undefined;
 
   const [status, setStatus] = useState<"loading" | "valid" | "already" | "invalid" | "success">("loading");
