@@ -19,11 +19,11 @@ import { Route as LoginRouteImport } from './routes/login'
 import { Route as CookiesRouteImport } from './routes/cookies'
 import { Route as ContactsRouteImport } from './routes/contacts'
 import { Route as CasesRouteImport } from './routes/cases'
-import { Route as BlogRouteImport } from './routes/blog'
 import { Route as AiSolutionsRouteImport } from './routes/ai-solutions'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as BlogIndexRouteImport } from './routes/blog.index'
 import { Route as EmailUnsubscribeRouteImport } from './routes/email/unsubscribe'
 import { Route as CasesSlugRouteImport } from './routes/cases.$slug'
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
@@ -83,11 +83,6 @@ const CasesRoute = CasesRouteImport.update({
   path: '/cases',
   getParentRoute: () => rootRouteImport,
 } as any)
-const BlogRoute = BlogRouteImport.update({
-  id: '/blog',
-  path: '/blog',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const AiSolutionsRoute = AiSolutionsRouteImport.update({
   id: '/ai-solutions',
   path: '/ai-solutions',
@@ -108,6 +103,11 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BlogIndexRoute = BlogIndexRouteImport.update({
+  id: '/blog/',
+  path: '/blog/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const EmailUnsubscribeRoute = EmailUnsubscribeRouteImport.update({
   id: '/email/unsubscribe',
   path: '/email/unsubscribe',
@@ -119,9 +119,9 @@ const CasesSlugRoute = CasesSlugRouteImport.update({
   getParentRoute: () => CasesRoute,
 } as any)
 const BlogSlugRoute = BlogSlugRouteImport.update({
-  id: '/$slug',
-  path: '/$slug',
-  getParentRoute: () => BlogRoute,
+  id: '/blog/$slug',
+  path: '/blog/$slug',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const LovableEmailSuppressionRoute = LovableEmailSuppressionRouteImport.update({
   id: '/lovable/email/suppression',
@@ -157,7 +157,6 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/admin': typeof AdminRoute
   '/ai-solutions': typeof AiSolutionsRoute
-  '/blog': typeof BlogRouteWithChildren
   '/cases': typeof CasesRouteWithChildren
   '/contacts': typeof ContactsRoute
   '/cookies': typeof CookiesRoute
@@ -171,6 +170,7 @@ export interface FileRoutesByFullPath {
   '/blog/$slug': typeof BlogSlugRoute
   '/cases/$slug': typeof CasesSlugRoute
   '/email/unsubscribe': typeof EmailUnsubscribeRoute
+  '/blog/': typeof BlogIndexRoute
   '/api/public/contact': typeof ApiPublicContactRoute
   '/lovable/email/suppression': typeof LovableEmailSuppressionRoute
   '/lovable/email/queue/process': typeof LovableEmailQueueProcessRoute
@@ -182,7 +182,6 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/admin': typeof AdminRoute
   '/ai-solutions': typeof AiSolutionsRoute
-  '/blog': typeof BlogRouteWithChildren
   '/cases': typeof CasesRouteWithChildren
   '/contacts': typeof ContactsRoute
   '/cookies': typeof CookiesRoute
@@ -196,6 +195,7 @@ export interface FileRoutesByTo {
   '/blog/$slug': typeof BlogSlugRoute
   '/cases/$slug': typeof CasesSlugRoute
   '/email/unsubscribe': typeof EmailUnsubscribeRoute
+  '/blog': typeof BlogIndexRoute
   '/api/public/contact': typeof ApiPublicContactRoute
   '/lovable/email/suppression': typeof LovableEmailSuppressionRoute
   '/lovable/email/queue/process': typeof LovableEmailQueueProcessRoute
@@ -208,7 +208,6 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/admin': typeof AdminRoute
   '/ai-solutions': typeof AiSolutionsRoute
-  '/blog': typeof BlogRouteWithChildren
   '/cases': typeof CasesRouteWithChildren
   '/contacts': typeof ContactsRoute
   '/cookies': typeof CookiesRoute
@@ -222,6 +221,7 @@ export interface FileRoutesById {
   '/blog/$slug': typeof BlogSlugRoute
   '/cases/$slug': typeof CasesSlugRoute
   '/email/unsubscribe': typeof EmailUnsubscribeRoute
+  '/blog/': typeof BlogIndexRoute
   '/api/public/contact': typeof ApiPublicContactRoute
   '/lovable/email/suppression': typeof LovableEmailSuppressionRoute
   '/lovable/email/queue/process': typeof LovableEmailQueueProcessRoute
@@ -235,7 +235,6 @@ export interface FileRouteTypes {
     | '/about'
     | '/admin'
     | '/ai-solutions'
-    | '/blog'
     | '/cases'
     | '/contacts'
     | '/cookies'
@@ -249,6 +248,7 @@ export interface FileRouteTypes {
     | '/blog/$slug'
     | '/cases/$slug'
     | '/email/unsubscribe'
+    | '/blog/'
     | '/api/public/contact'
     | '/lovable/email/suppression'
     | '/lovable/email/queue/process'
@@ -260,7 +260,6 @@ export interface FileRouteTypes {
     | '/about'
     | '/admin'
     | '/ai-solutions'
-    | '/blog'
     | '/cases'
     | '/contacts'
     | '/cookies'
@@ -274,6 +273,7 @@ export interface FileRouteTypes {
     | '/blog/$slug'
     | '/cases/$slug'
     | '/email/unsubscribe'
+    | '/blog'
     | '/api/public/contact'
     | '/lovable/email/suppression'
     | '/lovable/email/queue/process'
@@ -285,7 +285,6 @@ export interface FileRouteTypes {
     | '/about'
     | '/admin'
     | '/ai-solutions'
-    | '/blog'
     | '/cases'
     | '/contacts'
     | '/cookies'
@@ -299,6 +298,7 @@ export interface FileRouteTypes {
     | '/blog/$slug'
     | '/cases/$slug'
     | '/email/unsubscribe'
+    | '/blog/'
     | '/api/public/contact'
     | '/lovable/email/suppression'
     | '/lovable/email/queue/process'
@@ -311,7 +311,6 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   AdminRoute: typeof AdminRoute
   AiSolutionsRoute: typeof AiSolutionsRoute
-  BlogRoute: typeof BlogRouteWithChildren
   CasesRoute: typeof CasesRouteWithChildren
   ContactsRoute: typeof ContactsRoute
   CookiesRoute: typeof CookiesRoute
@@ -322,7 +321,9 @@ export interface RootRouteChildren {
   TelegramBotsRoute: typeof TelegramBotsRoute
   TermsRoute: typeof TermsRoute
   WebDevelopmentRoute: typeof WebDevelopmentRoute
+  BlogSlugRoute: typeof BlogSlugRoute
   EmailUnsubscribeRoute: typeof EmailUnsubscribeRoute
+  BlogIndexRoute: typeof BlogIndexRoute
   ApiPublicContactRoute: typeof ApiPublicContactRoute
   LovableEmailSuppressionRoute: typeof LovableEmailSuppressionRoute
   LovableEmailQueueProcessRoute: typeof LovableEmailQueueProcessRoute
@@ -402,13 +403,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CasesRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/blog': {
-      id: '/blog'
-      path: '/blog'
-      fullPath: '/blog'
-      preLoaderRoute: typeof BlogRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/ai-solutions': {
       id: '/ai-solutions'
       path: '/ai-solutions'
@@ -437,6 +431,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/blog/': {
+      id: '/blog/'
+      path: '/blog'
+      fullPath: '/blog/'
+      preLoaderRoute: typeof BlogIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/email/unsubscribe': {
       id: '/email/unsubscribe'
       path: '/email/unsubscribe'
@@ -453,10 +454,10 @@ declare module '@tanstack/react-router' {
     }
     '/blog/$slug': {
       id: '/blog/$slug'
-      path: '/$slug'
+      path: '/blog/$slug'
       fullPath: '/blog/$slug'
       preLoaderRoute: typeof BlogSlugRouteImport
-      parentRoute: typeof BlogRoute
+      parentRoute: typeof rootRouteImport
     }
     '/lovable/email/suppression': {
       id: '/lovable/email/suppression'
@@ -496,16 +497,6 @@ declare module '@tanstack/react-router' {
   }
 }
 
-interface BlogRouteChildren {
-  BlogSlugRoute: typeof BlogSlugRoute
-}
-
-const BlogRouteChildren: BlogRouteChildren = {
-  BlogSlugRoute: BlogSlugRoute,
-}
-
-const BlogRouteWithChildren = BlogRoute._addFileChildren(BlogRouteChildren)
-
 interface CasesRouteChildren {
   CasesSlugRoute: typeof CasesSlugRoute
 }
@@ -521,7 +512,6 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   AdminRoute: AdminRoute,
   AiSolutionsRoute: AiSolutionsRoute,
-  BlogRoute: BlogRouteWithChildren,
   CasesRoute: CasesRouteWithChildren,
   ContactsRoute: ContactsRoute,
   CookiesRoute: CookiesRoute,
@@ -532,7 +522,9 @@ const rootRouteChildren: RootRouteChildren = {
   TelegramBotsRoute: TelegramBotsRoute,
   TermsRoute: TermsRoute,
   WebDevelopmentRoute: WebDevelopmentRoute,
+  BlogSlugRoute: BlogSlugRoute,
   EmailUnsubscribeRoute: EmailUnsubscribeRoute,
+  BlogIndexRoute: BlogIndexRoute,
   ApiPublicContactRoute: ApiPublicContactRoute,
   LovableEmailSuppressionRoute: LovableEmailSuppressionRoute,
   LovableEmailQueueProcessRoute: LovableEmailQueueProcessRoute,

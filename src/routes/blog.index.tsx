@@ -5,7 +5,7 @@ import { GlassCard } from "@/components/ui/glass-card";
 import { ContactForm } from "@/components/sections/ContactForm";
 import { articles } from "@/data/articles";
 
-export const Route = createFileRoute("/blog")({
+export const Route = createFileRoute("/blog/")({
   head: () => ({
     meta: [
       { title: "Блог — SFFRILT" },
