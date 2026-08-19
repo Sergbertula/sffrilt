@@ -11,7 +11,7 @@ export const ORGANIZATION_SCHEMA = {
   sameAs: [
     "https://t.me/tehprom1",
     "https://instagram.com/tehpromtula",
-    "https://i.max.ru/tehprom",
+    "https://max.ru/tehprom",
   ],
   address: {
     "@type": "PostalAddress",

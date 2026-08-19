@@ -218,7 +218,7 @@ export function ContactForm() {
               icon={Send}
               label="MAX"
               value="@tehprom"
-              href="https://i.max.ru/tehprom"
+              href="https://max.ru/tehprom"
             />
             <ContactItem
               icon={Send}
