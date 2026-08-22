@@ -33,9 +33,9 @@ export const Route = createFileRoute("/blog/$slug")({
       "@context": "https://schema.org",
       "@type": "BreadcrumbList",
       itemListElement: [
-        { "@type": "ListItem", position: 1, name: "Главная", item: "/" },
-        { "@type": "ListItem", position: 2, name: "Блог", item: "/blog" },
-        { "@type": "ListItem", position: 3, name: a.title, item: `/blog/${a.slug}` },
+        { "@type": "ListItem", position: 1, name: "Главная", item: "https://sffrilt.ru/" },
+        { "@type": "ListItem", position: 2, name: "Блог", item: "https://sffrilt.ru/blog" },
+        { "@type": "ListItem", position: 3, name: a.title, item: `https://sffrilt.ru/blog/${a.slug}` },
       ],
     };
     return {
