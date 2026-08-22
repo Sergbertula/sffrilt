@@ -2,7 +2,7 @@ export interface Article {
   slug: string;
   title: string;
   excerpt: string;
-  category: "AI" | "Telegram" | "Сайты" | "SEO" | "Бизнес" | "AI-решения" | "Telegram-боты";
+  category: "AI" | "Telegram" | "Сайты" | "SEO" | "Бизнес" | "AI-решения" | "Telegram-боты" | "Контент";
   readTime: number;
   date: string;
   author: string;
