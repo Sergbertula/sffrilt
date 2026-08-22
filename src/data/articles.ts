@@ -2,7 +2,7 @@ export interface Article {
   slug: string;
   title: string;
   excerpt: string;
-  category: "AI" | "Telegram" | "Сайты" | "SEO" | "Бизнес";
+  category: "AI" | "Telegram" | "Сайты" | "SEO" | "Бизнес" | "AI-решения" | "Telegram-боты";
   readTime: number;
   date: string;
   author: string;
@@ -15,7 +15,7 @@ export interface Article {
 export const articles: Article[] = [
   {
     slug: "ai-agent-vs-chatbot",
-    title: "AI-агент vs чат-бот: в чём разница и что выбрать бизнесу",
+    title: "ИИ агент vs чат-бот: в чём разница и что выбрать бизнесу в 2026",
     excerpt:
       "Разбираем на пальцах, чем AI-агент отличается от классического чат-бота, когда какой подход эффективнее и сколько это стоит.",
     category: "AI",
@@ -57,7 +57,7 @@ export const articles: Article[] = [
   },
   {
     slug: "telegram-bot-roi",
-    title: "Сколько зарабатывает Telegram-бот: 4 реальных кейса с цифрами",
+    title: "Сколько зарабатывает Telegram-бот: реальные кейсы с цифрами",
     excerpt:
       "Разбираем 4 проекта с понятным ROI: от записи к врачу до b2b-продаж. Сколько вложили, что получили и за сколько окупилось.",
     category: "Telegram",
@@ -110,7 +110,7 @@ export const articles: Article[] = [
   },
   {
     slug: "site-speed-seo",
-    title: "Скорость сайта и SEO: что реально влияет на позиции в 2026",
+    title: "Продвижение сайта с помощью ИИ: как выйти в топ Яндекса в 2026",
     
     excerpt:
       "Lighthouse 100 не нужен. Разбираем, какие метрики действительно учитывает Google и Яндекс — и как их улучшить без переделки сайта.",
@@ -156,7 +156,7 @@ export const articles: Article[] = [
   },
   {
     slug: "kak-vnedrit-ai-v-biznes",
-    title: "Как внедрить AI в бизнес за 30 дней: пошаговый план",
+    title: "Как внедрить ИИ в бизнес: пошаговый план",
     excerpt:
       "Чек-лист от первого аудита до запуска первого AI-сценария. Без хайпа, без «трансформации» — только конкретные действия.",
     category: "Бизнес",
@@ -211,7 +211,7 @@ export const articles: Article[] = [
   },
   {
     slug: "vybor-stack-2026",
-    title: "Какой стек выбрать для нового сайта в 2026",
+    title: "ИИ сервисы для бизнеса: какой стек выбрать в 2026 году",
     excerpt:
       "WordPress, Tilda, Next.js или TanStack Start — что брать под лендинг, корпоратив или SaaS. Краткий честный гайд.",
     category: "Сайты",
