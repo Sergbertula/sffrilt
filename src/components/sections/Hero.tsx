@@ -15,22 +15,24 @@ export function Hero() {
           <div className="inline-flex items-center gap-2.5 rounded-full border border-primary/30 bg-primary/10 py-1 pl-1 pr-4 text-xs font-medium text-primary backdrop-blur">
             <img loading="lazy"
               src={hero3dBadge}
-              alt="AI-автоматизация бизнеса — SFFRILT, Тула"
+              alt="ИИ (AI) автоматизация бизнеса — SFFRILT, Тула"
               width={28}
               height={28}
               className="h-7 w-7 object-contain drop-shadow-[0_0_8px_oklch(0.7_0.2_245/0.6)]"
             />
-            AI-автоматизация бизнеса · 2026
+            ИИ (AI) автоматизация бизнеса · 2026
           </div>
 
           <h1 className="mt-6 font-display text-3xl font-bold leading-[1.1] tracking-tight text-foreground sm:text-4xl lg:text-5xl xl:text-6xl">
-            Автоматизируем бизнес с помощью{" "}
-            <span className="text-gradient">AI, Telegram-ботов</span> и современных web-решений
+            Автоматизация бизнеса с помощью{" "}
+            <span className="text-gradient">ИИ (AI) и Telegram-ботов</span> под ключ
           </h1>
 
           <p className="mx-auto mt-5 max-w-2xl text-sm leading-relaxed text-muted-foreground sm:text-base">
-            Разрабатываем AI-системы, Telegram-ботов и сайты, которые помогают компаниям
-            автоматизировать процессы, обрабатывать заявки и увеличивать поток клиентов.
+            Что это такое? Это когда рутину — заявки, консультации, отчёты, напоминания — выполняют
+            чат-боты и ИИ-агенты, а не люди. Мы внедряем такие системы под ключ: бот принимает
+            заявку за 2 секунды в любое время суток, направляет её менеджеру и не просит зарплату.
+            Первый результат через 2–4 недели, стоимость от 150 000 ₽, гарантия 6 месяцев.
           </p>
 
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
@@ -56,7 +58,7 @@ export function Hero() {
 
           <div className="mt-12 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
             {[
-              { icon: Bot, label: "AI-решения для бизнеса" },
+              { icon: Bot, label: "ИИ (AI) решения для бизнеса" },
               { icon: Send, label: "Telegram-боты и автоматизация" },
               { icon: Globe, label: "SEO и продающие сайты" },
               { icon: Plug, label: "Интеграции и поддержка" },

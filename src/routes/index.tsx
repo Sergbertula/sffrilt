@@ -21,16 +21,16 @@ import { ContactForm } from "@/components/sections/ContactForm";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "SFFRILT — AI-автоматизация, Telegram-боты и сайты" },
+      { title: "Автоматизация бизнеса с помощью ИИ (AI) под ключ — SFFRILT" },
       {
         name: "description",
         content:
-          "Разрабатываем AI-системы, Telegram-ботов и сайты для автоматизации бизнеса и роста заявок.",
+          "Внедряем ИИ (AI) в бизнес под ключ: от 150 000 ₽, MVP за 2–4 недели, гарантия 6 мес. Telegram-боты, чат-боты для приёма заявок, ИИ-агенты и сайты.",
       },
-      { property: "og:title", content: "SFFRILT — AI-автоматизация бизнеса" },
+      { property: "og:title", content: "Автоматизация бизнеса с помощью ИИ (AI) под ключ — SFFRILT" },
       {
         property: "og:description",
-        content: "AI-агенты, Telegram-боты, сайты и SEO для роста бизнеса.",
+        content: "Telegram-боты, чат-боты, ИИ-агенты и сайты для бизнеса. От 150 000 ₽, MVP за 2–4 недели, гарантия 6 месяцев.",
       },
     ],
     scripts: [
